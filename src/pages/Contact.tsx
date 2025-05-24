@@ -44,7 +44,6 @@ const Contact = () => {
       
       <div className="pt-24 pb-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
-          {/* Header */}
           <div className="text-center mb-16">
             <h1 className="text-5xl font-bold text-gray-900 mb-6">Get In Touch</h1>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
@@ -54,7 +53,6 @@ const Contact = () => {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Contact Form */}
             <Card className="p-8 shadow-lg border-0">
               <h2 className="text-2xl font-semibold text-gray-900 mb-6">Send a Message</h2>
               
@@ -132,7 +130,6 @@ const Contact = () => {
               </form>
             </Card>
 
-            {/* Contact Information */}
             <div className="space-y-8">
               <Card className="p-8 shadow-lg border-0">
                 <h2 className="text-2xl font-semibold text-gray-900 mb-6">Let's Connect</h2>
@@ -180,7 +177,7 @@ const Contact = () => {
                 <div className="space-y-3">
                   <div className="flex justify-between">
                     <span className="text-gray-600">Response Time</span>
-                    <span className="font-medium text-gray-900">< 24 hours</span>
+                    <span className="font-medium text-gray-900">&lt; 24 hours</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600">Availability</span>
