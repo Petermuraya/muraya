@@ -9,7 +9,102 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      [_ in never]: never
+      blog_comments: {
+        Row: {
+          blog_id: number
+          comment: string
+          created_at: string
+          id: string
+          user_email: string
+          user_name: string
+        }
+        Insert: {
+          blog_id: number
+          comment: string
+          created_at?: string
+          id?: string
+          user_email: string
+          user_name: string
+        }
+        Update: {
+          blog_id?: number
+          comment?: string
+          created_at?: string
+          id?: string
+          user_email?: string
+          user_name?: string
+        }
+        Relationships: []
+      }
+      blog_likes: {
+        Row: {
+          blog_id: number
+          created_at: string
+          id: string
+          user_email: string
+        }
+        Insert: {
+          blog_id: number
+          created_at?: string
+          id?: string
+          user_email: string
+        }
+        Update: {
+          blog_id?: number
+          created_at?: string
+          id?: string
+          user_email?: string
+        }
+        Relationships: []
+      }
+      project_comments: {
+        Row: {
+          comment: string
+          created_at: string
+          id: string
+          project_id: string
+          user_email: string
+          user_name: string
+        }
+        Insert: {
+          comment: string
+          created_at?: string
+          id?: string
+          project_id: string
+          user_email: string
+          user_name: string
+        }
+        Update: {
+          comment?: string
+          created_at?: string
+          id?: string
+          project_id?: string
+          user_email?: string
+          user_name?: string
+        }
+        Relationships: []
+      }
+      project_likes: {
+        Row: {
+          created_at: string
+          id: string
+          project_id: string
+          user_email: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          project_id: string
+          user_email: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          project_id?: string
+          user_email?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

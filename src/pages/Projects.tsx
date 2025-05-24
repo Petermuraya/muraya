@@ -5,15 +5,19 @@ import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
-import { Github, Link as LinkIcon } from 'lucide-react';
+import LikeButton from '@/components/LikeButton';
+import CommentsSection from '@/components/CommentsSection';
+import { Github, Link as LinkIcon, MessageCircle } from 'lucide-react';
 
 const Projects = () => {
   const [activeFilter, setActiveFilter] = useState('All');
+  const [expandedProject, setExpandedProject] = useState<number | null>(null);
   
   const categories = ['All', 'Web Development', 'Mobile', 'AI/ML', 'DevOps'];
   
   const projects = [
     {
+      id: 'ecommerce-platform',
       title: "E-Commerce Platform",
       description: "A full-featured e-commerce platform with user authentication, payment processing, and admin dashboard. Built with modern React and Node.js backend.",
       category: "Web Development",
@@ -24,6 +28,7 @@ const Projects = () => {
       featured: true
     },
     {
+      id: 'ai-chat-app',
       title: "AI Chat Application",
       description: "Real-time chat application powered by AI with intelligent responses, sentiment analysis, and multi-language support.",
       category: "AI/ML",
@@ -34,6 +39,7 @@ const Projects = () => {
       featured: true
     },
     {
+      id: 'analytics-dashboard',
       title: "Mobile Analytics Dashboard",
       description: "Comprehensive analytics dashboard with real-time data visualization, custom reports, and mobile-responsive design.",
       category: "Web Development",
@@ -44,6 +50,7 @@ const Projects = () => {
       featured: false
     },
     {
+      id: 'task-management',
       title: "Task Management App",
       description: "Cross-platform mobile application for task management with offline sync, team collaboration, and productivity insights.",
       category: "Mobile",
@@ -54,6 +61,7 @@ const Projects = () => {
       featured: false
     },
     {
+      id: 'cicd-automation',
       title: "CI/CD Pipeline Automation",
       description: "Automated deployment pipeline with Docker containerization, testing automation, and monitoring setup.",
       category: "DevOps",
@@ -64,6 +72,7 @@ const Projects = () => {
       featured: false
     },
     {
+      id: 'ml-model-api',
       title: "Machine Learning Model API",
       description: "RESTful API serving machine learning models for image classification with high availability and scalability.",
       category: "AI/ML",
@@ -78,6 +87,10 @@ const Projects = () => {
   const filteredProjects = activeFilter === 'All' 
     ? projects 
     : projects.filter(project => project.category === activeFilter);
+
+  const toggleComments = (projectIndex: number) => {
+    setExpandedProject(expandedProject === projectIndex ? null : projectIndex);
+  };
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -115,7 +128,7 @@ const Projects = () => {
           {/* Projects Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredProjects.map((project, index) => (
-              <Card key={index} className="group overflow-hidden hover:shadow-xl transition-all duration-300 bg-white border-0 shadow-lg">
+              <Card key={project.id} className="group overflow-hidden hover:shadow-xl transition-all duration-300 bg-white border-0 shadow-lg">
                 <div className="relative overflow-hidden">
                   <img 
                     src={project.image} 
@@ -142,7 +155,7 @@ const Projects = () => {
                     ))}
                   </div>
                   
-                  <div className="flex gap-3">
+                  <div className="flex gap-3 mb-4">
                     <Button size="sm" variant="outline" className="flex-1" asChild>
                       <a href={project.github} target="_blank" rel="noopener noreferrer">
                         <Github className="w-4 h-4 mr-2" />
@@ -156,6 +169,27 @@ const Projects = () => {
                       </a>
                     </Button>
                   </div>
+
+                  {/* Like and Comment Actions */}
+                  <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+                    <LikeButton itemId={project.id} itemType="project" />
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => toggleComments(index)}
+                      className="flex items-center gap-2"
+                    >
+                      <MessageCircle className="w-4 h-4" />
+                      Comments
+                    </Button>
+                  </div>
+
+                  {/* Comments Section */}
+                  {expandedProject === index && (
+                    <div className="mt-4 pt-4 border-t border-gray-100">
+                      <CommentsSection itemId={project.id} itemType="project" />
+                    </div>
+                  )}
                 </div>
               </Card>
             ))}

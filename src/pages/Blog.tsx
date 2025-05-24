@@ -3,13 +3,17 @@ import { useState } from 'react';
 import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import LikeButton from '@/components/LikeButton';
+import CommentsSection from '@/components/CommentsSection';
 import { Calendar, Clock, Search, MessageCircle } from 'lucide-react';
 
 const Blog = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
+  const [expandedPost, setExpandedPost] = useState<number | null>(null);
 
   const blogPosts = [
     {
@@ -85,6 +89,10 @@ const Blog = () => {
     });
   };
 
+  const toggleComments = (postIndex: number) => {
+    setExpandedPost(expandedPost === postIndex ? null : postIndex);
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
       <Navigation />
@@ -135,7 +143,7 @@ const Blog = () => {
 
           {/* Blog Posts Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredPosts.map((post) => (
+            {filteredPosts.map((post, index) => (
               <Card key={post.id} className="group overflow-hidden hover:shadow-xl transition-all duration-300 border-0 shadow-lg">
                 <div className="relative overflow-hidden">
                   <img 
@@ -165,7 +173,7 @@ const Blog = () => {
                     ))}
                   </div>
                   
-                  <div className="flex items-center justify-between text-sm text-gray-500">
+                  <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
                     <div className="flex items-center space-x-4">
                       <div className="flex items-center space-x-1">
                         <Calendar className="w-4 h-4" />
@@ -176,11 +184,28 @@ const Blog = () => {
                         <span>{post.readTime}</span>
                       </div>
                     </div>
-                    <div className="flex items-center space-x-1">
-                      <MessageCircle className="w-4 h-4" />
-                      <span>{post.comments}</span>
-                    </div>
                   </div>
+
+                  {/* Like and Comment Actions */}
+                  <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+                    <LikeButton itemId={post.id} itemType="blog" />
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => toggleComments(index)}
+                      className="flex items-center gap-2"
+                    >
+                      <MessageCircle className="w-4 h-4" />
+                      Comments
+                    </Button>
+                  </div>
+
+                  {/* Comments Section */}
+                  {expandedPost === index && (
+                    <div className="mt-4 pt-4 border-t border-gray-100">
+                      <CommentsSection itemId={post.id} itemType="blog" />
+                    </div>
+                  )}
                 </div>
               </Card>
             ))}
