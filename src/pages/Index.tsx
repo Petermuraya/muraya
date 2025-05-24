@@ -9,22 +9,22 @@ import { ArrowDown, Code, Github, Linkedin, Mail } from 'lucide-react';
 const Index = () => {
   const featuredProjects = [
     {
-      title: "E-Commerce Platform",
-      description: "Full-stack React application with modern UI and robust backend",
-      tech: ["React", "Node.js", "MongoDB"],
-      image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&h=400&fit=crop"
+      title: "ThoraxIQ - AI Chest X-ray Analysis",
+      description: "AI-powered chest X-ray abnormality detection system for improved healthcare diagnostics",
+      tech: ["Python", "AI/ML", "TensorFlow", "FastAPI"],
+      image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=600&h=400&fit=crop"
     },
     {
-      title: "AI Chat Application", 
-      description: "Real-time chat app powered by AI with intelligent responses",
-      tech: ["TypeScript", "WebSocket", "AI/ML"],
-      image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=600&h=400&fit=crop"
+      title: "Smart Agriculture IoT Platform", 
+      description: "IoT solution for precision farming with real-time monitoring and automated irrigation",
+      tech: ["Python", "Azure IoT", "React", "MongoDB"],
+      image: "https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=600&h=400&fit=crop"
     },
     {
-      title: "Mobile Analytics Dashboard",
-      description: "Data visualization dashboard with interactive charts and insights",
-      tech: ["React", "D3.js", "Python"],
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop"
+      title: "Health Tech Accessibility Platform",
+      description: "Digital health solution focused on accessibility and inclusion for underserved communities",
+      tech: ["Django", "React", "PostgreSQL", "Firebase"],
+      image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=600&h=400&fit=crop"
     }
   ];
 
@@ -38,23 +38,23 @@ const Index = () => {
           <div className="text-center">
             <div className="mb-8">
               <img 
-                src="https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=200&h=200&fit=crop&crop=face" 
-                alt="Profile" 
+                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face" 
+                alt="Peter Muraya Ndung'u" 
                 className="w-32 h-32 rounded-full mx-auto mb-6 shadow-lg border-4 border-white"
               />
             </div>
             
             <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-6 animate-fade-in">
-              Hi, I'm <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">Your Name</span>
+              Hi, I'm <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">Peter Muraya</span>
             </h1>
             
             <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
-              Full-Stack Developer & Problem Solver
+              IoT & Cloud Solutions Developer | Tech for Global Development
             </p>
             
             <p className="text-lg text-gray-600 mb-12 max-w-2xl mx-auto">
-              I craft digital experiences with clean code and creative solutions. 
-              Passionate about turning complex problems into simple, elegant applications.
+              Passionate about leveraging technology for global development, inclusion, and digital innovation. 
+              Specializing in smart agriculture, health tech, and AI-powered solutions.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
@@ -73,7 +73,7 @@ const Index = () => {
               <a href="https://linkedin.com" className="text-gray-600 hover:text-blue-600 transition-colors">
                 <Linkedin className="w-8 h-8" />
               </a>
-              <a href="mailto:hello@example.com" className="text-gray-600 hover:text-blue-600 transition-colors">
+              <a href="mailto:peter.muraya@example.com" className="text-gray-600 hover:text-blue-600 transition-colors">
                 <Mail className="w-8 h-8" />
               </a>
             </div>
@@ -91,7 +91,7 @@ const Index = () => {
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">Featured Projects</h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              A showcase of my recent work and the technologies I love working with
+              Innovative solutions in AI, IoT, and cloud technologies for social impact
             </p>
           </div>
           
@@ -141,8 +141,8 @@ const Index = () => {
           
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
             {[
-              'React', 'TypeScript', 'Node.js', 'Python', 'AWS', 'MongoDB',
-              'Next.js', 'Express', 'Docker', 'Git', 'Tailwind', 'GraphQL'
+              'Python', 'JavaScript', 'TypeScript', 'React', 'Django', 'FastAPI',
+              'Azure IoT', 'Firebase', 'MongoDB', 'TailwindCSS', 'Next.js', 'SQL'
             ].map((skill) => (
               <div key={skill} className="bg-white p-4 rounded-lg shadow-md text-center hover:shadow-lg transition-shadow">
                 <Code className="w-8 h-8 mx-auto mb-2 text-blue-600" />

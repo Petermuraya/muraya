@@ -8,87 +8,94 @@ import { Calendar, Download, User, Award, Briefcase, Star } from 'lucide-react';
 
 const About = () => {
   const skills = [
-    { name: 'React/Next.js', level: 95, category: 'Frontend' },
-    { name: 'TypeScript', level: 90, category: 'Languages' },
-    { name: 'Node.js/Express', level: 85, category: 'Backend' },
-    { name: 'Python', level: 80, category: 'Languages' },
-    { name: 'AWS/Cloud', level: 75, category: 'DevOps' },
-    { name: 'MongoDB/SQL', level: 85, category: 'Database' },
-    { name: 'Docker', level: 70, category: 'DevOps' },
-    { name: 'GraphQL', level: 80, category: 'API' },
+    { name: 'Python', level: 95, category: 'Programming Languages' },
+    { name: 'JavaScript/TypeScript', level: 90, category: 'Programming Languages' },
+    { name: 'SQL', level: 85, category: 'Programming Languages' },
+    { name: 'React/Next.js', level: 90, category: 'Frontend' },
+    { name: 'Django', level: 85, category: 'Backend' },
+    { name: 'FastAPI', level: 80, category: 'Backend' },
+    { name: 'Azure IoT', level: 85, category: 'Cloud & IoT' },
+    { name: 'Firebase', level: 80, category: 'Cloud & IoT' },
+    { name: 'MongoDB', level: 75, category: 'Database' },
+    { name: 'AI/ML', level: 80, category: 'Artificial Intelligence' },
+    { name: 'TensorFlow', level: 75, category: 'Artificial Intelligence' },
+    { name: 'Data Analysis', level: 85, category: 'Data Science' },
   ];
 
   const certifications = [
     {
-      name: "AWS Certified Solutions Architect",
-      issuer: "Amazon Web Services",
-      year: "2023",
-      icon: "🏆"
+      name: "BSc Information Technology",
+      issuer: "Expected September 2025",
+      year: "2025",
+      icon: "🎓"
     },
     {
-      name: "Google Cloud Professional Developer",
-      issuer: "Google Cloud",
-      year: "2022",
+      name: "Azure IoT Developer",
+      issuer: "Microsoft Azure",
+      year: "2024",
       icon: "☁️"
     },
     {
-      name: "Meta React Developer Certificate",
-      issuer: "Meta",
-      year: "2022",
-      icon: "⚛️"
+      name: "Python for Data Science",
+      issuer: "Various Platforms",
+      year: "2023",
+      icon: "🐍"
     }
   ];
 
   const experience = [
     {
-      title: "Senior Full-Stack Developer",
-      company: "Tech Company Inc.",
+      title: "IoT & Cloud Solutions Developer",
+      company: "Freelance & Project Work",
+      period: "2023 - Present",
+      description: "Developing IoT solutions for smart agriculture and health tech applications. Working on AI-powered diagnostic systems and cloud-based data analytics platforms.",
+      achievements: [
+        "Built ThoraxIQ - AI chest X-ray abnormality detection system",
+        "Developed smart agriculture IoT platform with real-time monitoring",
+        "Created accessibility-focused health tech solutions",
+        "Implemented data-driven AI projects including disease spread simulation"
+      ],
+      logo: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=60&h=60&fit=crop"
+    },
+    {
+      title: "Tech Leadership Roles",
+      company: "Karatina Innovation Club & Akiliedge Tech Network",
       period: "2022 - Present",
-      description: "Led development of scalable web applications, mentored junior developers, and implemented best practices for code quality and performance.",
+      description: "Leading tech initiatives and fostering innovation in university and professional tech communities. Mentoring students and organizing tech events.",
       achievements: [
-        "Increased application performance by 40% through optimization",
-        "Led a team of 5 developers on major product launches",
-        "Implemented CI/CD pipelines reducing deployment time by 60%"
+        "Led innovation projects in Karatina Innovation Club",
+        "Active member of Akiliedge Tech Network",
+        "Organized tech workshops and hackathons",
+        "Mentored junior developers in full-stack development"
       ],
-      logo: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=60&h=60&fit=crop"
+      logo: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=60&h=60&fit=crop"
     },
     {
-      title: "Software Engineer",
-      company: "Startup Solutions",
-      period: "2020 - 2022",
-      description: "Developed and maintained multiple client projects using React, Node.js, and cloud technologies. Collaborated with cross-functional teams.",
+      title: "Full-Stack Developer",
+      company: "Various Projects",
+      period: "2021 - 2023",
+      description: "Worked on diverse web development projects using modern frameworks. Built responsive applications with focus on user experience and performance.",
       achievements: [
-        "Built 10+ client applications from scratch",
-        "Reduced server costs by 30% through cloud optimization",
-        "Mentored 3 junior developers"
+        "Developed hotel price prediction system using ML",
+        "Built multiple React applications with modern UI/UX",
+        "Implemented Firebase and MongoDB backend solutions",
+        "Created data visualization dashboards"
       ],
-      logo: "https://images.unsplash.com/photo-1549923746-c502d488b3ea?w=60&h=60&fit=crop"
-    },
-    {
-      title: "Junior Developer",
-      company: "Digital Agency",
-      period: "2019 - 2020",
-      description: "Built responsive websites and web applications. Gained experience in modern JavaScript frameworks and agile development practices.",
-      achievements: [
-        "Developed 20+ responsive websites",
-        "Improved page load speeds by 50%",
-        "Collaborated on team projects using Agile methodology"
-      ],
-      logo: "https://images.unsplash.com/photo-1572021335469-31706a17aaef?w=60&h=60&fit=crop"
+      logo: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=60&h=60&fit=crop"
     }
   ];
 
   const testimonials = [
     {
-      name: "Sarah Johnson",
-      position: "Product Manager at Tech Company Inc.",
-      text: "Exceptional developer with strong problem-solving skills. Always delivers high-quality code on time.",
+      name: "Innovation Club Member",
+      position: "Karatina University",
+      text: "Peter's leadership in tech projects has been inspiring. His passion for using technology for social good is evident in every project.",
       rating: 5
     },
     {
-      name: "Mike Chen",
-      position: "CTO at Startup Solutions",
-      text: "One of the most talented developers I've worked with. Great team player and mentor.",
+      name: "Project Collaborator",
+      position: "Akiliedge Tech Network",
+      text: "Working with Peter on IoT projects has been amazing. His technical skills and vision for global development are remarkable.",
       rating: 5
     }
   ];
@@ -103,9 +110,9 @@ const About = () => {
         <div className="max-w-4xl mx-auto">
           {/* Header */}
           <div className="text-center mb-16">
-            <h1 className="text-5xl font-bold text-gray-900 mb-6">About Me</h1>
+            <h1 className="text-5xl font-bold text-gray-900 mb-6">About Peter Muraya</h1>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Passionate developer with a love for creating elegant solutions to complex problems
+              IoT & Cloud Solutions Developer passionate about technology for global development and digital innovation
             </p>
           </div>
 
@@ -113,8 +120,8 @@ const About = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20">
             <div>
               <img 
-                src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=500&h=600&fit=crop" 
-                alt="Profile" 
+                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=600&fit=crop&crop=face" 
+                alt="Peter Muraya Ndung'u" 
                 className="w-full max-w-md mx-auto rounded-lg shadow-lg"
               />
             </div>
@@ -126,21 +133,21 @@ const About = () => {
               </div>
               
               <p className="text-lg text-gray-600 leading-relaxed">
-                I'm a passionate full-stack developer with over 5 years of experience creating 
-                digital solutions that make a difference. My journey began with curiosity about 
-                how websites work, and it has evolved into a career dedicated to crafting 
-                exceptional user experiences.
+                I'm Peter Muraya Ndung'u (also known as Sammy Peter), an IoT & Cloud Solutions 
+                Developer with a passion for leveraging technology to create positive global impact. 
+                Currently pursuing my BSc in Information Technology, graduating in September 2025.
               </p>
               
               <p className="text-lg text-gray-600 leading-relaxed">
-                I specialize in React, TypeScript, and Node.js, but I'm always eager to learn 
-                new technologies. I believe in writing clean, maintainable code and creating 
-                applications that are not just functional, but delightful to use.
+                My expertise spans Python, JavaScript, TypeScript, SQL, Firebase, Azure IoT, React, 
+                Django, FastAPI, and more. I specialize in smart agriculture, health tech, accessibility 
+                solutions, and environmental protection projects.
               </p>
               
               <p className="text-lg text-gray-600 leading-relaxed">
-                When I'm not coding, you can find me exploring new technologies, contributing 
-                to open source projects, or sharing knowledge through blog posts and mentoring.
+                Recently relocated from Karatina to Nairobi, Kenya, I'm actively involved in leadership 
+                roles at Karatina Innovation Club and Akiliedge Tech Network. Currently working on 
+                ThoraxIQ, an AI-powered chest X-ray abnormality detection system.
               </p>
               
               <Button className="mt-6 bg-blue-600 hover:bg-blue-700">
@@ -178,7 +185,7 @@ const About = () => {
           <div className="mb-20">
             <div className="flex items-center space-x-3 mb-8 justify-center">
               <Award className="w-8 h-8 text-blue-600" />
-              <h2 className="text-3xl font-bold text-gray-900">Certifications</h2>
+              <h2 className="text-3xl font-bold text-gray-900">Education & Certifications</h2>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -260,23 +267,23 @@ const About = () => {
             <h2 className="text-3xl font-bold text-gray-900 mb-8">What Drives Me</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <Card className="p-6 hover:shadow-lg transition-shadow">
+                <h3 className="text-xl font-semibold text-gray-900 mb-4">Global Development</h3>
+                <p className="text-gray-600">
+                  Using technology to create solutions that address global challenges and promote inclusive development.
+                </p>
+              </Card>
+              
+              <Card className="p-6 hover:shadow-lg transition-shadow">
                 <h3 className="text-xl font-semibold text-gray-900 mb-4">Innovation</h3>
                 <p className="text-gray-600">
-                  Always exploring new technologies and approaches to solve problems in creative ways.
+                  Exploring cutting-edge technologies like AI, IoT, and cloud computing to build impactful solutions.
                 </p>
               </Card>
               
               <Card className="p-6 hover:shadow-lg transition-shadow">
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">Quality</h3>
+                <h3 className="text-xl font-semibold text-gray-900 mb-4">Social Impact</h3>
                 <p className="text-gray-600">
-                  Committed to writing clean, maintainable code and delivering exceptional user experiences.
-                </p>
-              </Card>
-              
-              <Card className="p-6 hover:shadow-lg transition-shadow">
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">Growth</h3>
-                <p className="text-gray-600">
-                  Continuously learning and sharing knowledge with the developer community.
+                  Committed to projects in health tech, smart agriculture, and accessibility solutions for positive change.
                 </p>
               </Card>
             </div>

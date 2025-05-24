@@ -70,14 +70,24 @@ const CommentsSection = ({ itemId, itemType, className }: CommentsSectionProps) 
     }
 
     try {
+      // Create the insert object with proper typing
+      const insertData = itemType === 'project' 
+        ? { 
+            project_id: String(itemId), 
+            user_name: userName, 
+            user_email: userEmail, 
+            comment: newComment.trim() 
+          }
+        : { 
+            blog_id: Number(itemId), 
+            user_name: userName, 
+            user_email: userEmail, 
+            comment: newComment.trim() 
+          };
+
       const { error } = await supabase
         .from(tableName)
-        .insert({
-          [idColumn]: itemId,
-          user_name: userName,
-          user_email: userEmail,
-          comment: newComment.trim()
-        });
+        .insert(insertData);
 
       if (error) throw error;
 

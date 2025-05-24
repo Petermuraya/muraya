@@ -67,13 +67,14 @@ const LikeButton = ({ itemId, itemType, className }: LikeButtonProps) => {
         setLikes(prev => prev - 1);
         setIsLiked(false);
       } else {
-        // Like
+        // Like - create the insert object with proper typing
+        const insertData = itemType === 'project' 
+          ? { project_id: String(itemId), user_email: userEmail }
+          : { blog_id: Number(itemId), user_email: userEmail };
+
         const { error } = await supabase
           .from(tableName)
-          .insert({
-            [idColumn]: itemId,
-            user_email: userEmail
-          });
+          .insert(insertData);
 
         if (error) throw error;
         setLikes(prev => prev + 1);
