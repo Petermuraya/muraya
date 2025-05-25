@@ -5,6 +5,14 @@ import { Button } from '@/components/ui/button';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/components/ui/use-toast';
 
+interface LikeRecord {
+  id: string;
+  user_email: string;
+  created_at: string;
+  project_id?: string;
+  blog_id?: number;
+}
+
 interface LikeButtonProps {
   itemId: string | number;
   itemType: 'project' | 'blog';
@@ -36,10 +44,11 @@ const LikeButton = ({ itemId, itemType, className }: LikeButtonProps) => {
 
       if (error) throw error;
 
-      setLikes(data?.length || 0);
+      const likesData = (data as LikeRecord[]) || [];
+      setLikes(likesData.length);
       
       const email = localStorage.getItem('user_email') || '';
-      const userLike = data?.find((like: any) => like.user_email === email);
+      const userLike = likesData.find((like: LikeRecord) => like.user_email === email);
       setIsLiked(!!userLike);
     } catch (error) {
       console.error('Error loading likes:', error);

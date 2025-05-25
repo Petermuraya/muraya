@@ -49,7 +49,7 @@ const CommentsSection = ({ itemId, itemType, className }: CommentsSectionProps) 
         .order('created_at', { ascending: false });
 
       if (error) throw error;
-      setComments(data || []);
+      setComments((data as Comment[]) || []);
     } catch (error) {
       console.error('Error loading comments:', error);
     }
