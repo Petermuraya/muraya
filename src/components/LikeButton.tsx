@@ -30,7 +30,7 @@ const LikeButton = ({ itemId, itemType, className }: LikeButtonProps) => {
   const loadLikes = async () => {
     try {
       const { data, error } = await supabase
-        .from(tableName)
+        .from(tableName as any)
         .select('*')
         .eq(idColumn, itemId);
 
@@ -39,7 +39,7 @@ const LikeButton = ({ itemId, itemType, className }: LikeButtonProps) => {
       setLikes(data?.length || 0);
       
       const email = localStorage.getItem('user_email') || '';
-      const userLike = data?.find(like => like.user_email === email);
+      const userLike = data?.find((like: any) => like.user_email === email);
       setIsLiked(!!userLike);
     } catch (error) {
       console.error('Error loading likes:', error);
@@ -58,7 +58,7 @@ const LikeButton = ({ itemId, itemType, className }: LikeButtonProps) => {
       if (isLiked) {
         // Unlike
         const { error } = await supabase
-          .from(tableName)
+          .from(tableName as any)
           .delete()
           .eq(idColumn, itemId)
           .eq('user_email', userEmail);
@@ -73,7 +73,7 @@ const LikeButton = ({ itemId, itemType, className }: LikeButtonProps) => {
           : { blog_id: Number(itemId), user_email: userEmail };
 
         const { error } = await supabase
-          .from(tableName)
+          .from(tableName as any)
           .insert(insertData);
 
         if (error) throw error;

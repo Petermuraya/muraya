@@ -43,7 +43,7 @@ const CommentsSection = ({ itemId, itemType, className }: CommentsSectionProps) 
   const loadComments = async () => {
     try {
       const { data, error } = await supabase
-        .from(tableName)
+        .from(tableName as any)
         .select('*')
         .eq(idColumn, itemId)
         .order('created_at', { ascending: false });
@@ -86,7 +86,7 @@ const CommentsSection = ({ itemId, itemType, className }: CommentsSectionProps) 
           };
 
       const { error } = await supabase
-        .from(tableName)
+        .from(tableName as any)
         .insert(insertData);
 
       if (error) throw error;
