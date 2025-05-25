@@ -4,7 +4,7 @@ import { Card } from '@/components/ui/card';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import { Link } from 'react-router-dom';
-import { ArrowDown, Code, Github, Linkedin, Mail } from 'lucide-react';
+import { ArrowDown, Code, Github, Linkedin, Mail, Sparkles, Zap, Target } from 'lucide-react';
 
 const Index = () => {
   const featuredProjects = [
@@ -12,81 +12,135 @@ const Index = () => {
       title: "ThoraxIQ - AI Chest X-ray Analysis",
       description: "AI-powered chest X-ray abnormality detection system for improved healthcare diagnostics",
       tech: ["Python", "AI/ML", "TensorFlow", "FastAPI"],
-      image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=600&h=400&fit=crop"
+      image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=600&h=400&fit=crop",
+      gradient: "from-blue-500 to-cyan-500"
     },
     {
       title: "Smart Agriculture IoT Platform", 
       description: "IoT solution for precision farming with real-time monitoring and automated irrigation",
       tech: ["Python", "Azure IoT", "React", "MongoDB"],
-      image: "https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=600&h=400&fit=crop"
+      image: "https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=600&h=400&fit=crop",
+      gradient: "from-green-500 to-emerald-500"
     },
     {
       title: "Health Tech Accessibility Platform",
       description: "Digital health solution focused on accessibility and inclusion for underserved communities",
       tech: ["Django", "React", "PostgreSQL", "Firebase"],
-      image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=600&h=400&fit=crop"
+      image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=600&h=400&fit=crop",
+      gradient: "from-purple-500 to-pink-500"
+    }
+  ];
+
+  const features = [
+    {
+      icon: Sparkles,
+      title: "AI Innovation",
+      description: "Cutting-edge artificial intelligence solutions for real-world problems"
+    },
+    {
+      icon: Zap,
+      title: "IoT Excellence",
+      description: "Smart connected systems that bridge the physical and digital worlds"
+    },
+    {
+      icon: Target,
+      title: "Global Impact",
+      description: "Technology solutions focused on social good and sustainable development"
     }
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
       <Navigation />
       
       {/* Hero Section */}
-      <section className="pt-24 pb-12 px-4 sm:px-6 lg:px-8">
+      <section className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+        <div className="absolute inset-0 bg-grid-slate-100 [mask-image:linear-gradient(0deg,white,rgba(255,255,255,0.6))] -z-10"></div>
         <div className="max-w-7xl mx-auto">
           <div className="text-center">
-            <div className="mb-8">
-              <img 
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face" 
-                alt="Peter Muraya Ndung'u" 
-                className="w-32 h-32 rounded-full mx-auto mb-6 shadow-lg border-4 border-white"
-              />
+            <div className="mb-8 animate-fade-in">
+              <div className="relative inline-block">
+                <img 
+                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face" 
+                  alt="Peter Muraya Ndung'u" 
+                  className="w-40 h-40 rounded-full mx-auto mb-6 shadow-2xl border-4 border-white ring-4 ring-blue-100 hover-lift"
+                />
+                <div className="absolute -top-2 -right-2 w-6 h-6 bg-green-500 rounded-full border-2 border-white animate-pulse"></div>
+              </div>
             </div>
             
-            <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-6 animate-fade-in">
-              Hi, I'm <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">Peter Muraya</span>
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-gray-900 mb-6 animate-fade-in-up text-balance">
+              Hi, I'm <span className="gradient-text">Peter Muraya</span>
             </h1>
             
-            <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
-              IoT & Cloud Solutions Developer | Tech for Global Development
-            </p>
+            <div className="animate-fade-in-up [animation-delay:200ms] opacity-0 [animation-fill-mode:forwards]">
+              <p className="text-xl md:text-2xl text-gray-600 mb-4 max-w-3xl mx-auto leading-relaxed font-medium">
+                IoT & Cloud Solutions Developer
+              </p>
+              <p className="text-lg md:text-xl text-blue-600 mb-8 max-w-2xl mx-auto font-medium">
+                Tech for Global Development
+              </p>
+            </div>
             
-            <p className="text-lg text-gray-600 mb-12 max-w-2xl mx-auto">
+            <p className="text-lg text-gray-600 mb-12 max-w-2xl mx-auto animate-fade-in-up [animation-delay:400ms] opacity-0 [animation-fill-mode:forwards] leading-relaxed">
               Passionate about leveraging technology for global development, inclusion, and digital innovation. 
               Specializing in smart agriculture, health tech, and AI-powered solutions.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-              <Button asChild size="lg" className="text-lg px-8 py-3 bg-blue-600 hover:bg-blue-700">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12 animate-fade-in-up [animation-delay:600ms] opacity-0 [animation-fill-mode:forwards]">
+              <Button asChild size="lg" className="text-lg px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5">
                 <Link to="/projects">View My Work</Link>
               </Button>
-              <Button asChild variant="outline" size="lg" className="text-lg px-8 py-3">
+              <Button asChild variant="outline" size="lg" className="text-lg px-8 py-4 border-2 hover:bg-blue-50 transition-all duration-300 hover:-translate-y-0.5 shadow-md hover:shadow-lg">
                 <Link to="/contact">Get In Touch</Link>
               </Button>
             </div>
             
-            <div className="flex justify-center space-x-6 mb-16">
-              <a href="https://github.com" className="text-gray-600 hover:text-blue-600 transition-colors">
+            <div className="flex justify-center space-x-6 mb-16 animate-fade-in-up [animation-delay:800ms] opacity-0 [animation-fill-mode:forwards]">
+              <a href="https://github.com" className="text-gray-600 hover:text-blue-600 transition-all duration-300 hover:scale-110 hover:-translate-y-1">
                 <Github className="w-8 h-8" />
               </a>
-              <a href="https://linkedin.com" className="text-gray-600 hover:text-blue-600 transition-colors">
+              <a href="https://linkedin.com" className="text-gray-600 hover:text-blue-600 transition-all duration-300 hover:scale-110 hover:-translate-y-1">
                 <Linkedin className="w-8 h-8" />
               </a>
-              <a href="mailto:peter.muraya@example.com" className="text-gray-600 hover:text-blue-600 transition-colors">
+              <a href="mailto:peter.muraya@example.com" className="text-gray-600 hover:text-blue-600 transition-all duration-300 hover:scale-110 hover:-translate-y-1">
                 <Mail className="w-8 h-8" />
               </a>
             </div>
             
-            <div className="animate-bounce">
+            <div className="animate-bounce [animation-delay:1s]">
               <ArrowDown className="w-6 h-6 mx-auto text-gray-400" />
             </div>
           </div>
         </div>
       </section>
 
+      {/* Features Section */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white/50 backdrop-blur-sm">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Why Choose Innovation</h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Driving technological advancement through purposeful innovation
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {features.map((feature, index) => (
+              <Card key={index} className="p-8 text-center hover-lift border-0 shadow-lg bg-white/80 backdrop-blur-sm">
+                <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                  <feature.icon className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-4">{feature.title}</h3>
+                <p className="text-gray-600 leading-relaxed">{feature.description}</p>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Featured Projects Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+      <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">Featured Projects</h2>
@@ -97,23 +151,24 @@ const Index = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {featuredProjects.map((project, index) => (
-              <Card key={index} className="group overflow-hidden hover:shadow-xl transition-all duration-300 border-0 shadow-lg">
+              <Card key={index} className="group overflow-hidden hover-lift border-0 shadow-xl bg-white">
                 <div className="relative overflow-hidden">
                   <img 
                     src={project.image} 
                     alt={project.title}
-                    className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                    className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-blue-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-20 transition-opacity duration-300`} />
+                  <div className="absolute top-4 right-4 w-3 h-3 bg-green-400 rounded-full shadow-lg animate-pulse"></div>
                 </div>
                 
                 <div className="p-6">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">{project.title}</h3>
-                  <p className="text-gray-600 mb-4">{project.description}</p>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-300">{project.title}</h3>
+                  <p className="text-gray-600 mb-4 leading-relaxed">{project.description}</p>
                   
                   <div className="flex flex-wrap gap-2 mb-4">
                     {project.tech.map((tech) => (
-                      <span key={tech} className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
+                      <span key={tech} className="bg-gradient-to-r from-blue-50 to-indigo-50 text-blue-700 px-3 py-1 rounded-full text-sm font-medium border border-blue-200">
                         {tech}
                       </span>
                     ))}
@@ -124,7 +179,7 @@ const Index = () => {
           </div>
           
           <div className="text-center mt-12">
-            <Button asChild size="lg" variant="outline" className="text-lg px-8 py-3">
+            <Button asChild size="lg" variant="outline" className="text-lg px-8 py-4 border-2 hover:bg-blue-50 transition-all duration-300 hover:-translate-y-0.5 shadow-md hover:shadow-lg">
               <Link to="/projects">View All Projects</Link>
             </Button>
           </div>
@@ -132,7 +187,7 @@ const Index = () => {
       </section>
 
       {/* Skills Preview */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-50 to-blue-50">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">Skills & Expertise</h2>
@@ -143,16 +198,18 @@ const Index = () => {
             {[
               'Python', 'JavaScript', 'TypeScript', 'React', 'Django', 'FastAPI',
               'Azure IoT', 'Firebase', 'MongoDB', 'TailwindCSS', 'Next.js', 'SQL'
-            ].map((skill) => (
-              <div key={skill} className="bg-white p-4 rounded-lg shadow-md text-center hover:shadow-lg transition-shadow">
-                <Code className="w-8 h-8 mx-auto mb-2 text-blue-600" />
-                <span className="text-sm font-medium text-gray-700">{skill}</span>
+            ].map((skill, index) => (
+              <div key={skill} className="bg-white p-6 rounded-2xl shadow-lg text-center hover-lift group border border-gray-100">
+                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                  <Code className="w-6 h-6 text-white" />
+                </div>
+                <span className="text-sm font-medium text-gray-700 group-hover:text-blue-600 transition-colors duration-300">{skill}</span>
               </div>
             ))}
           </div>
           
           <div className="text-center mt-12">
-            <Button asChild size="lg" variant="outline" className="text-lg px-8 py-3">
+            <Button asChild size="lg" variant="outline" className="text-lg px-8 py-4 border-2 hover:bg-blue-50 transition-all duration-300 hover:-translate-y-0.5 shadow-md hover:shadow-lg">
               <Link to="/about">Learn More About Me</Link>
             </Button>
           </div>
