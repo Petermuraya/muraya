@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { MessageCircle, Send } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -49,7 +48,7 @@ const CommentsSection = ({ itemId, itemType, className }: CommentsSectionProps) 
         .order('created_at', { ascending: false });
 
       if (error) throw error;
-      setComments((data as Comment[]) || []);
+      setComments((data as unknown as Comment[]) || []);
     } catch (error) {
       console.error('Error loading comments:', error);
     }

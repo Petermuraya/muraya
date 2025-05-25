@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Heart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -44,7 +43,7 @@ const LikeButton = ({ itemId, itemType, className }: LikeButtonProps) => {
 
       if (error) throw error;
 
-      const likesData = (data as LikeRecord[]) || [];
+      const likesData = (data as unknown as LikeRecord[]) || [];
       setLikes(likesData.length);
       
       const email = localStorage.getItem('user_email') || '';
