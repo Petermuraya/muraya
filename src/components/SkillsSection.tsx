@@ -13,26 +13,28 @@ const SkillsSection = () => {
   ];
 
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-800 dark:to-blue-900">
-      <div className="max-w-7xl mx-auto">
+    <section className="py-20 px-4 sm:px-6 lg:px-8 relative">
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#161b22]/30 to-transparent"></div>
+      
+      <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">{t('skillsExpertise')}</h2>
-          <p className="text-xl text-gray-600 dark:text-gray-300">{t('technologiesIWork')}</p>
+          <h2 className="text-4xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent mb-4">{t('skillsExpertise')}</h2>
+          <p className="text-xl text-[#7d8590]">{t('technologiesIWork')}</p>
         </div>
         
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
           {skills.map((skill, index) => (
-            <div key={skill} className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg text-center hover-lift group border border-gray-100 dark:border-gray-700">
-              <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+            <div key={skill} className="group bg-[#161b22]/50 backdrop-blur-md p-6 rounded-2xl border border-[#30363d] text-center hover:border-blue-500/30 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-blue-500/10">
+              <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 group-hover:shadow-blue-500/20 shadow-lg">
                 <Code className="w-6 h-6 text-white" />
               </div>
-              <span className="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">{skill}</span>
+              <span className="text-sm font-medium text-[#c9d1d9] group-hover:text-blue-400 transition-colors duration-300">{skill}</span>
             </div>
           ))}
         </div>
         
         <div className="text-center mt-12">
-          <Button asChild size="lg" variant="outline" className="text-lg px-8 py-4 border-2 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all duration-300 hover:-translate-y-0.5 shadow-md hover:shadow-lg">
+          <Button asChild size="lg" variant="outline" className="text-lg px-8 py-4 border-2 border-[#30363d] bg-[#21262d]/50 backdrop-blur-sm hover:bg-[#30363d]/50 hover:border-blue-500/30 transition-all duration-300 hover:-translate-y-0.5 shadow-md hover:shadow-lg text-white">
             <Link to="/about">{t('learnMoreAboutMe')}</Link>
           </Button>
         </div>
