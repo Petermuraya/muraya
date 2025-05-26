@@ -5,8 +5,52 @@ import { Progress } from '@/components/ui/progress';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import { Calendar, Download, User, Award, Briefcase, Star } from 'lucide-react';
+import { useEffect } from 'react';
 
 const About = () => {
+  useEffect(() => {
+    // Smooth scrolling behavior
+    document.documentElement.style.scrollBehavior = 'smooth';
+    
+    // Parallax and scroll effects
+    const handleScroll = () => {
+      const scrolled = window.pageYOffset;
+      const parallaxElements = document.querySelectorAll('.parallax-bg');
+      
+      parallaxElements.forEach((element) => {
+        const speed = 0.5;
+        const yPos = -(scrolled * speed);
+        (element as HTMLElement).style.transform = `translate3d(0, ${yPos}px, 0)`;
+      });
+    };
+
+    // Intersection Observer for fade-in animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-fade-in-up');
+          entry.target.classList.remove('opacity-0');
+        }
+      });
+    }, observerOptions);
+
+    // Observe all sections
+    const sections = document.querySelectorAll('.scroll-animate');
+    sections.forEach((section) => observer.observe(section));
+
+    window.addEventListener('scroll', handleScroll);
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      observer.disconnect();
+    };
+  }, []);
+
   const skills = [
     { name: 'Python', level: 95, category: 'Programming Languages' },
     { name: 'JavaScript/TypeScript', level: 90, category: 'Programming Languages' },
@@ -103,195 +147,216 @@ const About = () => {
   const skillCategories = [...new Set(skills.map(skill => skill.category))];
 
   return (
-    <div className="min-h-screen bg-white">
-      <Navigation />
-      
-      <div className="pt-24 pb-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto">
-          {/* Header */}
-          <div className="text-center mb-16">
-            <h1 className="text-5xl font-bold text-gray-900 mb-6">About Peter Muraya</h1>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              IoT & Cloud Solutions Developer passionate about technology for global development and digital innovation
-            </p>
-          </div>
+    <div className="min-h-screen bg-[#0d1117] text-white overflow-x-hidden">
+      {/* Background Effects */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        <div className="parallax-bg absolute inset-0 bg-gradient-to-br from-[#0d1117] via-[#161b22] to-[#21262d]"></div>
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=&quot;60&quot; height=&quot;60&quot; viewBox=&quot;0 0 60 60&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;%3E%3Cg fill=&quot;none&quot; fill-rule=&quot;evenodd&quot;%3E%3Cg fill=&quot;%23f0f6fc&quot; fill-opacity=&quot;0.02&quot;%3E%3Ccircle cx=&quot;7&quot; cy=&quot;7&quot; r=&quot;1&quot;/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-40"></div>
+      </div>
 
-          {/* Profile Section */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20">
-            <div>
-              <img 
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=600&fit=crop&crop=face" 
-                alt="Peter Muraya Ndung'u" 
-                className="w-full max-w-md mx-auto rounded-lg shadow-lg"
-              />
+      {/* Gradient Orbs */}
+      <div className="fixed inset-0 pointer-events-none">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute top-3/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-green-500/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '4s' }}></div>
+      </div>
+
+      <div className="relative z-10">
+        <Navigation />
+        
+        <div className="pt-24 pb-12 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto">
+            {/* Header */}
+            <div className="text-center mb-16 scroll-animate opacity-0">
+              <h1 className="text-5xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent mb-6">About Peter Muraya</h1>
+              <p className="text-xl text-[#7d8590] max-w-2xl mx-auto">
+                IoT & Cloud Solutions Developer passionate about technology for global development and digital innovation
+              </p>
             </div>
-            
-            <div className="space-y-6">
-              <div className="flex items-center space-x-3 mb-6">
-                <User className="w-8 h-8 text-blue-600" />
-                <h2 className="text-3xl font-bold text-gray-900">My Story</h2>
+
+            {/* Profile Section */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20 scroll-animate opacity-0">
+              <div>
+                <img 
+                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=600&fit=crop&crop=face" 
+                  alt="Peter Muraya Ndung'u" 
+                  className="w-full max-w-md mx-auto rounded-lg shadow-2xl border border-[#30363d] hover:shadow-blue-500/20 transition-all duration-300"
+                />
               </div>
               
-              <p className="text-lg text-gray-600 leading-relaxed">
-                I'm Peter Muraya Ndung'u (also known as Sammy Peter), an IoT & Cloud Solutions 
-                Developer with a passion for leveraging technology to create positive global impact. 
-                Currently pursuing my BSc in Information Technology, graduating in September 2025.
-              </p>
-              
-              <p className="text-lg text-gray-600 leading-relaxed">
-                My expertise spans Python, JavaScript, TypeScript, SQL, Firebase, Azure IoT, React, 
-                Django, FastAPI, and more. I specialize in smart agriculture, health tech, accessibility 
-                solutions, and environmental protection projects.
-              </p>
-              
-              <p className="text-lg text-gray-600 leading-relaxed">
-                Recently relocated from Karatina to Nairobi, Kenya, I'm actively involved in leadership 
-                roles at Karatina Innovation Club and Akiliedge Tech Network. Currently working on 
-                ThoraxIQ, an AI-powered chest X-ray abnormality detection system.
-              </p>
-              
-              <Button className="mt-6 bg-blue-600 hover:bg-blue-700">
-                <Download className="w-4 h-4 mr-2" />
-                Download Resume
-              </Button>
-            </div>
-          </div>
-
-          {/* Enhanced Skills Section */}
-          <div className="mb-20">
-            <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Technical Skills</h2>
-            
-            {skillCategories.map((category) => (
-              <div key={category} className="mb-8">
-                <h3 className="text-xl font-semibold text-gray-800 mb-4">{category}</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {skills
-                    .filter(skill => skill.category === category)
-                    .map((skill) => (
-                      <div key={skill.name} className="space-y-2">
-                        <div className="flex justify-between">
-                          <span className="text-lg font-medium text-gray-700">{skill.name}</span>
-                          <span className="text-sm text-gray-500">{skill.level}%</span>
-                        </div>
-                        <Progress value={skill.level} className="h-3" />
-                      </div>
-                    ))}
+              <div className="space-y-6">
+                <div className="flex items-center space-x-3 mb-6">
+                  <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
+                    <User className="w-6 h-6 text-white" />
+                  </div>
+                  <h2 className="text-3xl font-bold text-white">My Story</h2>
                 </div>
+                
+                <p className="text-lg text-[#8b949e] leading-relaxed">
+                  I'm Peter Muraya Ndung'u (also known as Sammy Peter), an IoT & Cloud Solutions 
+                  Developer with a passion for leveraging technology to create positive global impact. 
+                  Currently pursuing my BSc in Information Technology, graduating in September 2025.
+                </p>
+                
+                <p className="text-lg text-[#8b949e] leading-relaxed">
+                  My expertise spans Python, JavaScript, TypeScript, SQL, Firebase, Azure IoT, React, 
+                  Django, FastAPI, and more. I specialize in smart agriculture, health tech, accessibility 
+                  solutions, and environmental protection projects.
+                </p>
+                
+                <p className="text-lg text-[#8b949e] leading-relaxed">
+                  Recently relocated from Karatina to Nairobi, Kenya, I'm actively involved in leadership 
+                  roles at Karatina Innovation Club and Akiliedge Tech Network. Currently working on 
+                  ThoraxIQ, an AI-powered chest X-ray abnormality detection system.
+                </p>
+                
+                <Button className="mt-6 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 border-0 shadow-lg hover:shadow-blue-500/20 transition-all duration-300 hover:-translate-y-0.5">
+                  <Download className="w-4 h-4 mr-2" />
+                  Download Resume
+                </Button>
               </div>
-            ))}
-          </div>
+            </div>
 
-          {/* Certifications Section */}
-          <div className="mb-20">
-            <div className="flex items-center space-x-3 mb-8 justify-center">
-              <Award className="w-8 h-8 text-blue-600" />
-              <h2 className="text-3xl font-bold text-gray-900">Education & Certifications</h2>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {certifications.map((cert, index) => (
-                <Card key={index} className="p-6 text-center hover:shadow-lg transition-shadow">
-                  <div className="text-4xl mb-4">{cert.icon}</div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">{cert.name}</h3>
-                  <p className="text-blue-600 font-medium mb-1">{cert.issuer}</p>
-                  <p className="text-sm text-gray-500">{cert.year}</p>
-                </Card>
-              ))}
-            </div>
-          </div>
-
-          {/* Enhanced Experience Section */}
-          <div className="mb-20">
-            <div className="flex items-center space-x-3 mb-8 justify-center">
-              <Briefcase className="w-8 h-8 text-blue-600" />
-              <h2 className="text-3xl font-bold text-gray-900">Professional Experience</h2>
-            </div>
-            
-            <div className="space-y-8">
-              {experience.map((job, index) => (
-                <Card key={index} className="p-6 border-l-4 border-l-blue-600 hover:shadow-lg transition-shadow">
-                  <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
-                    <div className="flex items-start space-x-4">
-                      <img 
-                        src={job.logo} 
-                        alt={`${job.company} logo`}
-                        className="w-12 h-12 rounded-lg object-cover"
-                      />
-                      <div>
-                        <h3 className="text-xl font-semibold text-gray-900">{job.title}</h3>
-                        <p className="text-lg text-blue-600 font-medium">{job.company}</p>
-                      </div>
-                    </div>
-                    <span className="text-sm text-gray-500 bg-gray-100 px-3 py-1 rounded-full mt-2 md:mt-0">
-                      {job.period}
-                    </span>
-                  </div>
-                  <p className="text-gray-600 leading-relaxed mb-4">{job.description}</p>
-                  
-                  <div>
-                    <h4 className="font-semibold text-gray-900 mb-2">Key Achievements:</h4>
-                    <ul className="list-disc list-inside space-y-1">
-                      {job.achievements.map((achievement, i) => (
-                        <li key={i} className="text-gray-600">{achievement}</li>
+            {/* Enhanced Skills Section */}
+            <div className="mb-20 scroll-animate opacity-0">
+              <h2 className="text-3xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent mb-8 text-center">Technical Skills</h2>
+              
+              {skillCategories.map((category) => (
+                <div key={category} className="mb-8">
+                  <h3 className="text-xl font-semibold text-[#c9d1d9] mb-4">{category}</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {skills
+                      .filter(skill => skill.category === category)
+                      .map((skill) => (
+                        <div key={skill.name} className="space-y-2 glass-effect p-4 rounded-lg hover:border-blue-500/30 transition-all duration-300">
+                          <div className="flex justify-between">
+                            <span className="text-lg font-medium text-[#c9d1d9]">{skill.name}</span>
+                            <span className="text-sm text-[#7d8590]">{skill.level}%</span>
+                          </div>
+                          <Progress value={skill.level} className="h-3" />
+                        </div>
                       ))}
-                    </ul>
                   </div>
-                </Card>
+                </div>
               ))}
             </div>
-          </div>
 
-          {/* Testimonials Section */}
-          <div className="mb-20">
-            <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">What People Say</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {testimonials.map((testimonial, index) => (
-                <Card key={index} className="p-6 hover:shadow-lg transition-shadow">
-                  <div className="flex items-center mb-4">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
-                    ))}
-                  </div>
-                  <p className="text-gray-600 mb-4 italic">"{testimonial.text}"</p>
-                  <div>
-                    <p className="font-semibold text-gray-900">{testimonial.name}</p>
-                    <p className="text-sm text-gray-500">{testimonial.position}</p>
-                  </div>
-                </Card>
-              ))}
+            {/* Certifications Section */}
+            <div className="mb-20 scroll-animate opacity-0">
+              <div className="flex items-center space-x-3 mb-8 justify-center">
+                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
+                  <Award className="w-6 h-6 text-white" />
+                </div>
+                <h2 className="text-3xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">Education & Certifications</h2>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {certifications.map((cert, index) => (
+                  <Card key={index} className="p-6 text-center glass-effect border-[#30363d] hover:border-blue-500/30 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-blue-500/10">
+                    <div className="text-4xl mb-4">{cert.icon}</div>
+                    <h3 className="text-lg font-semibold text-[#c9d1d9] mb-2">{cert.name}</h3>
+                    <p className="text-blue-400 font-medium mb-1">{cert.issuer}</p>
+                    <p className="text-sm text-[#7d8590]">{cert.year}</p>
+                  </Card>
+                ))}
+              </div>
             </div>
-          </div>
 
-          {/* Values Section */}
-          <div className="text-center">
-            <h2 className="text-3xl font-bold text-gray-900 mb-8">What Drives Me</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <Card className="p-6 hover:shadow-lg transition-shadow">
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">Global Development</h3>
-                <p className="text-gray-600">
-                  Using technology to create solutions that address global challenges and promote inclusive development.
-                </p>
-              </Card>
+            {/* Enhanced Experience Section */}
+            <div className="mb-20 scroll-animate opacity-0">
+              <div className="flex items-center space-x-3 mb-8 justify-center">
+                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
+                  <Briefcase className="w-6 h-6 text-white" />
+                </div>
+                <h2 className="text-3xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">Professional Experience</h2>
+              </div>
               
-              <Card className="p-6 hover:shadow-lg transition-shadow">
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">Innovation</h3>
-                <p className="text-gray-600">
-                  Exploring cutting-edge technologies like AI, IoT, and cloud computing to build impactful solutions.
-                </p>
-              </Card>
-              
-              <Card className="p-6 hover:shadow-lg transition-shadow">
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">Social Impact</h3>
-                <p className="text-gray-600">
-                  Committed to projects in health tech, smart agriculture, and accessibility solutions for positive change.
-                </p>
-              </Card>
+              <div className="space-y-8">
+                {experience.map((job, index) => (
+                  <Card key={index} className="p-6 border-l-4 border-l-blue-500 glass-effect border-[#30363d] hover:border-blue-500/30 transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/10">
+                    <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
+                      <div className="flex items-start space-x-4">
+                        <img 
+                          src={job.logo} 
+                          alt={`${job.company} logo`}
+                          className="w-12 h-12 rounded-lg object-cover border border-[#30363d]"
+                        />
+                        <div>
+                          <h3 className="text-xl font-semibold text-[#c9d1d9]">{job.title}</h3>
+                          <p className="text-lg text-blue-400 font-medium">{job.company}</p>
+                        </div>
+                      </div>
+                      <span className="text-sm text-[#7d8590] bg-[#161b22] px-3 py-1 rounded-full mt-2 md:mt-0 border border-[#30363d]">
+                        {job.period}
+                      </span>
+                    </div>
+                    <p className="text-[#8b949e] leading-relaxed mb-4">{job.description}</p>
+                    
+                    <div>
+                      <h4 className="font-semibold text-[#c9d1d9] mb-2">Key Achievements:</h4>
+                      <ul className="list-disc list-inside space-y-1">
+                        {job.achievements.map((achievement, i) => (
+                          <li key={i} className="text-[#8b949e]">{achievement}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  </Card>
+                ))}
+              </div>
+            </div>
+
+            {/* Testimonials Section */}
+            <div className="mb-20 scroll-animate opacity-0">
+              <h2 className="text-3xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent mb-8 text-center">What People Say</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {testimonials.map((testimonial, index) => (
+                  <Card key={index} className="p-6 glass-effect border-[#30363d] hover:border-blue-500/30 transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/10">
+                    <div className="flex items-center mb-4">
+                      {[...Array(testimonial.rating)].map((_, i) => (
+                        <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
+                      ))}
+                    </div>
+                    <p className="text-[#8b949e] mb-4 italic">"{testimonial.text}"</p>
+                    <div>
+                      <p className="font-semibold text-[#c9d1d9]">{testimonial.name}</p>
+                      <p className="text-sm text-[#7d8590]">{testimonial.position}</p>
+                    </div>
+                  </Card>
+                ))}
+              </div>
+            </div>
+
+            {/* Values Section */}
+            <div className="text-center scroll-animate opacity-0">
+              <h2 className="text-3xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent mb-8">What Drives Me</h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <Card className="p-6 glass-effect border-[#30363d] hover:border-blue-500/30 transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/10">
+                  <h3 className="text-xl font-semibold text-[#c9d1d9] mb-4">Global Development</h3>
+                  <p className="text-[#8b949e]">
+                    Using technology to create solutions that address global challenges and promote inclusive development.
+                  </p>
+                </Card>
+                
+                <Card className="p-6 glass-effect border-[#30363d] hover:border-blue-500/30 transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/10">
+                  <h3 className="text-xl font-semibold text-[#c9d1d9] mb-4">Innovation</h3>
+                  <p className="text-[#8b949e]">
+                    Exploring cutting-edge technologies like AI, IoT, and cloud computing to build impactful solutions.
+                  </p>
+                </Card>
+                
+                <Card className="p-6 glass-effect border-[#30363d] hover:border-blue-500/30 transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/10">
+                  <h3 className="text-xl font-semibold text-[#c9d1d9] mb-4">Social Impact</h3>
+                  <p className="text-[#8b949e]">
+                    Committed to projects in health tech, smart agriculture, and accessibility solutions for positive change.
+                  </p>
+                </Card>
+              </div>
             </div>
           </div>
         </div>
+        
+        <Footer />
       </div>
-      
-      <Footer />
     </div>
   );
 };
