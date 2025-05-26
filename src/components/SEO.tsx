@@ -69,11 +69,11 @@ const SEO = ({
 
     // Structured Data
     if (structuredData) {
-      let structuredDataScript = document.querySelector('script[type="application/ld+json"]');
+      let structuredDataScript = document.querySelector('script[type="application/ld+json"]') as HTMLScriptElement;
       if (structuredDataScript) {
         structuredDataScript.textContent = JSON.stringify(structuredData);
       } else {
-        structuredDataScript = document.createElement('script');
+        structuredDataScript = document.createElement('script') as HTMLScriptElement;
         structuredDataScript.type = 'application/ld+json';
         structuredDataScript.textContent = JSON.stringify(structuredData);
         document.head.appendChild(structuredDataScript);
