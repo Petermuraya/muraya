@@ -36,11 +36,19 @@ const Navigation = () => {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border-b border-gray-200 dark:border-gray-700 z-50 transition-colors">
+    <nav className="fixed top-0 left-0 right-0 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md border-b border-gray-200 dark:border-gray-700 z-50 transition-colors shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          <Link to="/" className="text-2xl font-bold text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-            {t('portfolio')}
+          {/* Logo section with profile image */}
+          <Link to="/" className="flex items-center space-x-3 group">
+            <img 
+              src="https://i.postimg.cc/902NmQLh/IMG-20240709-105245-53.jpg" 
+              alt="Peter Muraya Ndung'u" 
+              className="w-10 h-10 rounded-full object-cover border-2 border-blue-500/20 group-hover:border-blue-500/40 transition-all duration-300 group-hover:scale-105 shadow-lg"
+            />
+            <span className="text-xl font-bold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+              Peter Muraya
+            </span>
           </Link>
           
           {/* Desktop Navigation */}
@@ -51,13 +59,16 @@ const Navigation = () => {
                   key={item.path}
                   to={item.path}
                   className={cn(
-                    "px-3 py-2 text-sm font-medium transition-colors hover:text-blue-600 dark:hover:text-blue-400",
+                    "px-3 py-2 text-sm font-medium transition-colors hover:text-blue-600 dark:hover:text-blue-400 relative",
                     location.pathname === item.path
-                      ? "text-blue-600 dark:text-blue-400 border-b-2 border-blue-600 dark:border-blue-400"
+                      ? "text-blue-600 dark:text-blue-400"
                       : "text-gray-700 dark:text-gray-300"
                   )}
                 >
                   {item.name}
+                  {location.pathname === item.path && (
+                    <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-600 dark:bg-blue-400 rounded-full"></span>
+                  )}
                 </Link>
               ))}
             </div>
@@ -67,7 +78,7 @@ const Navigation = () => {
               variant="ghost"
               size="icon"
               onClick={toggleTheme}
-              className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
+              className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all duration-200"
               title={t('theme')}
             >
               {theme === 'light' ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}
@@ -79,20 +90,20 @@ const Navigation = () => {
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
+                  className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all duration-200"
                   title={t('language')}
                 >
                   <Languages className="h-5 w-5" />
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-40">
+              <DropdownMenuContent align="end" className="w-40 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-lg">
                 {languages.map((lang) => (
                   <DropdownMenuItem
                     key={lang.code}
                     onClick={() => setLanguage(lang.code)}
                     className={cn(
-                      "cursor-pointer",
-                      language === lang.code && "bg-blue-50 dark:bg-blue-900/20"
+                      "cursor-pointer hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors",
+                      language === lang.code && "bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400"
                     )}
                   >
                     <span className="mr-2">{lang.flag}</span>
@@ -106,7 +117,7 @@ const Navigation = () => {
           {/* Mobile menu button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
+            className="md:hidden p-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-all duration-200"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               {isOpen ? (
@@ -121,14 +132,14 @@ const Navigation = () => {
         {/* Mobile Navigation */}
         {isOpen && (
           <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700">
+            <div className="px-2 pt-2 pb-3 space-y-1 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 shadow-lg">
               {navItems.map((item) => (
                 <Link
                   key={item.path}
                   to={item.path}
                   onClick={() => setIsOpen(false)}
                   className={cn(
-                    "block px-3 py-2 text-base font-medium transition-colors hover:text-blue-600 dark:hover:text-blue-400",
+                    "block px-3 py-2 text-base font-medium transition-colors hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg",
                     location.pathname === item.path
                       ? "text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20"
                       : "text-gray-700 dark:text-gray-300"
@@ -141,7 +152,7 @@ const Navigation = () => {
               {/* Mobile Theme Toggle */}
               <button
                 onClick={toggleTheme}
-                className="w-full text-left px-3 py-2 text-base font-medium text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 flex items-center"
+                className="w-full text-left px-3 py-2 text-base font-medium text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg flex items-center transition-colors"
               >
                 {theme === 'light' ? <Moon className="h-5 w-5 mr-2" /> : <Sun className="h-5 w-5 mr-2" />}
                 {t('theme')}
@@ -158,7 +169,7 @@ const Navigation = () => {
                       setIsOpen(false);
                     }}
                     className={cn(
-                      "w-full text-left px-2 py-1 text-sm rounded transition-colors",
+                      "w-full text-left px-2 py-1 text-sm rounded transition-colors hover:bg-blue-50 dark:hover:bg-blue-900/20",
                       language === lang.code
                         ? "bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400"
                         : "text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400"

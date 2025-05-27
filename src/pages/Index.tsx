@@ -54,26 +54,58 @@ const Index = () => {
 
   const structuredData = {
     "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "John Doe Portfolio",
+    "@type": "Person",
+    "name": "Peter Muraya Ndung'u",
+    "jobTitle": "IoT & Cloud Solutions Developer",
+    "description": "Experienced IoT & Cloud Solutions Developer specializing in React, TypeScript, Node.js, and modern web technologies. Passionate about technology for global development and digital innovation.",
     "url": "https://yourportfolio.com",
-    "author": {
-      "@type": "Person",
-      "name": "John Doe",
-      "jobTitle": "Full-Stack Developer",
-      "url": "https://yourportfolio.com"
+    "image": "https://i.postimg.cc/902NmQLh/IMG-20240709-105245-53.jpg",
+    "sameAs": [
+      "https://github.com/petermuraya",
+      "https://linkedin.com/in/petermuraya",
+      "https://twitter.com/petermuraya"
+    ],
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Freelance"
     },
-    "description": "Professional portfolio showcasing full-stack development projects and skills",
-    "inLanguage": "en-US"
+    "knowsAbout": [
+      "IoT Development",
+      "Cloud Solutions",
+      "React",
+      "TypeScript",
+      "Node.js",
+      "JavaScript",
+      "Web Development",
+      "Frontend Development",
+      "Backend Development",
+      "Full-Stack Development",
+      "Smart Agriculture",
+      "Health Technology",
+      "Global Development"
+    ],
+    "expertise": [
+      "Internet of Things (IoT)",
+      "Cloud Computing",
+      "Digital Innovation",
+      "Technology for Development"
+    ],
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "Kenya"
+    }
   };
 
   return (
     <>
       <SEO 
-        title="John Doe - Full-Stack Developer | React, TypeScript, Node.js Expert"
-        description="Experienced full-stack developer specializing in React, TypeScript, Node.js, and modern web technologies. Building scalable applications with clean code and exceptional user experiences."
-        keywords="full-stack developer, React developer, TypeScript, Node.js, web development, JavaScript, frontend, backend, portfolio, software engineer"
+        title="Peter Muraya Ndung'u - IoT & Cloud Solutions Developer | React, TypeScript, Node.js Expert"
+        description="Experienced IoT & Cloud Solutions Developer specializing in React, TypeScript, Node.js, and modern web technologies. Passionate about technology for global development and digital innovation."
+        keywords="IoT developer, cloud solutions, React developer, TypeScript, Node.js, web development, JavaScript, frontend, backend, portfolio, software engineer, global development, digital innovation, smart agriculture, health tech, Peter Muraya, Kenya developer"
         url="https://yourportfolio.com"
+        image="https://i.postimg.cc/902NmQLh/IMG-20240709-105245-53.jpg"
+        author="Peter Muraya Ndung'u"
+        twitterHandle="@petermuraya"
         structuredData={structuredData}
       />
       
