@@ -1,4 +1,3 @@
-
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
@@ -178,9 +177,9 @@ const About = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20 scroll-animate opacity-0">
               <div>
                 <img 
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=600&fit=crop&crop=face" 
+                  src="https://i.postimg.cc/902NmQLh/IMG-20240709-105245-53.jpg" 
                   alt="Peter Muraya Ndung'u" 
-                  className="w-full max-w-md mx-auto rounded-lg shadow-2xl border border-[#30363d] hover:shadow-blue-500/20 transition-all duration-300"
+                  className="w-full max-w-md mx-auto rounded-lg shadow-2xl border border-[#30363d] hover:shadow-blue-500/20 transition-all duration-300 object-cover"
                 />
               </div>
               
