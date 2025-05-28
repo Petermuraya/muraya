@@ -9,6 +9,75 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      admin_projects: {
+        Row: {
+          category: string
+          created_at: string
+          demo: string | null
+          description: string
+          featured: boolean | null
+          github: string | null
+          id: string
+          image: string | null
+          tech: string[] | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          category: string
+          created_at?: string
+          demo?: string | null
+          description: string
+          featured?: boolean | null
+          github?: string | null
+          id: string
+          image?: string | null
+          tech?: string[] | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          category?: string
+          created_at?: string
+          demo?: string | null
+          description?: string
+          featured?: boolean | null
+          github?: string | null
+          id?: string
+          image?: string | null
+          tech?: string[] | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      admin_users: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          last_login: string | null
+          name: string
+          password_hash: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          last_login?: string | null
+          name: string
+          password_hash: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          last_login?: string | null
+          name?: string
+          password_hash?: string
+        }
+        Relationships: []
+      }
       blog_comments: {
         Row: {
           blog_id: number
@@ -56,6 +125,56 @@ export type Database = {
           user_email?: string
         }
         Relationships: []
+      }
+      blogs: {
+        Row: {
+          author_id: string | null
+          content: string
+          created_at: string
+          excerpt: string | null
+          featured_image: string | null
+          id: number
+          published: boolean
+          slug: string
+          tags: string[] | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          author_id?: string | null
+          content: string
+          created_at?: string
+          excerpt?: string | null
+          featured_image?: string | null
+          id?: number
+          published?: boolean
+          slug: string
+          tags?: string[] | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          author_id?: string | null
+          content?: string
+          created_at?: string
+          excerpt?: string | null
+          featured_image?: string | null
+          id?: number
+          published?: boolean
+          slug?: string
+          tags?: string[] | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "blogs_author_id_fkey"
+            columns: ["author_id"]
+            isOneToOne: false
+            referencedRelation: "admin_users"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       project_comments: {
         Row: {
@@ -110,7 +229,18 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      authenticate_admin: {
+        Args: { email_input: string; password_input: string }
+        Returns: {
+          id: string
+          email: string
+          name: string
+        }[]
+      }
+      update_admin_last_login: {
+        Args: { admin_id: string }
+        Returns: undefined
+      }
     }
     Enums: {
       [_ in never]: never

@@ -1,7 +1,21 @@
-
 import { Github, Linkedin, Mail, Heart } from 'lucide-react';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Footer = () => {
+  const [clickCount, setClickCount] = useState(0);
+  const navigate = useNavigate();
+
+  const handleQuoteClick = () => {
+    const newCount = clickCount + 1;
+    setClickCount(newCount);
+    
+    if (newCount >= 5) {
+      navigate('/admin');
+      setClickCount(0);
+    }
+  };
+
   return (
     <footer className="bg-gradient-to-br from-gray-900 via-blue-900 to-indigo-900 text-white py-16 relative overflow-hidden">
       <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8ZGVmcz4KICAgIDxwYXR0ZXJuIGlkPSJncmlkIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiPgogICAgICA8cGF0aCBkPSJNIDQwIDAgTCAwIDAgMCA0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZ2JhKDI1NSwgMjU1LCAyNTUsIDAuMDUpIiBzdHJva2Utd2lkdGg9IjEiLz4KICAgIDwvcGF0dGVybj4KICA8L2RlZnM+CiAgPHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmlkKSIgLz4KPC9zdmc+')] opacity-20"></div>
@@ -64,7 +78,10 @@ const Footer = () => {
               <Heart className="w-4 h-4 text-red-400 animate-pulse" />
             </p>
           </div>
-          <p className="text-gray-400 text-sm bg-white/5 rounded-lg py-3 px-6 inline-block backdrop-blur-sm">
+          <p 
+            className="text-gray-400 text-sm bg-white/5 rounded-lg py-3 px-6 inline-block backdrop-blur-sm cursor-pointer hover:bg-white/10 transition-all duration-300"
+            onClick={handleQuoteClick}
+          >
             "Technology is best when it brings people together." - Matt Mullenweg
           </p>
         </div>
