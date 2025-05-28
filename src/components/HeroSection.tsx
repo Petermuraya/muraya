@@ -3,9 +3,47 @@ import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { ArrowDown, Github, Linkedin, Mail } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useEffect, useRef } from 'react';
+import useTypingEffect from '@/hooks/useTypingEffect';
 
 const HeroSection = () => {
   const { t } = useLanguage();
+  const typingTextRef = useRef<HTMLParagraphElement>(null);
+  
+  const typingText = "Passionate about leveraging technology for global development, inclusion, and digital innovation. Specializing in smart agriculture, health tech, and AI-powered solutions.";
+  
+  const { displayText, isComplete } = useTypingEffect({
+    text: typingText,
+    speed: 30,
+    delay: 2000
+  });
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!typingTextRef.current) return;
+      
+      const rect = typingTextRef.current.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      const elementTop = rect.top;
+      
+      // Calculate scroll progress (0 to 1)
+      const scrollProgress = Math.max(0, Math.min(1, (windowHeight - elementTop) / windowHeight));
+      
+      // Apply transform based on scroll progress during typing
+      if (!isComplete) {
+        const translateY = (1 - scrollProgress) * 30;
+        const opacity = scrollProgress;
+        
+        typingTextRef.current.style.transform = `translateY(${translateY}px)`;
+        typingTextRef.current.style.opacity = `${opacity}`;
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial call
+    
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [isComplete]);
 
   return (
     <section className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
@@ -35,8 +73,14 @@ const HeroSection = () => {
             </p>
           </div>
           
-          <p className="text-lg text-[#8b949e] mb-12 max-w-2xl mx-auto animate-fade-in-up [animation-delay:400ms] opacity-0 [animation-fill-mode:forwards] leading-relaxed">
-            {t('heroDescription')}
+          <p 
+            ref={typingTextRef}
+            className="text-lg text-[#8b949e] mb-12 max-w-2xl mx-auto leading-relaxed min-h-[3.5rem] transition-all duration-300"
+          >
+            {displayText}
+            {!isComplete && (
+              <span className="inline-block w-0.5 h-6 bg-blue-400 ml-1 animate-pulse"></span>
+            )}
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12 animate-fade-in-up [animation-delay:600ms] opacity-0 [animation-fill-mode:forwards]">
