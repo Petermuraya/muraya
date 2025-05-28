@@ -1,5 +1,5 @@
 
-import { useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 
 interface SEOProps {
   title?: string;
@@ -24,86 +24,56 @@ const SEO = ({
   twitterHandle = "@petermuraya",
   structuredData
 }: SEOProps) => {
-  useEffect(() => {
-    // Update document title
-    document.title = title;
+  return (
+    <Helmet>
+      {/* Primary Meta Tags */}
+      <title>{title}</title>
+      <meta name="title" content={title} />
+      <meta name="description" content={description} />
+      <meta name="keywords" content={keywords} />
+      <meta name="author" content={author} />
+      <meta name="robots" content="index, follow" />
+      <meta name="language" content="English" />
+      <meta name="revisit-after" content="7 days" />
+      <meta name="theme-color" content="#0d1117" />
 
-    // Update meta tags
-    const updateMetaTag = (name: string, content: string, property = false) => {
-      const attribute = property ? 'property' : 'name';
-      let element = document.querySelector(`meta[${attribute}="${name}"]`);
-      
-      if (element) {
-        element.setAttribute('content', content);
-      } else {
-        element = document.createElement('meta');
-        element.setAttribute(attribute, name);
-        element.setAttribute('content', content);
-        document.head.appendChild(element);
-      }
-    };
+      {/* Canonical URL */}
+      <link rel="canonical" href={url} />
 
-    // Basic meta tags
-    updateMetaTag('description', description);
-    updateMetaTag('keywords', keywords);
-    updateMetaTag('author', author);
-    updateMetaTag('robots', 'index, follow');
-    updateMetaTag('language', 'English');
-    updateMetaTag('revisit-after', '7 days');
-    updateMetaTag('theme-color', '#0d1117');
+      {/* Open Graph / Facebook */}
+      <meta property="og:type" content={type} />
+      <meta property="og:url" content={url} />
+      <meta property="og:title" content={title} />
+      <meta property="og:description" content={description} />
+      <meta property="og:image" content={image} />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+      <meta property="og:locale" content="en_US" />
+      <meta property="og:site_name" content="Peter Muraya Portfolio" />
 
-    // Open Graph tags
-    updateMetaTag('og:title', title, true);
-    updateMetaTag('og:description', description, true);
-    updateMetaTag('og:image', image, true);
-    updateMetaTag('og:image:width', '1200', true);
-    updateMetaTag('og:image:height', '630', true);
-    updateMetaTag('og:url', url, true);
-    updateMetaTag('og:type', type, true);
-    updateMetaTag('og:locale', 'en_US', true);
-    updateMetaTag('og:site_name', 'Peter Muraya Portfolio', true);
+      {/* Twitter */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:url" content={url} />
+      <meta name="twitter:title" content={title} />
+      <meta name="twitter:description" content={description} />
+      <meta name="twitter:image" content={image} />
+      <meta name="twitter:creator" content={twitterHandle} />
+      <meta name="twitter:site" content={twitterHandle} />
 
-    // Twitter tags
-    updateMetaTag('twitter:card', 'summary_large_image', true);
-    updateMetaTag('twitter:title', title, true);
-    updateMetaTag('twitter:description', description, true);
-    updateMetaTag('twitter:image', image, true);
-    updateMetaTag('twitter:url', url, true);
-    updateMetaTag('twitter:creator', twitterHandle, true);
-    updateMetaTag('twitter:site', twitterHandle, true);
+      {/* Additional SEO meta tags */}
+      <meta name="format-detection" content="telephone=no" />
+      <meta name="mobile-web-app-capable" content="yes" />
+      <meta name="apple-mobile-web-app-capable" content="yes" />
+      <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-    // Additional SEO meta tags
-    updateMetaTag('format-detection', 'telephone=no');
-    updateMetaTag('mobile-web-app-capable', 'yes');
-    updateMetaTag('apple-mobile-web-app-capable', 'yes');
-    updateMetaTag('apple-mobile-web-app-status-bar-style', 'black-translucent');
-
-    // Canonical URL
-    let canonicalLink = document.querySelector('link[rel="canonical"]');
-    if (canonicalLink) {
-      canonicalLink.setAttribute('href', url);
-    } else {
-      canonicalLink = document.createElement('link');
-      canonicalLink.setAttribute('rel', 'canonical');
-      canonicalLink.setAttribute('href', url);
-      document.head.appendChild(canonicalLink);
-    }
-
-    // Structured Data
-    if (structuredData) {
-      let structuredDataScript = document.querySelector('script[type="application/ld+json"]') as HTMLScriptElement;
-      if (structuredDataScript) {
-        structuredDataScript.textContent = JSON.stringify(structuredData);
-      } else {
-        structuredDataScript = document.createElement('script') as HTMLScriptElement;
-        structuredDataScript.type = 'application/ld+json';
-        structuredDataScript.textContent = JSON.stringify(structuredData);
-        document.head.appendChild(structuredDataScript);
-      }
-    }
-  }, [title, description, keywords, image, url, type, author, twitterHandle, structuredData]);
-
-  return null;
+      {/* Structured Data */}
+      {structuredData && (
+        <script type="application/ld+json">
+          {JSON.stringify(structuredData)}
+        </script>
+      )}
+    </Helmet>
+  );
 };
 
 export default SEO;
