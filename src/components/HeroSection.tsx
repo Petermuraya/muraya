@@ -47,7 +47,24 @@ const HeroSection = () => {
 
   return (
     <section className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
-      <div className="max-w-7xl mx-auto">
+      {/* IoT Background Image */}
+      <div className="absolute inset-0 z-0">
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-15"
+          style={{
+            backgroundImage: `url('https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')`
+          }}
+        ></div>
+        {/* Gradient overlay to blend with existing theme */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0d1117]/90 via-[#161b22]/85 to-[#21262d]/90"></div>
+      </div>
+
+      {/* Circuit pattern overlay */}
+      <div className="absolute inset-0 z-1 opacity-10">
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=&quot;100&quot; height=&quot;100&quot; viewBox=&quot;0 0 100 100&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;%3E%3Cg fill=&quot;none&quot; fill-rule=&quot;evenodd&quot;%3E%3Cg fill=&quot;%2300D4FF&quot; fill-opacity=&quot;0.3&quot;%3E%3Cpath d=&quot;M20,20 L80,20 M20,20 L20,80 M20,80 L80,80 M80,20 L80,80 M40,40 L60,40 M40,40 L40,60 M40,60 L60,60 M60,40 L60,60&quot; stroke=&quot;%2300D4FF&quot; stroke-width=&quot;0.5&quot;/%3E%3Ccircle cx=&quot;20&quot; cy=&quot;20&quot; r=&quot;2&quot;/%3E%3Ccircle cx=&quot;80&quot; cy=&quot;20&quot; r=&quot;2&quot;/%3E%3Ccircle cx=&quot;20&quot; cy=&quot;80&quot; r=&quot;2&quot;/%3E%3Ccircle cx=&quot;80&quot; cy=&quot;80&quot; r=&quot;2&quot;/%3E%3Ccircle cx=&quot;50&quot; cy=&quot;50&quot; r=&quot;3&quot;/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] bg-repeat"></div>
+      </div>
+
+      <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center">
           <div className="mb-8 animate-fade-in">
             <div className="relative inline-block">
