@@ -1,4 +1,3 @@
-
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import HeroSection from '@/components/HeroSection';
@@ -6,6 +5,7 @@ import FeaturesSection from '@/components/FeaturesSection';
 import FeaturedProjectsSection from '@/components/FeaturedProjectsSection';
 import SkillsSection from '@/components/SkillsSection';
 import SEO from '@/components/SEO';
+import Chatbot from '@/components/Chatbot';
 import { useEffect } from 'react';
 
 const Index = () => {
@@ -139,6 +139,9 @@ const Index = () => {
           </div>
           <Footer />
         </div>
+        
+        {/* Chatbot */}
+        <Chatbot />
       </div>
     </>
   );

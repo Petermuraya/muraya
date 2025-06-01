@@ -1,4 +1,3 @@
-
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import AboutHeader from '@/components/AboutHeader';
@@ -12,6 +11,7 @@ import SEO from '@/components/SEO';
 import AboutBackgroundEffects from '@/components/AboutBackgroundEffects';
 import useAboutEffects from '@/hooks/useAboutEffects';
 import { useState } from 'react';
+import Chatbot from '@/components/Chatbot';
 
 const About = () => {
   useAboutEffects();
@@ -86,6 +86,9 @@ const About = () => {
           
           <Footer />
         </div>
+        
+        {/* Chatbot */}
+        <Chatbot />
       </div>
     </>
   );
