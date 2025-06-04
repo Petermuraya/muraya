@@ -1,44 +1,85 @@
 
+# Robots.txt for Peter Muraya Portfolio
+# Optimized for maximum SEO performance and crawl efficiency
+
 User-agent: *
 Allow: /
 
-# Allow all major search engine crawlers
+# Specific rules for major search engines
 User-agent: Googlebot
 Allow: /
+Crawl-delay: 1
 
 User-agent: Bingbot
 Allow: /
+Crawl-delay: 1
 
 User-agent: Slurp
 Allow: /
+Crawl-delay: 1
 
 User-agent: DuckDuckBot
 Allow: /
+Crawl-delay: 1
 
 User-agent: Baiduspider
 Allow: /
+Crawl-delay: 2
 
 User-agent: YandexBot
 Allow: /
+Crawl-delay: 2
 
+# Social media crawlers - allow immediate access
 User-agent: facebookexternalhit
 Allow: /
+Crawl-delay: 0
 
 User-agent: Twitterbot
 Allow: /
+Crawl-delay: 0
 
 User-agent: LinkedInBot
 Allow: /
+Crawl-delay: 0
 
 User-agent: WhatsApp
 Allow: /
+Crawl-delay: 0
 
-# Disallow crawling of any admin or private areas (none in this case)
-# User-agent: *
-# Disallow: /admin/
+User-agent: TelegramBot
+Allow: /
 
-# Sitemap location
-Sitemap: https://yourportfolio.com/sitemap.xml
+User-agent: SkypeUriPreview
+Allow: /
 
-# Crawl delay (optional, helps prevent server overload)
+# Developer portfolio specific crawlers
+User-agent: GitHubPreview
+Allow: /
+
+User-agent: DevToBot
+Allow: /
+
+# Disallow admin and private areas
+User-agent: *
+Disallow: /admin/
+Disallow: /_*
+Disallow: /api/private/
+
+# Allow public API endpoints
+User-agent: *
+Allow: /api/public/
+
+# Sitemap locations
+Sitemap: https://petermuraya.lovable.app/sitemap.xml
+
+# Additional crawl directives
 Crawl-delay: 1
+Request-rate: 1/5s
+
+# Host directive for SEO
+Host: https://petermuraya.lovable.app
+
+# Clean URLs preference
+Clean-param: utm_source&utm_medium&utm_campaign&utm_term&utm_content
+
