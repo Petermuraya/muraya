@@ -3,7 +3,7 @@ import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import AboutHeader from '@/components/AboutHeader';
 import ProfileSection from '@/components/ProfileSection';
-import SkillsDisplay from '@/components/SkillsDisplay';
+import EnhancedSkillsDisplay from '@/components/EnhancedSkillsDisplay';
 import CertificationsSection from '@/components/CertificationsSection';
 import ExperienceSection from '@/components/ExperienceSection';
 import TestimonialsSection from '@/components/TestimonialsSection';
@@ -51,11 +51,11 @@ const About = () => {
           <Navigation />
           
           <main id="main-content" className="pt-24 pb-12 px-4 sm:px-6 lg:px-8">
-            <div className="max-w-4xl mx-auto space-y-12">
+            <div className="max-w-6xl mx-auto space-y-12">
               <Breadcrumbs />
               <AboutHeader />
               <ProfileSection />
-              <SkillsDisplay />
+              <EnhancedSkillsDisplay />
               
               {/* Social Media Links Section */}
               <section className="py-8">

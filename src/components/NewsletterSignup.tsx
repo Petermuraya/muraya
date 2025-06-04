@@ -6,6 +6,12 @@ import { Input } from '@/components/ui/input';
 import { Card } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
 
+declare global {
+  interface Window {
+    gtag?: (...args: any[]) => void;
+  }
+}
+
 const NewsletterSignup = () => {
   const [email, setEmail] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -39,8 +45,8 @@ const NewsletterSignup = () => {
       });
 
       // Track conversion for SEO analytics
-      if (typeof gtag !== 'undefined') {
-        gtag('event', 'newsletter_signup', {
+      if (window.gtag) {
+        window.gtag('event', 'newsletter_signup', {
           event_category: 'engagement',
           event_label: 'email_subscription',
           value: 1
