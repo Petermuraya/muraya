@@ -14,6 +14,11 @@ import SkipLink from '@/components/SkipLink';
 import ScrollToTop from '@/components/ScrollToTop';
 import ParticleBackground from '@/components/ParticleBackground';
 import AboutBackgroundEffects from '@/components/AboutBackgroundEffects';
+import SEOBot from '@/components/SEOBot';
+import SocialShare from '@/components/SocialShare';
+import NewsletterSignup from '@/components/NewsletterSignup';
+import ContentScheduler from '@/components/ContentScheduler';
+import SocialMediaLinks from '@/components/SocialMediaLinks';
 import useAboutEffects from '@/hooks/useAboutEffects';
 import { useState } from 'react';
 import Chatbot from '@/components/Chatbot';
@@ -46,11 +51,25 @@ const About = () => {
           <Navigation />
           
           <main id="main-content" className="pt-24 pb-12 px-4 sm:px-6 lg:px-8">
-            <div className="max-w-4xl mx-auto">
+            <div className="max-w-4xl mx-auto space-y-12">
               <Breadcrumbs />
               <AboutHeader />
               <ProfileSection />
               <SkillsDisplay />
+              
+              {/* Social Media Links Section */}
+              <section className="py-8">
+                <h2 className="text-3xl font-bold text-center mb-8 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+                  Connect & Collaborate
+                </h2>
+                <SocialMediaLinks />
+              </section>
+              
+              {/* Newsletter Signup */}
+              <section className="py-8">
+                <NewsletterSignup />
+              </section>
+              
               <CertificationsSection />
               <ExperienceSection />
               <TestimonialsSection />
@@ -61,6 +80,10 @@ const About = () => {
           <Footer />
         </div>
         
+        {/* SEO & Content Marketing Tools */}
+        <SEOBot />
+        <SocialShare />
+        <ContentScheduler />
         <Chatbot />
         <ScrollToTop />
       </div>

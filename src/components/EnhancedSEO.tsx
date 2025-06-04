@@ -65,8 +65,8 @@ const EnhancedSEO = ({
       <link rel="canonical" href={finalUrl} />
 
       {/* Alternate URLs for multi-language support */}
-      <link rel="alternate" hreflang="en" href={finalUrl} />
-      <link rel="alternate" hreflang="x-default" href={finalUrl} />
+      <link rel="alternate" hrefLang="en" href={finalUrl} />
+      <link rel="alternate" hrefLang="x-default" href={finalUrl} />
 
       {/* Open Graph / Facebook - Enhanced */}
       <meta property="og:type" content={finalType} />
