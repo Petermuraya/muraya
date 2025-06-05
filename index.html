@@ -1,209 +1,187 @@
-<!DOCTYPE html>
-<html lang="en" itemscope itemtype="https://schema.org/WebPage">
-  <head>
-    <!-- Character Encoding & Viewport -->
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<head>
+  <!-- Character Encoding & Viewport -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, viewport-fit=cover">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <!-- Primary Meta Tags - Enhanced with Semantic Keywords -->
-    <title>Sammy Peter | Top IoT & AI Developer in Kenya | Full-Stack Engineer (React, TypeScript, Python)</title>
-    <meta name="description" content="Award-winning IoT developer & AI specialist Sammy Peter builds cutting-edge solutions for healthcare, agriculture, and smart cities across Africa. 5+ years experience in React, Node.js, and cloud architecture." />
-    <meta name="keywords" content="IoT expert Kenya, AI developer Nairobi, React specialist Africa, TypeScript engineer, Python developer, Node.js backend, cloud solutions architect, smart agriculture tech, healthcare AI systems, sustainable tech Africa, full-stack developer portfolio" />
-    <meta name="author" content="Sammy Peter" />
-    
-    <!-- Robots & Crawling Optimization -->
-    <meta name="robots" content="index, follow, max-image-preview:large" />
-    <meta name="googlebot" content="index,follow" />
-    <meta name="bingbot" content="index,follow" />
-    <meta name="revisit-after" content="7 days" />
-    <meta name="language" content="English" />
-    <meta name="geo.region" content="KE" />
-    <meta name="geo.placename" content="Nairobi" />
+  <!-- Primary Meta Tags -->
+  <title>Peter Muraya (Sammy) | Safaricom IoT Architect | Kenya's Leading Smart Technology Expert</title>
+  <meta name="description" content="Peter Muraya (Sammy), IoT Architect at Safaricom and Karatina University alumnus. Designing cutting-edge IoT solutions for Kenya's largest telecom and beyond. Specializing in smart cities, industrial IoT, and connected ecosystems.">
+  
+  <!-- Enhanced Keywords (Semantic & Long-tail) -->
+  <meta name="keywords" content="Peter Muraya, Sammy IoT Kenya, Safaricom IoT Architect, IoT solutions Kenya, smart cities expert Nairobi, industrial IoT Africa, connected devices specialist, IoT security Kenya, 5G IoT networks, LPWAN solutions, edge computing Nairobi, M2M communication Kenya">
 
-    <!-- Canonical & Alternate URLs -->
-    <link rel="canonical" href="https://sammypeter.dev/" />
-    <link rel="alternate" hreflang="en" href="https://sammypeter.dev/" />
-    <link rel="alternate" hreflang="x-default" href="https://sammypeter.dev/" />
-
-    <!-- Open Graph / Facebook - Enhanced with Rich Details -->
-    <meta property="og:type" content="profile" />
-    <meta property="og:profile:first_name" content="Sammy" />
-    <meta property="og:profile:last_name" content="Peter" />
-    <meta property="og:profile:username" content="sammypeter" />
-    <meta property="og:url" content="https://sammypeter.dev/" />
-    <meta property="og:title" content="Sammy Peter | Leading IoT & AI Developer in East Africa" />
-    <meta property="og:description" content="Innovative tech solutions for Africa's development challenges. Specializing in IoT, AI, and full-stack development with React, TypeScript, and Python." />
-    <meta property="og:image" content="https://sammypeter.dev/images/og-image-2023.jpg" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Sammy Peter - IoT and AI Developer Portfolio" />
-    <meta property="og:locale" content="en_US" />
-    <meta property="og:site_name" content="Sammy Peter Tech Portfolio" />
-
-    <!-- Twitter Card - Enhanced for Maximum Engagement -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@sammypeter_ke" />
-    <meta name="twitter:creator" content="@sammypeter_ke" />
-    <meta name="twitter:title" content="Sammy Peter | Building Africa's Tech Future with IoT & AI" />
-    <meta name="twitter:description" content="Kenya's premier IoT developer creating sustainable tech solutions for healthcare, agriculture, and smart cities across Africa." />
-    <meta name="twitter:image" content="https://sammypeter.dev/images/twitter-card-2023.jpg" />
-    <meta name="twitter:image:alt" content="Sammy Peter's developer portfolio showcasing IoT and AI projects" />
-    <meta name="twitter:label1" content="Specialization" />
-    <meta name="twitter:data1" content="IoT, AI, Full-Stack Development" />
-    <meta name="twitter:label2" content="Location" />
-    <meta name="twitter:data2" content="Nairobi, Kenya" />
-
-    <!-- Favicon and Icons - Modern Setup -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    <link rel="manifest" href="/site.webmanifest" />
-    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#0d1117" />
-    <meta name="msapplication-TileColor" content="#0d1117" />
-    <meta name="theme-color" content="#0d1117" />
-
-    <!-- Preloading Critical Resources -->
-    <link rel="preload" href="/src/main.tsx" as="script" />
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" as="style" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
-
-    <!-- Structured Data - Enhanced with Multiple Schemas -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": ["Person", "ProfilePage"],
-      "name": "Sammy Peter",
-      "url": "https://sammypeter.dev",
-      "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "https://sammypeter.dev"
-      },
-      "description": "IoT & AI innovator, full-stack developer, and cloud solutions architect creating smart systems for health, tourism, and sustainability in Africa.",
-      "image": "https://sammypeter.dev/images/profile-2023.jpg",
-      "jobTitle": "Senior IoT & AI Developer | Full-Stack Engineer",
-      "knowsAbout": [
-        {"@type": "Thing", "name": "Internet of Things"},
-        {"@type": "Thing", "name": "Artificial Intelligence"},
-        {"@type": "Thing", "name": "React.js"},
-        {"@type": "Thing", "name": "TypeScript"},
-        {"@type": "Thing", "name": "Node.js"},
-        {"@type": "Thing", "name": "Python Programming"},
-        {"@type": "Thing", "name": "Cloud Architecture"},
-        {"@type": "Thing", "name": "Smart Agriculture"},
-        {"@type": "Thing", "name": "Healthcare Technology"}
-      ],
-      "alumniOf": {
-        "@type": "EducationalOrganization",
-        "name": "Karatina University",
-        "sameAs": "https://www.karu.ac.ke"
-      },
-      "sameAs": [
-        "https://github.com/sammypeter",
-        "https://linkedin.com/in/sammypeter",
-        "https://twitter.com/sammypeter_ke",
-        "https://stackoverflow.com/users/sammypeter",
-        "https://dev.to/sammypeter"
-      ],
-      "workLocation": {
-        "@type": "Place",
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "Nairobi",
-          "addressRegion": "Nairobi",
-          "addressCountry": "Kenya"
-        }
-      },
-      "offers": {
-        "@type": "Offer",
-        "category": "IoTDevelopmentServices",
-        "areaServed": "Africa",
-        "availableChannel": {
-          "@type": "ServiceChannel",
-          "serviceUrl": "https://sammypeter.dev/contact"
-        }
-      }
-    }
-    </script>
-
-    <!-- Additional Organization Schema -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
+  <!-- Author & Ownership -->
+  <meta name="author" content="Peter Muraya (Sammy)">
+  <meta name="copyright" content="© 2024 Peter Muraya. All rights reserved.">
+  
+  <!-- Robots & Indexing -->
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="revisit-after" content="7 days">
+  
+  <!-- Geo & Local SEO -->
+  <meta name="geo.region" content="KE-30">
+  <meta name="geo.placename" content="Nairobi">
+  <meta name="geo.position" content="-1.286389;36.817223">
+  <meta name="ICBM" content="-1.286389, 36.817223">
+  <meta name="location" content="Nairobi, Kenya">
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://petermuraya.dev/">
+  
+  <!-- OpenGraph (Enhanced with More Properties) -->
+  <meta property="og:locale" content="en_KE">
+  <meta property="og:type" content="profile">
+  <meta property="og:url" content="https://petermuraya.dev/">
+  <meta property="og:title" content="Peter Muraya (Sammy) | Safaricom IoT Architect | Smart Technology Leader">
+  <meta property="og:description" content="Official portfolio of Peter Muraya (Sammy), IoT Architect at Safaricom designing Kenya's most innovative connected solutions. Karatina University alumnus with 5+ years in industrial IoT.">
+  <meta property="og:image" content="https://petermuraya.dev/images/og-image-2024.jpg">
+  <meta property="og:image:secure_url" content="https://petermuraya.dev/images/og-image-2024.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Peter Muraya - Safaricom IoT Architect">
+  <meta property="og:site_name" content="Peter Muraya | IoT Architect">
+  <meta property="profile:first_name" content="Peter">
+  <meta property="profile:last_name" content="Muraya">
+  <meta property="profile:username" content="sammy">
+  <meta property="og:updated_time" content="2024-03-15T00:00:00+03:00">
+  
+  <!-- Twitter Card (Enhanced) -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@peter_muraya">
+  <meta name="twitter:creator" content="@peter_muraya">
+  <meta name="twitter:title" content="Peter Muraya (@Sammy) | Safaricom IoT Architect">
+  <meta name="twitter:description" content="Building Kenya's IoT future at Safaricom. Karatina University alumnus specializing in industrial IoT, smart cities, and connected ecosystems.">
+  <meta name="twitter:image" content="https://petermuraya.dev/images/twitter-card-2024.jpg">
+  <meta name="twitter:image:alt" content="Peter Muraya - IoT Solutions Architect">
+  <meta name="twitter:label1" content="Position">
+  <meta name="twitter:data1" content="IoT Architect at Safaricom">
+  <meta name="twitter:label2" content="Specialization">
+  <meta name="twitter:data2" content="Industrial IoT & Smart Cities">
+  <meta name="twitter:label3" content="Location">
+  <meta name="twitter:data3" content="Nairobi, Kenya">
+  
+  <!-- Favicon (Modern Implementation) -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#0066cc">
+  
+  <!-- Preload Critical Resources (Prioritized) -->
+  <link rel="preload" href="/styles/main.css" as="style">
+  <link rel="preload" href="/js/main.js" as="script">
+  <link rel="preload" href="/images/hero-banner.webp" as="image" type="image/webp" media="(min-width: 768px)">
+  <link rel="preload" href="/fonts/roboto.woff2" as="font" type="font/woff2" crossorigin>
+  
+  <!-- Enhanced JSON-LD Structured Data (More Comprehensive) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": "https://petermuraya.dev/#peter",
+    "name": "Peter Muraya",
+    "alternateName": "Sammy",
+    "url": "https://petermuraya.dev",
+    "image": "https://petermuraya.dev/images/profile-2024.webp",
+    "jobTitle": "IoT Architect",
+    "worksFor": {
       "@type": "Organization",
-      "name": "Sammy Peter Tech Solutions",
-      "url": "https://sammypeter.dev",
-      "logo": "https://sammypeter.dev/images/logo-2023.png",
-      "sameAs": [
-        "https://twitter.com/sammypeter_ke",
-        "https://linkedin.com/company/sammypeter-tech"
-      ],
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "telephone": "+254-XXX-XXXXXX",
-        "contactType": "customer service",
-        "areaServed": "Africa",
-        "availableLanguage": "English"
+      "name": "Safaricom PLC",
+      "url": "https://www.safaricom.co.ke",
+      "sameAs": "https://www.wikidata.org/wiki/Q1360236",
+      "description": "Leading telecommunications provider in Kenya"
+    },
+    "description": "IoT Architect at Safaricom designing Kenya's most innovative connected solutions and smart city infrastructure with 5+ years experience.",
+    "nationality": "Kenyan",
+    "alumniOf": {
+      "@type": "EducationalOrganization",
+      "name": "Karatina University",
+      "url": "https://www.karu.ac.ke",
+      "sameAs": "https://www.wikidata.org/wiki/Q6365479",
+      "description": "Public university in Kenya"
+    },
+    "hasOccupation": {
+      "@type": "Occupation",
+      "name": "IoT Architect",
+      "yearsActive": "2018-present",
+      "skills": ["Industrial IoT", "Smart Cities", "LPWAN", "Cellular IoT", "Edge Computing", "IoT Security", "M2M Communication", "5G IoT Networks", "NB-IoT", "LoRaWAN"],
+      "responsibilities": "Designing end-to-end IoT solutions, Architecture planning, Technology evaluation, Cross-functional team leadership"
+    },
+    "knowsAbout": [
+      "Internet of Things",
+      "5G IoT Networks",
+      "NB-IoT",
+      "LoRaWAN",
+      "Smart City Infrastructure",
+      "Industrial Automation",
+      "IoT Security",
+      "Edge AI",
+      "Telecommunications",
+      "Cloud Computing"
+    ],
+    "sameAs": [
+      "https://linkedin.com/in/petermuraya",
+      "https://twitter.com/peter_muraya",
+      "https://github.com/petermuraya",
+      "https://stackoverflow.com/users/petermuraya",
+      "https://www.instagram.com/murayandungu/",
+      "https://www.facebook.com/sammy.wailer.319"
+    ],
+    "workLocation": {
+      "@type": "Place",
+      "name": "Safaricom House, Nairobi",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Safaricom House, Waiyaki Way",
+        "addressLocality": "Nairobi",
+        "addressRegion": "Nairobi",
+        "postalCode": "00100",
+        "addressCountry": "KE"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "-1.2657",
+        "longitude": "36.8029"
       }
-    }
-    </script>
-
-    <!-- Web App Capabilities -->
-    <meta name="mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-title" content="Sammy Peter" />
-    <meta name="application-name" content="Sammy Peter" />
-    <meta name="format-detection" content="telephone=no" />
-
-    <!-- Performance Optimization -->
-    <meta name="generator" content="React, Vite" />
-    <meta name="referrer" content="strict-origin-when-cross-origin" />
-  </head>
-
-  <body>
-    <!-- Noscript Fallback for SEO -->
-    <noscript>
-      <div style="position:fixed;top:0;left:0;right:0;background:#ff4757;color:white;padding:1rem;text-align:center;z-index:9999">
-        For optimal experience, please enable JavaScript in your browser to view Sammy Peter's portfolio.
-      </div>
-      <h1>Sammy Peter - IoT & AI Developer Portfolio</h1>
-      <p>Innovative tech solutions for Africa's development challenges. Specializing in:</p>
-      <ul>
-        <li>IoT Systems Development</li>
-        <li>AI-Powered Applications</li>
-        <li>Full-Stack Web Development (React, TypeScript, Node.js)</li>
-        <li>Cloud Solutions Architecture</li>
-        <li>Smart Agriculture Technologies</li>
-        <li>Healthcare AI Systems</li>
-      </ul>
-      <p>Contact: <a href="mailto:contact@sammypeter.dev">contact@sammypeter.dev</a></p>
-    </noscript>
-
-    <div id="root"></div>
-
-    <!-- Script Loading with Fallback -->
-    <script>
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/sw.js').then(
-            registration => console.log('ServiceWorker registration successful'),
-            err => console.log('ServiceWorker registration failed: ', err)
-          );
-        });
-      }
-    </script>
-    <script src="https://cdn.gpteng.co/gptengineer.js" type="module" async defer></script>
-    <script type="module" src="/src/main.tsx" async defer></script>
-    
-    <!-- Performance Monitoring -->
-    <script>
-      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-      ga('create', 'UA-XXXXX-Y', 'auto');
-      ga('send', 'pageview');
-    </script>
-    <script async src='https://www.google-analytics.com/analytics.js'></script>
-  </body>
-</html>
+    },
+    "award": [
+      "Safaricom Innovation Award 2022",
+      "IoT Kenya Excellence Award 2021"
+    ],
+    "knowsLanguage": ["English", "Swahili"]
+  }
+  </script>
+  
+  <!-- CSS (Optimized Loading) -->
+  <link rel="stylesheet" href="/styles/main.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="/styles/main.css"></noscript>
+  
+  <!-- Resource Hints -->
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://www.google-analytics.com">
+  
+  <!-- Web App Capabilities -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Peter Muraya">
+  
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="/manifest.webmanifest">
+  
+  <!-- Verification -->
+  <meta name="google-site-verification" content="YOUR_GOOGLE_CODE">
+  <meta name="msvalidate.01" content="YOUR_BING_CODE">
+  
+  <!-- Security Headers (Would be in HTTP headers, but included here for reference) -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://petermuraya.dev https://www.google-analytics.com; font-src 'self'; connect-src 'self' https://www.google-analytics.com">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
+  
+  <!-- Performance Monitoring -->
+  <link rel="preconnect" href="https://www.googletagmanager.com">
+</head>

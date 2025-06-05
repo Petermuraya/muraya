@@ -1,7 +1,6 @@
-
 MIT License
 
-Copyright (c) 2024 Peter Muraya Ndung'u
+Copyright (c) 2024 Peter Muraya Ndungu
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -10,8 +9,15 @@ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the Software is
 furnished to do so, subject to the following conditions:
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+The above copyright notice, this permission notice, and the following attribution 
+requirement shall be included in all copies or substantial portions of the Software:
+
+**Attribution Requirement:**  
+Any public use, distribution, or publication of this Software, modified or unmodified, 
+must include clear attribution to **Peter Muraya Ndungu** and a visible link to the 
+GitHub repository: [https://github.com/petermuraya](https://github.com/petermuraya).  
+This includes (but is not limited to) README files, documentation, application UIs, 
+marketing materials, or public software listings.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -27,19 +33,20 @@ SOFTWARE.
 
 The MIT License is a permissive free software license that allows for:
 
-✅ **Commercial use** - You can use this software for commercial purposes
-✅ **Modification** - You can modify the software
-✅ **Distribution** - You can distribute the software
-✅ **Private use** - You can use the software for private purposes
+✅ **Commercial use** - You can use this software for commercial purposes  
+✅ **Modification** - You can modify the software  
+✅ **Distribution** - You can distribute the software  
+✅ **Private use** - You can use the software for private purposes  
 
 ### Requirements
 
-📋 **License and copyright notice** - Include the license and copyright notice with the software
+📋 **License, copyright, and attribution notice** - Include the license,
+copyright, and attribution notice with the software.
 
 ### Limitations
 
-❌ **Liability** - The software is provided "as is" without warranty
-❌ **Warranty** - No warranty is provided with the software
+❌ **Liability** - The software is provided "as is" without warranty  
+❌ **Warranty** - No warranty is provided with the software  
 
 ---
 
@@ -59,7 +66,9 @@ Please refer to the individual package licenses in the `node_modules` directory 
 
 ---
 
-**Contact Information:**
-Peter Muraya Ndung'u
-Email: peter@example.com
-Website: https://petermuraya.lovable.app
+**Contact Information:**  
+Peter Muraya Ndung'u  
+📧 Email: sammypeter1944@gmail.com  
+🐙 GitHub: [https://github.com/petermuraya](https://github.com/petermuraya)  
+🐦 X (Twitter): [https://x.com/sammie1604](https://x.com/sammie1604)  
+💼 LinkedIn: [https://www.linkedin.com/in/peter-muraya-ndungu/](https://www.linkedin.com/in/peter-muraya-ndungu/)
