@@ -1,4 +1,3 @@
-
 export interface SEOConfig {
   title: string;
   description: string;
@@ -20,48 +19,50 @@ export const baseSEOConfig = {
   siteUrl: "https://petermuraya.lovable.app",
   defaultImage: "https://i.postimg.cc/902NmQLh/IMG-20240709-105245-53.jpg",
   author: "Peter Muraya Ndung'u",
-  twitterHandle: "@petermuraya",
+  twitterHandle: "@sammie1604",
+  email: "sammypeter1944@gmail.com",
+  phone: "+254700471113",
   keywords: {
-    primary: "IoT developer, AI developer, React developer, TypeScript, Node.js, Kenya developer, tech blog, programming tutorials",
-    secondary: "full-stack developer, cloud solutions, smart agriculture, health tech, Nairobi, software engineering, tech innovation",
-    technical: "JavaScript, Python, AWS, IoT systems, machine learning, web development, GitHub, LinkedIn, dev.to, medium, tech content creator",
-    social: "tech influencer Kenya, developer community, open source contributor, tech meetups Nairobi, programming education, coding tutorials"
+    primary: "Peter Muraya, IoT developer Kenya, AI developer Nairobi, React developer Kenya, TypeScript expert, Node.js developer, smart agriculture, health tech Kenya",
+    secondary: "full-stack developer Kenya, cloud solutions Nairobi, smart agriculture Kenya, health tech developer, Karatina University, software engineering Kenya, tech innovation Africa",
+    technical: "JavaScript Kenya, Python developer, AWS Kenya, IoT systems Kenya, machine learning Africa, web development Nairobi, GitHub Kenya, LinkedIn developer, tech content creator Kenya",
+    social: "tech influencer Kenya, developer community Nairobi, open source contributor Kenya, tech meetups Nairobi, programming education Kenya, coding tutorials Africa, sammie1604, murayandungu"
   }
 };
 
 export const pageConfigs: Record<string, Partial<SEOConfig>> = {
   home: {
-    title: "Peter Muraya Ndung'u | Leading IoT & AI Developer in Kenya | React, TypeScript Expert | Tech Blog",
-    description: "Award-winning IoT & AI specialist in Kenya building cutting-edge solutions for healthcare, agriculture, and smart cities. Expert in React, TypeScript, Node.js, Python, and cloud architecture. Follow for tech insights and tutorials.",
-    keywords: `${baseSEOConfig.keywords.primary}, ${baseSEOConfig.keywords.secondary}, ${baseSEOConfig.keywords.social}, portfolio, software engineer Kenya, tech blogger, programming tutorials`,
+    title: "Peter Muraya Ndung'u | Leading IoT & AI Developer in Kenya | React, TypeScript Expert | @sammie1604",
+    description: "Award-winning IoT & AI specialist Peter Muraya from Kenya building cutting-edge solutions for healthcare, agriculture, and smart cities. Expert in React, TypeScript, Node.js, Python, and cloud architecture. Connect on LinkedIn, GitHub, Twitter @sammie1604, Instagram @murayandungu. Contact: sammypeter1944@gmail.com | +254 700 471113",
+    keywords: `Peter Muraya Ndung'u, ${baseSEOConfig.keywords.primary}, ${baseSEOConfig.keywords.secondary}, ${baseSEOConfig.keywords.social}, sammie1604, murayandungu, sammypeter1944@gmail.com, IoT developer Nairobi, software engineer Kenya`,
     url: baseSEOConfig.siteUrl,
     type: "website"
   },
   about: {
-    title: "About Peter Muraya | IoT Developer Journey & Expertise | Kenya Tech Leader | Connect on LinkedIn & GitHub",
-    description: "Learn about Peter Muraya's journey from computer science student to leading IoT & AI developer in Kenya. Discover his expertise in React, TypeScript, and sustainable technology solutions. Connect on LinkedIn, GitHub, and follow his tech blog.",
-    keywords: `about Peter Muraya, IoT developer background, Kenya tech expert, ${baseSEOConfig.keywords.technical}, LinkedIn developer, GitHub projects, tech blog Kenya, developer story`,
+    title: "About Peter Muraya | IoT Developer Journey & Expertise | Kenya Tech Leader | Connect @sammie1604 LinkedIn GitHub",
+    description: "Learn about Peter Muraya Ndung'u's journey from Karatina University computer science student to leading IoT & AI developer in Kenya. Discover his expertise in React, TypeScript, and sustainable technology solutions. Connect via LinkedIn, GitHub @petermuraya, Twitter @sammie1604, Instagram @murayandungu. Email: sammypeter1944@gmail.com | Phone: +254 700 471113",
+    keywords: `about Peter Muraya Ndungu, IoT developer background Kenya, Kenya tech expert, ${baseSEOConfig.keywords.technical}, LinkedIn developer Kenya, GitHub projects petermuraya, tech blog Kenya, developer story Karatina University, sammie1604, murayandungu`,
     url: `${baseSEOConfig.siteUrl}/about`,
     type: "profile"
   },
   projects: {
-    title: "Projects Portfolio | IoT & AI Solutions by Peter Muraya | Kenya Innovation | Open Source on GitHub",
-    description: "Explore Peter Muraya's innovative IoT and AI projects including smart agriculture systems, healthcare solutions, and web applications built with React, TypeScript, and modern technologies. View code on GitHub and read detailed case studies.",
-    keywords: `Peter Muraya projects, IoT projects Kenya, AI solutions, React projects, ${baseSEOConfig.keywords.technical}, GitHub repositories, open source projects, project case studies`,
+    title: "Projects Portfolio | IoT & AI Solutions by Peter Muraya | Kenya Innovation | Open Source GitHub @petermuraya",
+    description: "Explore Peter Muraya Ndung'u's innovative IoT and AI projects including smart agriculture systems, healthcare solutions, and web applications built with React, TypeScript, and modern technologies. View code on GitHub @petermuraya and read detailed case studies. Contact for collaborations: sammypeter1944@gmail.com",
+    keywords: `Peter Muraya projects, IoT projects Kenya, AI solutions Africa, React projects Kenya, ${baseSEOConfig.keywords.technical}, GitHub repositories petermuraya, open source projects Kenya, project case studies, sammie1604 projects`,
     url: `${baseSEOConfig.siteUrl}/projects`,
     type: "website"
   },
   blog: {
-    title: "Tech Blog | IoT, AI & Web Development Insights by Peter Muraya | Programming Tutorials & Industry Analysis",
-    description: "Read Peter Muraya's insights on IoT development, AI implementation, React best practices, and technology trends in Kenya and Africa. Expert tutorials, case studies, and industry analysis for developers and tech enthusiasts.",
-    keywords: `Peter Muraya blog, IoT tutorials, AI insights, React tips, ${baseSEOConfig.keywords.technical}, programming tutorials, tech trends Kenya, developer blog, coding education`,
+    title: "Tech Blog | IoT, AI & Web Development Insights by Peter Muraya @sammie1604 | Programming Tutorials Kenya",
+    description: "Read Peter Muraya Ndung'u's insights on IoT development, AI implementation, React best practices, and technology trends in Kenya and Africa. Expert tutorials, case studies, and industry analysis for developers and tech enthusiasts. Follow @sammie1604 on Twitter, @murayandungu on Instagram. Contact: sammypeter1944@gmail.com",
+    keywords: `Peter Muraya blog, IoT tutorials Kenya, AI insights Africa, React tips Kenya, ${baseSEOConfig.keywords.technical}, programming tutorials Kenya, tech trends Africa, developer blog Kenya, coding education, sammie1604 blog, murayandungu`,
     url: `${baseSEOConfig.siteUrl}/blog`,
     type: "blog"
   },
   contact: {
-    title: "Contact Peter Muraya | IoT & AI Developer | Collaboration Opportunities | LinkedIn & Email",
-    description: "Connect with Peter Muraya for IoT development, AI solutions, React consulting, or collaboration opportunities. Based in Nairobi, Kenya, available for projects worldwide. Reach out via LinkedIn, email, or social media.",
-    keywords: `contact Peter Muraya, hire IoT developer, AI consultant Kenya, React developer contact, tech collaboration, LinkedIn contact, developer networking`,
+    title: "Contact Peter Muraya | IoT & AI Developer Kenya | Collaboration Opportunities | @sammie1604 LinkedIn GitHub",
+    description: "Connect with Peter Muraya Ndung'u for IoT development, AI solutions, React consulting, or collaboration opportunities. Based in Nairobi, Kenya, available for projects worldwide. Email: sammypeter1944@gmail.com | Phone: +254 700 471113 | LinkedIn: peter-muraya-ndungu | GitHub: @petermuraya | Twitter: @sammie1604 | Instagram: @murayandungu",
+    keywords: `contact Peter Muraya Ndungu, hire IoT developer Kenya, AI consultant Nairobi, React developer contact Kenya, tech collaboration Africa, LinkedIn contact peter-muraya-ndungu, developer networking Kenya, sammypeter1944@gmail.com, sammie1604, murayandungu`,
     url: `${baseSEOConfig.siteUrl}/contact`,
     type: "website"
   }
@@ -72,17 +73,19 @@ export const generateStructuredData = (page: string, customData?: object) => {
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Peter Muraya Ndung'u",
+    "alternateName": ["Peter Muraya", "sammie1604", "murayandungu"],
     "jobTitle": "IoT & AI Solutions Developer",
-    "description": "Experienced IoT & Cloud Solutions Developer specializing in React, TypeScript, Node.js, and modern web technologies. Tech blogger and open source contributor.",
+    "description": "Experienced IoT & Cloud Solutions Developer specializing in React, TypeScript, Node.js, and modern web technologies. Tech blogger and open source contributor based in Kenya.",
     "url": baseSEOConfig.siteUrl,
     "image": baseSEOConfig.defaultImage,
+    "email": "sammypeter1944@gmail.com",
+    "telephone": "+254700471113",
     "sameAs": [
       "https://github.com/petermuraya",
-      "https://linkedin.com/in/petermuraya",
-      "https://twitter.com/petermuraya",
-      "https://dev.to/petermuraya",
-      "https://medium.com/@petermuraya",
-      "https://youtube.com/@petermuraya"
+      "https://www.linkedin.com/in/peter-muraya-ndungu/",
+      "https://x.com/sammie1604",
+      "https://www.instagram.com/murayandungu/",
+      "https://www.facebook.com/sammy.wailer.319"
     ],
     "worksFor": {
       "@type": "Organization",
@@ -92,6 +95,10 @@ export const generateStructuredData = (page: string, customData?: object) => {
       "@type": "PostalAddress",
       "addressLocality": "Nairobi",
       "addressCountry": "Kenya"
+    },
+    "nationality": {
+      "@type": "Country",
+      "name": "Kenya"
     },
     "knowsAbout": [
       "IoT Development",
@@ -108,12 +115,18 @@ export const generateStructuredData = (page: string, customData?: object) => {
     ],
     "alumniOf": {
       "@type": "EducationalOrganization",
-      "name": "University of Nairobi"
+      "name": "Karatina University"
     },
     "award": [
       "Kenya IoT Innovation Award 2023",
       "Top Developer GitHub Kenya"
-    ]
+    ],
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+254700471113",
+      "email": "sammypeter1944@gmail.com",
+      "contactType": "Professional"
+    }
   };
 
   const pageSpecificData: Record<string, object> = {
@@ -134,8 +147,8 @@ export const generateStructuredData = (page: string, customData?: object) => {
         "@type": "FollowAction",
         "target": [
           "https://github.com/petermuraya",
-          "https://linkedin.com/in/petermuraya",
-          "https://twitter.com/petermuraya"
+          "https://www.linkedin.com/in/peter-muraya-ndungu/",
+          "https://x.com/sammie1604"
         ]
       }
     },

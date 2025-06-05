@@ -1,4 +1,5 @@
-import { Github, Linkedin, Mail, Heart } from 'lucide-react';
+
+import { Github, Linkedin, Mail, Heart, Phone, Instagram, Twitter, Facebook } from 'lucide-react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -25,17 +26,46 @@ const Footer = () => {
           <div className="animate-slide-in-left">
             <h3 className="text-2xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">Let's Connect</h3>
             <p className="text-gray-300 mb-6 leading-relaxed">
-              Always open to discussing new opportunities, collaborations, and innovative projects that create positive impact.
+              Always open to discussing new opportunities, collaborations, and innovative IoT projects that create positive impact.
             </p>
+            
+            {/* Contact Information */}
+            <div className="space-y-4 mb-6">
+              <div className="flex items-center space-x-3 text-gray-300 hover:text-white transition-colors duration-300">
+                <div className="p-2 bg-blue-600/20 rounded-lg backdrop-blur-sm">
+                  <Mail className="w-4 h-4 text-blue-400" />
+                </div>
+                <a href="mailto:sammypeter1944@gmail.com" className="hover:text-cyan-300 transition-colors duration-300">
+                  sammypeter1944@gmail.com
+                </a>
+              </div>
+              
+              <div className="flex items-center space-x-3 text-gray-300 hover:text-white transition-colors duration-300">
+                <div className="p-2 bg-green-600/20 rounded-lg backdrop-blur-sm">
+                  <Phone className="w-4 h-4 text-green-400" />
+                </div>
+                <a href="tel:+254700471113" className="hover:text-cyan-300 transition-colors duration-300">
+                  +254 700 471113
+                </a>
+              </div>
+            </div>
+            
+            {/* Social Media Links */}
             <div className="flex space-x-4">
-              <a href="https://github.com" className="group p-3 bg-white/10 rounded-xl text-gray-300 hover:text-white hover:bg-blue-600 transition-all duration-300 backdrop-blur-sm hover:scale-110">
+              <a href="https://github.com/petermuraya" target="_blank" rel="noopener noreferrer" className="group p-3 bg-white/10 rounded-xl text-gray-300 hover:text-white hover:bg-gray-800 transition-all duration-300 backdrop-blur-sm hover:scale-110">
                 <Github className="w-6 h-6" />
               </a>
-              <a href="https://linkedin.com" className="group p-3 bg-white/10 rounded-xl text-gray-300 hover:text-white hover:bg-blue-600 transition-all duration-300 backdrop-blur-sm hover:scale-110">
+              <a href="https://www.linkedin.com/in/peter-muraya-ndungu/" target="_blank" rel="noopener noreferrer" className="group p-3 bg-white/10 rounded-xl text-gray-300 hover:text-white hover:bg-blue-600 transition-all duration-300 backdrop-blur-sm hover:scale-110">
                 <Linkedin className="w-6 h-6" />
               </a>
-              <a href="mailto:peter.muraya@example.com" className="group p-3 bg-white/10 rounded-xl text-gray-300 hover:text-white hover:bg-blue-600 transition-all duration-300 backdrop-blur-sm hover:scale-110">
-                <Mail className="w-6 h-6" />
+              <a href="https://x.com/sammie1604" target="_blank" rel="noopener noreferrer" className="group p-3 bg-white/10 rounded-xl text-gray-300 hover:text-white hover:bg-blue-500 transition-all duration-300 backdrop-blur-sm hover:scale-110">
+                <Twitter className="w-6 h-6" />
+              </a>
+              <a href="https://www.instagram.com/murayandungu/" target="_blank" rel="noopener noreferrer" className="group p-3 bg-white/10 rounded-xl text-gray-300 hover:text-white hover:bg-gradient-to-r hover:from-purple-500 hover:to-pink-500 transition-all duration-300 backdrop-blur-sm hover:scale-110">
+                <Instagram className="w-6 h-6" />
+              </a>
+              <a href="https://www.facebook.com/sammy.wailer.319" target="_blank" rel="noopener noreferrer" className="group p-3 bg-white/10 rounded-xl text-gray-300 hover:text-white hover:bg-blue-700 transition-all duration-300 backdrop-blur-sm hover:scale-110">
+                <Facebook className="w-6 h-6" />
               </a>
             </div>
           </div>
@@ -74,7 +104,7 @@ const Footer = () => {
         <div className="border-t border-white/20 mt-12 pt-8 text-center animate-fade-in [animation-delay:600ms] opacity-0 [animation-fill-mode:forwards]">
           <div className="flex items-center justify-center mb-4">
             <p className="text-gray-300 flex items-center gap-2">
-              © 2024 Peter Muraya Ndung'u. Building technology for global development 
+              © 2024 Peter Muraya Ndung'u. Building IoT technology for global development 
               <Heart className="w-4 h-4 text-red-400 animate-pulse" />
             </p>
           </div>
