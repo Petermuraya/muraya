@@ -1,3 +1,4 @@
+
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import HeroSection from '@/components/HeroSection';
@@ -5,7 +6,8 @@ import FeaturesSection from '@/components/FeaturesSection';
 import FeaturedProjectsSection from '@/components/FeaturedProjectsSection';
 import SkillsSection from '@/components/SkillsSection';
 import SEO from '@/components/SEO';
-import Chatbot from '@/components/Chatbot';
+import VoiceChatbot from '@/components/VoiceChatbot';
+import SkipLink from '@/components/SkipLink';
 import { useEffect } from 'react';
 
 const Index = () => {
@@ -62,8 +64,8 @@ const Index = () => {
     "image": "https://i.postimg.cc/902NmQLh/IMG-20240709-105245-53.jpg",
     "sameAs": [
       "https://github.com/petermuraya",
-      "https://linkedin.com/in/petermuraya",
-      "https://twitter.com/petermuraya"
+      "https://linkedin.com/in/peter-muraya-ndungu/",
+      "https://x.com/sammie1604"
     ],
     "worksFor": {
       "@type": "Organization",
@@ -93,19 +95,27 @@ const Index = () => {
     "address": {
       "@type": "PostalAddress",
       "addressCountry": "Kenya"
-    }
+    },
+    "accessibilityFeature": [
+      "screenReader",
+      "voiceControl",
+      "highContrast",
+      "largeFonts",
+      "keyboardNavigation"
+    ]
   };
 
   return (
     <>
+      <SkipLink />
       <SEO 
         title="Peter Muraya Ndung'u - IoT & Cloud Solutions Developer | React, TypeScript, Node.js Expert"
-        description="Experienced IoT & Cloud Solutions Developer specializing in React, TypeScript, Node.js, and modern web technologies. Passionate about technology for global development and digital innovation."
-        keywords="IoT developer, cloud solutions, React developer, TypeScript, Node.js, web development, JavaScript, frontend, backend, portfolio, software engineer, global development, digital innovation, smart agriculture, health tech, Peter Muraya, Kenya developer"
+        description="Experienced IoT & Cloud Solutions Developer specializing in React, TypeScript, Node.js, and modern web technologies. Passionate about technology for global development and digital innovation. Fully accessible website with voice assistance."
+        keywords="IoT developer, cloud solutions, React developer, TypeScript, Node.js, web development, JavaScript, frontend, backend, portfolio, software engineer, global development, digital innovation, smart agriculture, health tech, Peter Muraya, Kenya developer, accessible website, voice assistant"
         url="https://yourportfolio.com"
         image="https://i.postimg.cc/902NmQLh/IMG-20240709-105245-53.jpg"
         author="Peter Muraya Ndung'u"
-        twitterHandle="@petermuraya"
+        twitterHandle="@sammie1604"
         structuredData={structuredData}
       />
       
@@ -125,23 +135,25 @@ const Index = () => {
 
         <div className="relative z-10">
           <Navigation />
-          <div className="scroll-animate opacity-0">
-            <HeroSection />
-          </div>
-          <div className="scroll-animate opacity-0">
-            <FeaturesSection />
-          </div>
-          <div className="scroll-animate opacity-0">
-            <FeaturedProjectsSection />
-          </div>
-          <div className="scroll-animate opacity-0">
-            <SkillsSection />
-          </div>
+          <main id="main-content">
+            <div className="scroll-animate opacity-0">
+              <HeroSection />
+            </div>
+            <div className="scroll-animate opacity-0">
+              <FeaturesSection />
+            </div>
+            <div className="scroll-animate opacity-0">
+              <FeaturedProjectsSection />
+            </div>
+            <div className="scroll-animate opacity-0">
+              <SkillsSection />
+            </div>
+          </main>
           <Footer />
         </div>
         
-        {/* Chatbot */}
-        <Chatbot />
+        {/* Voice-Enabled Chatbot */}
+        <VoiceChatbot />
       </div>
     </>
   );
