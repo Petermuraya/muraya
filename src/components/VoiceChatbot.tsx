@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { MessageCircle, X, Send, Bot, User, Mic, MicOff, Volume2, VolumeX, Navigation } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -6,6 +5,7 @@ import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { useNavigate } from 'react-router-dom';
 import { useAccessibility } from '@/contexts/AccessibilityContext';
+import { cn } from '@/lib/utils';
 
 interface Message {
   id: string;
