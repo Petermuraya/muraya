@@ -1,52 +1,8 @@
 
-import { useState } from 'react';
-import { Github, Linkedin, Twitter, Mail, Heart, Quote } from 'lucide-react';
-import { Link, useNavigate } from 'react-router-dom';
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { useAdmin } from '@/contexts/AdminContext';
-import { useToast } from '@/hooks/use-toast';
+import { Github, Linkedin, Twitter, Mail, Heart } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
-  const [isAdminDialogOpen, setIsAdminDialogOpen] = useState(false);
-  const [credentials, setCredentials] = useState({ email: '', password: '' });
-  const [isLoading, setIsLoading] = useState(false);
-  const { login } = useAdmin();
-  const { toast } = useToast();
-  const navigate = useNavigate();
-
-  const handleAdminLogin = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsLoading(true);
-
-    try {
-      const success = await login(credentials.email, credentials.password);
-      if (success) {
-        toast({
-          title: "Login Successful",
-          description: "Welcome to the admin dashboard",
-        });
-        setIsAdminDialogOpen(false);
-        navigate('/admin');
-      } else {
-        toast({
-          title: "Login Failed",
-          description: "Invalid credentials",
-          variant: "destructive",
-        });
-      }
-    } catch (error) {
-      toast({
-        title: "Login Error",
-        description: "An error occurred during login",
-        variant: "destructive",
-      });
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
   const currentYear = new Date().getFullYear();
 
   return (
@@ -139,17 +95,6 @@ const Footer = () => {
               <p>📱 +1 (555) 123-4567</p>
               <p>📍 San Francisco, CA</p>
             </div>
-            
-            {/* Hidden Admin Login Button */}
-            <div className="mt-6">
-              <button
-                onClick={() => setIsAdminDialogOpen(true)}
-                className="text-gray-500 hover:text-gray-400 transition-colors text-xs opacity-50"
-                title="Admin Access"
-              >
-                <Quote className="w-4 h-4" />
-              </button>
-            </div>
           </div>
         </div>
 
@@ -161,41 +106,6 @@ const Footer = () => {
           </p>
         </div>
       </div>
-
-      {/* Admin Login Dialog */}
-      <Dialog open={isAdminDialogOpen} onOpenChange={setIsAdminDialogOpen}>
-        <DialogContent className="bg-[#161b22] border-[#30363d] text-white">
-          <DialogHeader>
-            <DialogTitle>Admin Access</DialogTitle>
-          </DialogHeader>
-          <form onSubmit={handleAdminLogin} className="space-y-4">
-            <Input
-              type="email"
-              placeholder="Admin Email"
-              value={credentials.email}
-              onChange={(e) => setCredentials(prev => ({ ...prev, email: e.target.value }))}
-              className="bg-[#0d1117] border-[#30363d] text-white"
-              required
-            />
-            <Input
-              type="password"
-              placeholder="Password"
-              value={credentials.password}
-              onChange={(e) => setCredentials(prev => ({ ...prev, password: e.target.value }))}
-              className="bg-[#0d1117] border-[#30363d] text-white"
-              required
-            />
-            <div className="flex gap-2">
-              <Button type="submit" disabled={isLoading} className="flex-1">
-                {isLoading ? 'Logging in...' : 'Login'}
-              </Button>
-              <Button type="button" variant="outline" onClick={() => setIsAdminDialogOpen(false)}>
-                Cancel
-              </Button>
-            </div>
-          </form>
-        </DialogContent>
-      </Dialog>
     </footer>
   );
 };
