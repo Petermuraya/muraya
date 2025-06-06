@@ -1,14 +1,15 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { HelmetProvider } from 'react-helmet-async';
+import { HelmetProvider } from "react-helmet-async";
+
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import { AdminProvider } from "@/contexts/AdminContext";
 import { AccessibilityProvider } from "@/contexts/AccessibilityContext";
+
 import Index from "./pages/Index";
 import About from "./pages/About";
 import Projects from "./pages/Projects";
@@ -16,6 +17,7 @@ import Contact from "./pages/Contact";
 import Blog from "./pages/Blog";
 import Admin from "./pages/Admin";
 import NotFound from "./pages/NotFound";
+
 import AccessibilityToolbar from "@/components/AccessibilityToolbar";
 
 const queryClient = new QueryClient();
@@ -28,10 +30,13 @@ const App = () => (
           <LanguageProvider>
             <AdminProvider>
               <TooltipProvider>
-                <Toaster />
-                <Sonner />
-                <BrowserRouter>
+                <BrowserRouter basename={import.meta.env.BASE_URL}>
+                  {/* Global utilities */}
                   <AccessibilityToolbar />
+                  <Toaster />
+                  <Sonner />
+
+                  {/* Routes */}
                   <Routes>
                     <Route path="/" element={<Index />} />
                     <Route path="/about" element={<About />} />
