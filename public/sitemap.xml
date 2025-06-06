@@ -14,7 +14,7 @@
     <priority>1.0</priority>
     <image:image>
       <image:loc>https://i.postimg.cc/902NmQLh/IMG-20240709-105245-53.jpg</image:loc>
-      <image:title>Peter Muraya Ndung'u - IoT &amp; AI Developer</image:title>
+      <image:title>Peter Muraya Ndungu - IoT &amp; AI Developer</image:title>
       <image:caption>Professional IoT and AI developer based in Nairobi, Kenya.</image:caption>
     </image:image>
   </url>
@@ -47,7 +47,6 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
-
   <!-- Contact Page -->
   <url>
     <loc>https://petermuraya.lovable.app/contact</loc>
