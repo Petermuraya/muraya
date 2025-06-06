@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
+import { supabase } from '@/integrations/supabase/client';
 
 declare global {
   interface Window {
@@ -14,6 +15,7 @@ declare global {
 
 const NewsletterSignup = () => {
   const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [isSubscribed, setIsSubscribed] = useState(false);
   const { toast } = useToast();
@@ -33,26 +35,41 @@ const NewsletterSignup = () => {
     setIsLoading(true);
 
     try {
-      // Simulate API call - replace with actual newsletter service
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
-      setIsSubscribed(true);
-      setEmail('');
-      
-      toast({
-        title: "Successfully Subscribed!",
-        description: "Thank you for subscribing to tech insights and updates",
-      });
+      const { error } = await supabase
+        .from('newsletter_subscriptions')
+        .insert([{ email, name: name || null }]);
 
-      // Track conversion for SEO analytics
-      if (window.gtag) {
-        window.gtag('event', 'newsletter_signup', {
-          event_category: 'engagement',
-          event_label: 'email_subscription',
-          value: 1
+      if (error) {
+        if (error.code === '23505') { // Unique constraint violation
+          toast({
+            title: "Already Subscribed",
+            description: "This email is already subscribed to our newsletter",
+            variant: "destructive",
+          });
+        } else {
+          throw error;
+        }
+      } else {
+        setIsSubscribed(true);
+        setEmail('');
+        setName('');
+        
+        toast({
+          title: "Successfully Subscribed!",
+          description: "Thank you for subscribing to tech insights and updates",
         });
+
+        // Track conversion for SEO analytics
+        if (window.gtag) {
+          window.gtag('event', 'newsletter_signup', {
+            event_category: 'engagement',
+            event_label: 'email_subscription',
+            value: 1
+          });
+        }
       }
     } catch (error) {
+      console.error('Newsletter subscription error:', error);
       toast({
         title: "Subscription Failed",
         description: "Please try again later",
@@ -90,6 +107,14 @@ const NewsletterSignup = () => {
 
       <form onSubmit={handleSubmit} className="space-y-3">
         <Input
+          type="text"
+          placeholder="Your name (optional)"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          className="w-full"
+          disabled={isLoading}
+        />
+        <Input
           type="email"
           placeholder="Enter your email address"
           value={email}
@@ -119,7 +144,7 @@ const NewsletterSignup = () => {
       </form>
 
       <p className="text-xs text-gray-500 dark:text-gray-400 mt-3 text-center">
-        Join 1000+ developers and tech enthusiasts
+        Join our growing community of developers and tech enthusiasts
       </p>
     </Card>
   );

@@ -126,6 +126,36 @@ export type Database = {
         }
         Relationships: []
       }
+      blog_ratings: {
+        Row: {
+          blog_id: number
+          comment: string | null
+          created_at: string
+          id: string
+          rating: number
+          user_email: string
+          visible: boolean | null
+        }
+        Insert: {
+          blog_id: number
+          comment?: string | null
+          created_at?: string
+          id?: string
+          rating: number
+          user_email: string
+          visible?: boolean | null
+        }
+        Update: {
+          blog_id?: number
+          comment?: string | null
+          created_at?: string
+          id?: string
+          rating?: number
+          user_email?: string
+          visible?: boolean | null
+        }
+        Relationships: []
+      }
       blogs: {
         Row: {
           author_id: string | null
@@ -175,6 +205,60 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      contact_messages: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          message: string
+          name: string
+          read: boolean | null
+          subject: string | null
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          message: string
+          name: string
+          read?: boolean | null
+          subject?: string | null
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          message?: string
+          name?: string
+          read?: boolean | null
+          subject?: string | null
+        }
+        Relationships: []
+      }
+      newsletter_subscriptions: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          name: string | null
+          subscribed: boolean | null
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          name?: string | null
+          subscribed?: boolean | null
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          name?: string | null
+          subscribed?: boolean | null
+        }
+        Relationships: []
       }
       project_comments: {
         Row: {
