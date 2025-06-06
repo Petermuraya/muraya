@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Microsoft Windows Tile Configuration for Pinned Sites -->
+<browserconfig
+  xmlns="http://schemas.microsoft.com/BrowserConfig/2011">
+  <msapplication>
+    <tile>
+      <!-- Small square tile (taskbar and start menu) -->
+      <square70x70logo src="/favicons/mstile-70x70.png" />
+      <!-- Medium square tile -->
+      <square150x150logo src="/favicons/mstile-150x150.png" />
+      <!-- Large square tile -->
+      <square310x310logo src="/favicons/mstile-310x310.png" />
+      <!-- Wide tile for start menu -->
+      <wide310x150logo src="/favicons/mstile-310x150.png" />
+      <!-- Smallest tile for taskbar icon in newer Windows versions -->
+      <square44x44logo src="/favicons/mstile-44x44.png" />
+
+      <!-- Background color matching your site theme -->
+      <TileColor>#0d1117</TileColor>
+
+      <!-- Tooltip text when hovering over the pinned tile -->
+      <Tooltip>Peter Muraya Portfolio - IoT & AI Developer</Tooltip>
+    </tile>
+  </msapplication>
+</browserconfig>
