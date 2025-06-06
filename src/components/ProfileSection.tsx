@@ -1,6 +1,5 @@
-
 import { Button } from '@/components/ui/button';
-import { User, Download, Github, Linkedin, Twitter, Instagram, Facebook, Mail, Phone, Globe, Sparkles, Zap, Circuit } from 'lucide-react';
+import { User, Download, Github, Linkedin, Twitter, Instagram, Facebook, Mail, Phone, Globe, Sparkles, Zap, Cpu } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 const ProfileSection = () => {
@@ -94,7 +93,7 @@ const ProfileSection = () => {
             {/* Floating Tech Icons */}
             {isHovered && (
               <div className="absolute inset-0 pointer-events-none">
-                <Circuit className="absolute top-4 left-4 w-6 h-6 text-blue-400 animate-bounce opacity-70" style={{ animationDelay: '0s' }} />
+                <Cpu className="absolute top-4 left-4 w-6 h-6 text-blue-400 animate-bounce opacity-70" style={{ animationDelay: '0s' }} />
                 <Zap className="absolute bottom-4 right-4 w-5 h-5 text-purple-400 animate-bounce opacity-70" style={{ animationDelay: '0.5s' }} />
                 <Sparkles className="absolute top-1/2 left-4 w-4 h-4 text-cyan-400 animate-bounce opacity-70" style={{ animationDelay: '1s' }} />
               </div>
