@@ -10,13 +10,13 @@ import { LanguageProvider } from "@/contexts/LanguageContext";
 import { AdminProvider } from "@/contexts/AdminContext";
 import { AccessibilityProvider } from "@/contexts/AccessibilityContext";
 
-import Index from "./pages/Index";
-import About from "./pages/About";
-import Projects from "./pages/Projects";
-import Contact from "./pages/Contact";
-import Blog from "./pages/Blog";
-import Admin from "./pages/Admin";
-import NotFound from "./pages/NotFound";
+import Index from "@/pages/Index";
+import About from "@/pages/About";
+import Projects from "@/pages/Projects";
+import Contact from "@/pages/Contact";
+import Blog from "@/pages/Blog";
+import Admin from "@/pages/Admin";
+import NotFound from "@/pages/NotFound";
 
 import AccessibilityToolbar from "@/components/AccessibilityToolbar";
 
@@ -30,13 +30,12 @@ const App = () => (
           <LanguageProvider>
             <AdminProvider>
               <TooltipProvider>
-                <BrowserRouter basename={import.meta.env.BASE_URL}>
-                  {/* Global utilities */}
+                {/* React Router configured with correct base path */}
+                <BrowserRouter basename="/muraya">
                   <AccessibilityToolbar />
                   <Toaster />
                   <Sonner />
 
-                  {/* Routes */}
                   <Routes>
                     <Route path="/" element={<Index />} />
                     <Route path="/about" element={<About />} />
@@ -44,7 +43,8 @@ const App = () => (
                     <Route path="/blog" element={<Blog />} />
                     <Route path="/contact" element={<Contact />} />
                     <Route path="/admin" element={<Admin />} />
-                    <Route path="*" element={<NotFound />} />
+                    {/* Catch-all route */}
+                    <Route path="*" element={<Index />} />
                   </Routes>
                 </BrowserRouter>
               </TooltipProvider>
