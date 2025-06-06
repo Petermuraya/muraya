@@ -1,9 +1,9 @@
-
 {
-  "name": "peter muraya - Full-Stack Developer Portfolio",
-  "short_name": "John Doe Portfolio",
-  "description": "Professional portfolio showcasing full-stack development projects and skills",
+  "name": "Peter Muraya Ndungu - Full-Stack Developer & AIoT Specialist",
+  "short_name": "Peter Muraya",
+  "description": "The official portfolio of Peter Muraya Ndungu — showcasing cutting-edge full-stack web applications, AIoT innovations, and tech-driven projects.",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#0d1117",
   "theme_color": "#0d1117",
@@ -12,19 +12,36 @@
     {
       "src": "/favicon.ico",
       "sizes": "48x48",
-      "type": "image/x-icon"
+      "type": "image/x-icon",
+      "purpose": "any"
     },
     {
       "src": "/android-chrome-192x192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
       "src": "/android-chrome-512x512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/android-chrome-maskable-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/android-chrome-maskable-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ],
-  "categories": ["business", "productivity", "developer"],
-  "lang": "en-US"
+  "categories": ["developer", "technology", "portfolio", "productivity", "business", "software"],
+  "lang": "en-US",
+  "dir": "ltr",
+  "prefer_related_applications": false
 }
