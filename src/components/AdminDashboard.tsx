@@ -1,11 +1,10 @@
-
 import React, { useState } from 'react';
 import { useAdmin } from '@/contexts/AdminContext';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { LogOut, FileText, FolderOpen, Settings, BarChart3, Mail, Users, Star } from 'lucide-react';
-import BlogManagement from './BlogManagement';
+import EnhancedBlogManagement from './EnhancedBlogManagement';
 import ProjectManagement from './ProjectManagement';
 import ContactManagement from './ContactManagement';
 import NewsletterManagement from './NewsletterManagement';
@@ -148,7 +147,7 @@ const AdminDashboard = () => {
           </TabsContent>
 
           <TabsContent value="blogs" className="mt-6">
-            <BlogManagement />
+            <EnhancedBlogManagement />
           </TabsContent>
 
           <TabsContent value="projects" className="mt-6">
