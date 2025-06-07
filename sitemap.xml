@@ -1,57 +1,60 @@
+
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset
   xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+  xmlns:news="http://www.google.com/schemas/sitemap-news/0.9"
+  xmlns:video="http://www.google.com/schemas/sitemap-video/1.1"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
   http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
-  <!-- Canonical: https://petermuraya.github.io/muraya/ -->
+  <!-- Enhanced Homepage with Rich Data -->
   <url>
     <loc>https://petermuraya.github.io/muraya/</loc>
-    <lastmod>2025-06-06</lastmod>
+    <lastmod>2025-06-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
       <image:loc>https://i.postimg.cc/902NmQLh/IMG-20240709-105245-53.jpg</image:loc>
-      <image:title>Peter Muraya Ndungu - AI & IoT Expert in Kenya</image:title>
-      <image:caption>Leading AI & IoT Developer, mentor and innovator in Nairobi’s tech ecosystem.</image:caption>
+      <image:title>Peter Muraya Ndungu - IoT & AI Expert in Kenya</image:title>
+      <image:caption>Leading IoT & AI Developer, mentor and innovator in Nairobi's tech ecosystem.</image:caption>
     </image:image>
   </url>
 
-  <!-- Canonical: https://petermuraya.github.io/muraya/about -->
+  <!-- Enhanced About Page -->
   <url>
     <loc>https://petermuraya.github.io/muraya/about</loc>
-    <lastmod>2025-06-06</lastmod>
+    <lastmod>2025-06-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
       <image:loc>https://i.postimg.cc/902NmQLh/IMG-20240709-105245-53.jpg</image:loc>
       <image:title>About Peter Muraya - Software Engineer & Innovator</image:title>
-      <image:caption>Learn about Peter Muraya’s story, career milestones, and Kenya youth tech leadership.</image:caption>
+      <image:caption>Learn about Peter Muraya's story, career milestones, and Kenya youth tech leadership.</image:caption>
     </image:image>
   </url>
 
-  <!-- Canonical: https://petermuraya.github.io/muraya/projects -->
+  <!-- Enhanced Projects Portfolio -->
   <url>
     <loc>https://petermuraya.github.io/muraya/projects</loc>
-    <lastmod>2025-06-06</lastmod>
+    <lastmod>2025-06-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
 
-  <!-- Canonical: https://petermuraya.github.io/muraya/blog -->
+  <!-- Enhanced Blog Section -->
   <url>
     <loc>https://petermuraya.github.io/muraya/blog</loc>
-    <lastmod>2025-06-06</lastmod>
+    <lastmod>2025-06-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
 
-  <!-- Canonical: https://petermuraya.github.io/muraya/contact -->
+  <!-- Enhanced Contact Page -->
   <url>
     <loc>https://petermuraya.github.io/muraya/contact</loc>
-    <lastmod>2025-06-06</lastmod>
+    <lastmod>2025-06-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
