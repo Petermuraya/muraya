@@ -6,53 +6,54 @@
   xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
   http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
-  <!-- Homepage -->
+  <!-- Canonical: https://petermuraya.github.io/muraya/ -->
   <url>
-    <loc>https://petermuraya.lovable.app/</loc>
+    <loc>https://petermuraya.github.io/muraya/</loc>
     <lastmod>2025-06-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
       <image:loc>https://i.postimg.cc/902NmQLh/IMG-20240709-105245-53.jpg</image:loc>
-      <image:title>Peter Muraya Ndungu - IoT &amp; AI Developer</image:title>
-      <image:caption>Professional IoT and AI developer based in Nairobi, Kenya.</image:caption>
+      <image:title>Peter Muraya Ndungu - AI & IoT Expert in Kenya</image:title>
+      <image:caption>Leading AI & IoT Developer, mentor and innovator in Nairobi’s tech ecosystem.</image:caption>
     </image:image>
   </url>
 
-  <!-- About Page -->
+  <!-- Canonical: https://petermuraya.github.io/muraya/about -->
   <url>
-    <loc>https://petermuraya.lovable.app/about</loc>
+    <loc>https://petermuraya.github.io/muraya/about</loc>
     <lastmod>2025-06-06</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
+    <priority>0.9</priority>
     <image:image>
       <image:loc>https://i.postimg.cc/902NmQLh/IMG-20240709-105245-53.jpg</image:loc>
-      <image:title>About Peter Muraya - IoT Developer Journey</image:title>
-      <image:caption>Discover Peter Muraya’s professional journey in IoT and full-stack development.</image:caption>
+      <image:title>About Peter Muraya - Software Engineer & Innovator</image:title>
+      <image:caption>Learn about Peter Muraya’s story, career milestones, and Kenya youth tech leadership.</image:caption>
     </image:image>
   </url>
 
-  <!-- Projects Page -->
+  <!-- Canonical: https://petermuraya.github.io/muraya/projects -->
   <url>
-    <loc>https://petermuraya.lovable.app/projects</loc>
+    <loc>https://petermuraya.github.io/muraya/projects</loc>
     <lastmod>2025-06-06</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.95</priority>
   </url>
 
-  <!-- Blog Page -->
+  <!-- Canonical: https://petermuraya.github.io/muraya/blog -->
   <url>
-    <loc>https://petermuraya.lovable.app/blog</loc>
+    <loc>https://petermuraya.github.io/muraya/blog</loc>
     <lastmod>2025-06-06</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.8</priority>
+    <priority>0.85</priority>
   </url>
-  <!-- Contact Page -->
+
+  <!-- Canonical: https://petermuraya.github.io/muraya/contact -->
   <url>
-    <loc>https://petermuraya.lovable.app/contact</loc>
+    <loc>https://petermuraya.github.io/muraya/contact</loc>
     <lastmod>2025-06-06</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.75</priority>
   </url>
 
 </urlset>
