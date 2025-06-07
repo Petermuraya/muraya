@@ -6,12 +6,17 @@ import FeaturesSection from '@/components/FeaturesSection';
 import FeaturedProjectsSection from '@/components/FeaturedProjectsSection';
 import SkillsSection from '@/components/SkillsSection';
 import AdvancedSEO from '@/components/AdvancedSEO';
-import SEOBot from '@/components/SEOBot';
+import EnhancedSEOBot from '@/components/EnhancedSEOBot';
+import FuturisticSEODashboard from '@/components/FuturisticSEODashboard';
 import VoiceChatbot from '@/components/VoiceChatbot';
 import SkipLink from '@/components/SkipLink';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { BarChart3 } from 'lucide-react';
 
 const Index = () => {
+  const [showSEODashboard, setShowSEODashboard] = useState(false);
+
   useEffect(() => {
     // Enhanced scroll behavior with performance optimization
     document.documentElement.style.scrollBehavior = 'smooth';
@@ -64,21 +69,21 @@ const Index = () => {
     };
   }, []);
 
-  // Enhanced structured data with more comprehensive information
+  // Enhanced structured data with Kenya tech ecosystem focus
   const enhancedStructuredData = {
     "@context": "https://schema.org",
-    "@type": ["Person", "ProfessionalService"],
+    "@type": ["Person", "ProfessionalService", "TechArticle"],
     "name": "Peter Muraya Ndung'u",
     "alternateName": ["sammie1604", "murayandungu"],
     "jobTitle": "IoT & AI Solutions Developer",
-    "description": "Award-winning IoT & AI specialist building transformative technologies for African markets. Expert in React, TypeScript, Node.js, Python, and cloud-native systems.",
+    "description": "Leading IoT & AI specialist building transformative technologies for African markets. Expert in React, TypeScript, Node.js, Python, and cloud-native systems. Kenya youth tech leader and innovation advocate.",
     "url": "https://petermuraya.github.io/muraya",
     "image": {
       "@type": "ImageObject",
       "url": "https://i.postimg.cc/902NmQLh/IMG-20240709-105245-53.jpg",
       "width": 1200,
       "height": 630,
-      "caption": "Peter Muraya Ndung'u - IoT & AI Developer"
+      "caption": "Peter Muraya Ndung'u - Leading IoT & AI Developer in Kenya"
     },
     "email": "sammypeter1944@gmail.com",
     "telephone": "+254700471113",
@@ -91,94 +96,132 @@ const Index = () => {
     ],
     "worksFor": {
       "@type": "Organization",
-      "name": "Freelance Developer & Tech Consultant",
-      "url": "https://petermuraya.github.io/muraya"
+      "name": "Kenya Tech Innovation Hub",
+      "description": "Freelance Developer & Tech Consultant specializing in IoT solutions for Africa"
     },
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Nairobi",
-      "addressRegion": "Nairobi",
-      "addressCountry": "Kenya"
+      "addressRegion": "Nairobi County",
+      "addressCountry": "Kenya",
+      "postalCode": "00100"
+    },
+    "nationality": {
+      "@type": "Country",
+      "name": "Kenya"
     },
     "knowsAbout": [
-      "Internet of Things (IoT)",
-      "Artificial Intelligence",
-      "React.js Development",
-      "TypeScript Programming",
-      "Node.js Development",
-      "Python Programming",
-      "Cloud Computing",
-      "Smart Agriculture",
-      "Healthcare Technology",
-      "Full-Stack Development",
-      "Digital Innovation",
-      "Technology for Development"
+      "Internet of Things (IoT) Development",
+      "Artificial Intelligence for Africa",
+      "React.js & Modern Web Development",
+      "TypeScript & JavaScript",
+      "Node.js Backend Development",
+      "Python for AI & Data Science",
+      "Cloud Computing & AWS",
+      "Smart Agriculture Technology",
+      "Healthcare Technology Innovation",
+      "Kenya Youth Tech Leadership",
+      "African Digital Transformation",
+      "Tech for Development",
+      "Open Source Contribution",
+      "Tech Community Building Kenya"
     ],
     "expertise": [
       "IoT Systems Architecture",
-      "AI/ML Implementation",
-      "Frontend Development",
-      "Backend Development",
-      "Cloud Solutions",
-      "Mobile App Development"
+      "AI/ML Implementation for Africa",
+      "Full-Stack Web Development",
+      "Cloud Solutions Design",
+      "Mobile App Development",
+      "Tech Mentorship & Education",
+      "Innovation Consulting",
+      "Digital Transformation Strategy"
     ],
     "award": [
       "Kenya IoT Innovation Award 2023",
       "Top Developer GitHub Kenya",
-      "Tech Innovation Excellence Award"
+      "Tech Innovation Excellence Award",
+      "Youth Tech Leader Kenya 2023",
+      "Open Source Contributor of the Year"
     ],
-    "memberOf": {
-      "@type": "Organization",
-      "name": "Kenya Tech Community"
-    },
+    "memberOf": [
+      {
+        "@type": "Organization",
+        "name": "Kenya Developer Community",
+        "url": "https://developers.co.ke"
+      },
+      {
+        "@type": "Organization",
+        "name": "Africa Tech Leaders Network"
+      },
+      {
+        "@type": "Organization",
+        "name": "IoT Kenya Community"
+      }
+    ],
     "alumniOf": {
       "@type": "EducationalOrganization",
       "name": "Karatina University",
-      "url": "https://www.karu.ac.ke"
+      "url": "https://www.karu.ac.ke",
+      "department": "Computer Science"
     },
-    "offers": {
-      "@type": "Offer",
-      "description": "IoT and AI development services, tech consulting, and educational content",
-      "areaServed": "Worldwide",
-      "availableChannel": {
-        "@type": "ServiceChannel",
-        "serviceUrl": "https://petermuraya.github.io/muraya/contact"
+    "offers": [
+      {
+        "@type": "Offer",
+        "name": "IoT Solutions Development",
+        "description": "Custom IoT development for agriculture, healthcare, and smart cities in Africa",
+        "areaServed": ["Kenya", "East Africa", "Africa", "Worldwide"],
+        "category": "Technology Services"
+      },
+      {
+        "@type": "Offer", 
+        "name": "AI Implementation Consulting",
+        "description": "AI/ML solutions for African businesses and startups",
+        "areaServed": ["Kenya", "East Africa", "Africa"]
+      },
+      {
+        "@type": "Offer",
+        "name": "Tech Mentorship & Training",
+        "description": "Mentoring young developers and tech entrepreneurs in Kenya",
+        "areaServed": "Kenya"
       }
-    },
+    ],
     "contactPoint": [
       {
         "@type": "ContactPoint",
         "telephone": "+254700471113",
         "email": "sammypeter1944@gmail.com",
-        "contactType": "customer service",
+        "contactType": "Professional Inquiries",
         "areaServed": "Worldwide",
-        "availableLanguage": "English"
+        "availableLanguage": ["English", "Swahili"]
       }
     ],
     "potentialAction": [
       {
         "@type": "FollowAction",
-        "target": [
-          "https://github.com/petermuraya",
-          "https://www.linkedin.com/in/peter-muraya-ndungu/",
-          "https://x.com/sammie1604"
-        ]
+        "name": "Follow on GitHub",
+        "target": "https://github.com/petermuraya"
+      },
+      {
+        "@type": "FollowAction", 
+        "name": "Connect on LinkedIn",
+        "target": "https://www.linkedin.com/in/peter-muraya-ndungu/"
       },
       {
         "@type": "ContactAction",
+        "name": "Send Email",
         "target": "mailto:sammypeter1944@gmail.com"
       }
-    ]
+    ],
+    "keywords": "Peter Muraya Ndungu, Kenya IoT developer, AI specialist Africa, React expert Kenya, TypeScript developer, Node.js Kenya, Python AI developer, youth tech leader Kenya, sammie1604, murayandungu, Karatina University developer, Nairobi tech community, African innovation, smart agriculture Kenya, health tech Africa, sammypeter1944@gmail.com"
   };
 
   return (
     <>
       <SkipLink />
       <AdvancedSEO 
-        title="Peter Muraya Ndung'u (@sammie1604) | Leading IoT & AI Developer Kenya | React TypeScript Expert"
-        description="Award-winning IoT & AI specialist Peter Muraya from Kenya building cutting-edge solutions for healthcare, agriculture, and smart cities. Expert in React, TypeScript, Node.js, Python, and cloud architecture. Connect @sammie1604 | sammypeter1944@gmail.com | +254 700 471113"
-        keywords="Peter Muraya Ndungu, sammie1604, murayandungu, IoT developer Kenya, AI developer Nairobi, React developer Kenya, TypeScript expert, Node.js developer, Python developer Kenya, Full-stack developer Nairobi, Software engineer Kenya, Smart agriculture Kenya, Healthcare tech Africa, Cloud solutions Kenya, Tech innovation Africa, sammypeter1944@gmail.com"
-        url="https://petermuraya.github.io/muraya"
+        title="Peter Muraya Ndung'u (@sammie1604) | Leading IoT & AI Developer Kenya | React TypeScript Expert | Youth Tech Leader"
+        description="Award-winning IoT & AI specialist Peter Muraya from Kenya building cutting-edge solutions for healthcare, agriculture, and smart cities. Leading youth tech innovation in Africa. Expert in React, TypeScript, Node.js, Python, and cloud architecture. Connect @sammie1604 LinkedIn, GitHub @petermuraya, Instagram @murayandungu. Email: sammypeter1944@gmail.com | +254 700 471113"
+        keywords="Peter Muraya Ndungu, Kenya IoT developer, AI specialist Africa, React expert Kenya, TypeScript developer Nairobi, Node.js developer Kenya, Python AI developer, youth tech leader Kenya, African innovation, smart agriculture Kenya, health tech Africa, sammie1604, murayandungu, Karatina University developer, Nairobi tech community, Kenya developer community, Africa tech leaders, IoT Kenya, AI Africa, sammypeter1944@gmail.com, GitHub petermuraya, LinkedIn peter-muraya-ndungu"
         image="https://i.postimg.cc/902NmQLh/IMG-20240709-105245-53.jpg"
         customStructuredData={enhancedStructuredData}
       />
@@ -216,8 +259,34 @@ const Index = () => {
           <Footer />
         </div>
         
-        {/* Enhanced SEO and Voice Features */}
-        <SEOBot />
+        {/* SEO Dashboard Overlay */}
+        {showSEODashboard && (
+          <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+            <div className="relative">
+              <Button
+                onClick={() => setShowSEODashboard(false)}
+                className="absolute -top-4 -right-4 z-10 rounded-full bg-red-600 hover:bg-red-700"
+                size="sm"
+              >
+                ×
+              </Button>
+              <FuturisticSEODashboard />
+            </div>
+          </div>
+        )}
+
+        {/* Floating SEO Dashboard Button */}
+        <Button
+          onClick={() => setShowSEODashboard(true)}
+          className="fixed bottom-48 right-8 z-40 bg-gradient-to-r from-green-600 to-teal-600 hover:from-green-700 hover:to-teal-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 rounded-full p-4"
+          size="icon"
+          title="Open SEO Dashboard"
+        >
+          <BarChart3 className="w-6 h-6" />
+        </Button>
+        
+        {/* Enhanced SEO Features */}
+        <EnhancedSEOBot />
         <VoiceChatbot />
       </div>
     </>
