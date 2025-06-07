@@ -71,6 +71,10 @@ User-agent: *
 Allow: /api/public/
 
 # Sitemap locations
+User-agent: *
+Allow: /
+Sitemap: https://petermuraya.github.io/muraya/sitemap.xml
+
 Sitemap: https://petermuraya.lovable.app/sitemap.xml
 
 # Additional crawl directives
