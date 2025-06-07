@@ -1,89 +1,102 @@
+# 📄 Robots.txt for Peter Muraya Portfolio
+# Purpose: Maximize SEO performance, crawl efficiency & indexing visibility
 
-# Robots.txt for Peter Muraya Portfolio
-# Optimized for maximum SEO performance and crawl efficiency
-
+# =============================
+# 🔓 Allow All Access by Default
+# =============================
 User-agent: *
-Allow: /
+Disallow:
 
-# Specific rules for major search engines
+# =================================
+# 📌 Search Engine Specific Policies
+# =================================
 User-agent: Googlebot
-Allow: /
+Disallow:
 Crawl-delay: 1
 
 User-agent: Bingbot
-Allow: /
+Disallow:
 Crawl-delay: 1
 
 User-agent: Slurp
-Allow: /
+Disallow:
 Crawl-delay: 1
 
 User-agent: DuckDuckBot
-Allow: /
+Disallow:
 Crawl-delay: 1
 
 User-agent: Baiduspider
-Allow: /
+Disallow:
 Crawl-delay: 2
 
 User-agent: YandexBot
-Allow: /
+Disallow:
 Crawl-delay: 2
 
-# Social media crawlers - allow immediate access
+# ========================================
+# 📌 Social Media and Preview Bot Policies
+# ========================================
 User-agent: facebookexternalhit
-Allow: /
-Crawl-delay: 0
+Disallow:
 
 User-agent: Twitterbot
-Allow: /
-Crawl-delay: 0
+Disallow:
 
 User-agent: LinkedInBot
-Allow: /
-Crawl-delay: 0
+Disallow:
 
 User-agent: WhatsApp
-Allow: /
-Crawl-delay: 0
+Disallow:
 
 User-agent: TelegramBot
-Allow: /
+Disallow:
 
 User-agent: SkypeUriPreview
-Allow: /
+Disallow:
 
-# Developer portfolio specific crawlers
+# ====================================
+# 📌 Developer Community Bot Access
+# ====================================
 User-agent: GitHubPreview
-Allow: /
+Disallow:
 
 User-agent: DevToBot
-Allow: /
+Disallow:
 
-# Disallow admin and private areas
+# ========================================
+# 🚫 Restrict Sensitive or Private Sections
+# ========================================
 User-agent: *
 Disallow: /admin/
-Disallow: /_*
+Disallow: /_private/
 Disallow: /api/private/
+Disallow: /dashboard/
+Disallow: /config/
+Disallow: /tmp/
 
-# Allow public API endpoints
+# =================================
+# 🔓 Public API Endpoints Access
+# =================================
 User-agent: *
 Allow: /api/public/
 
-# Sitemap locations
-User-agent: *
-Allow: /
+# =====================
+# 📑 Sitemap Declaration
+# =====================
 Sitemap: https://petermuraya.github.io/muraya/sitemap.xml
 
-Sitemap: https://petermuraya.lovable.app/sitemap.xml
-
-# Additional crawl directives
+# ==============================
+# ⚙️ Global Crawl Rate Control
+# ==============================
 Crawl-delay: 1
-Request-rate: 1/5s
 
-# Host directive for SEO
-Host: https://petermuraya.lovable.app
+# ================================================
+# 🧹 Clean URLs: Strip Tracking Parameters from URLs
+# ================================================
+Clean-param: utm_source&utm_medium&utm_campaign&utm_term&utm_content&utm_id
 
-# Clean URLs preference
-Clean-param: utm_source&utm_medium&utm_campaign&utm_term&utm_content
-
+# =====================================
+# 🌐 Preferred Host Directive (GitHub Pages)
+# =====================================
+Host: https://petermuraya.github.io
