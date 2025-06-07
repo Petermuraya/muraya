@@ -6,7 +6,7 @@ import { componentTagger } from "lovable-tagger";
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
   // Base public path when served in production (important for GitHub Pages)
-  base: "/muraya/",
+  base: "/",
 
   server: {
     host: "::",       // Enables IPv6 and localhost access
