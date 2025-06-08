@@ -38,57 +38,55 @@ const AdminLogin = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#0d1117] flex items-center justify-center px-4">
-      <Card className="w-full max-w-md bg-[#161b22] border-[#30363d]">
-        <CardHeader className="text-center">
-          <CardTitle className="text-2xl font-bold text-white flex items-center justify-center gap-2">
-            <Lock className="w-6 h-6" />
-            Admin Access
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="email" className="text-[#c9d1d9]">Email</Label>
-              <div className="relative">
-                <User className="absolute left-3 top-3 w-4 h-4 text-[#7d8590]" />
-                <Input
-                  id="email"
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="admin@portfolio.com"
-                  className="pl-10 bg-[#0d1117] border-[#30363d] text-white placeholder:text-[#7d8590]"
-                  required
-                />
-              </div>
+    <Card className="w-full max-w-md bg-[#161b22] border-[#30363d]">
+      <CardHeader className="text-center">
+        <CardTitle className="text-2xl font-bold text-white flex items-center justify-center gap-2">
+          <Lock className="w-6 h-6" />
+          Admin Access
+        </CardTitle>
+      </CardHeader>
+      <CardContent>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div className="space-y-2">
+            <Label htmlFor="email" className="text-[#c9d1d9]">Email</Label>
+            <div className="relative">
+              <User className="absolute left-3 top-3 w-4 h-4 text-[#7d8590]" />
+              <Input
+                id="email"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="admin@portfolio.com"
+                className="pl-10 bg-[#0d1117] border-[#30363d] text-white placeholder:text-[#7d8590]"
+                required
+              />
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="password" className="text-[#c9d1d9]">Password</Label>
-              <div className="relative">
-                <Lock className="absolute left-3 top-3 w-4 h-4 text-[#7d8590]" />
-                <Input
-                  id="password"
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  placeholder="Enter admin password"
-                  className="pl-10 bg-[#0d1117] border-[#30363d] text-white placeholder:text-[#7d8590]"
-                  required
-                />
-              </div>
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="password" className="text-[#c9d1d9]">Password</Label>
+            <div className="relative">
+              <Lock className="absolute left-3 top-3 w-4 h-4 text-[#7d8590]" />
+              <Input
+                id="password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Enter admin password"
+                className="pl-10 bg-[#0d1117] border-[#30363d] text-white placeholder:text-[#7d8590]"
+                required
+              />
             </div>
-            <Button 
-              type="submit" 
-              className="w-full bg-blue-600 hover:bg-blue-700"
-              disabled={isLoading}
-            >
-              {isLoading ? 'Signing in...' : 'Sign In'}
-            </Button>
-          </form>
-        </CardContent>
-      </Card>
-    </div>
+          </div>
+          <Button 
+            type="submit" 
+            className="w-full bg-blue-600 hover:bg-blue-700"
+            disabled={isLoading}
+          >
+            {isLoading ? 'Signing in...' : 'Sign In'}
+          </Button>
+        </form>
+      </CardContent>
+    </Card>
   );
 };
 

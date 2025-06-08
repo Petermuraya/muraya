@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { useAdmin } from '@/contexts/AdminContext';
-import AdminLogin from '@/components/AdminLogin';
+import AdminAuth from '@/components/AdminAuth';
 import AdminDashboard from '@/components/AdminDashboard';
 
 const Admin = () => {
@@ -15,7 +15,7 @@ const Admin = () => {
     );
   }
 
-  return admin ? <AdminDashboard /> : <AdminLogin />;
+  return admin ? <AdminDashboard /> : <AdminAuth />;
 };
 
 export default Admin;
