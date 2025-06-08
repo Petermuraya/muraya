@@ -1,102 +1,57 @@
-# 📄 Robots.txt for Peter Muraya Portfolio
-# Purpose: Maximize SEO performance, crawl efficiency & indexing visibility
 
-# =============================
-# 🔓 Allow All Access by Default
-# =============================
+# Enhanced Robots.txt for Peter Muraya (Muraya) - IoT & AI Developer Kenya
+# Optimized for Google Search Console recognition
+
 User-agent: *
-Disallow:
+Allow: /
 
-# =================================
-# 📌 Search Engine Specific Policies
-# =================================
+# Prioritize Google indexing for Peter Muraya (Muraya) brand
 User-agent: Googlebot
-Disallow:
+Allow: /
 Crawl-delay: 1
 
 User-agent: Bingbot
-Disallow:
+Allow: /
 Crawl-delay: 1
 
 User-agent: Slurp
-Disallow:
-Crawl-delay: 1
-
-User-agent: DuckDuckBot
-Disallow:
-Crawl-delay: 1
-
-User-agent: Baiduspider
-Disallow:
+Allow: /
 Crawl-delay: 2
 
-User-agent: YandexBot
-Disallow:
-Crawl-delay: 2
-
-# ========================================
-# 📌 Social Media and Preview Bot Policies
-# ========================================
+# Social media crawlers for Peter Muraya (Muraya) profiles
 User-agent: facebookexternalhit
-Disallow:
+Allow: /
 
 User-agent: Twitterbot
-Disallow:
+Allow: /
 
 User-agent: LinkedInBot
-Disallow:
+Allow: /
 
 User-agent: WhatsApp
-Disallow:
+Allow: /
 
-User-agent: TelegramBot
-Disallow:
+# Block unwanted bots
+User-agent: AhrefsBot
+Disallow: /
 
-User-agent: SkypeUriPreview
-Disallow:
+User-agent: MJ12bot
+Disallow: /
 
-# ====================================
-# 📌 Developer Community Bot Access
-# ====================================
-User-agent: GitHubPreview
-Disallow:
+User-agent: DotBot
+Disallow: /
 
-User-agent: DevToBot
-Disallow:
-
-# ========================================
-# 🚫 Restrict Sensitive or Private Sections
-# ========================================
-User-agent: *
-Disallow: /admin/
-Disallow: /_private/
-Disallow: /api/private/
-Disallow: /dashboard/
-Disallow: /config/
-Disallow: /tmp/
-
-# =================================
-# 🔓 Public API Endpoints Access
-# =================================
-User-agent: *
-Allow: /api/public/
-
-# =====================
-# 📑 Sitemap Declaration
-# =====================
+# Sitemap location for Peter Muraya (Muraya)
 Sitemap: https://petermuraya.github.io/muraya/sitemap.xml
 
-# ==============================
-# ⚙️ Global Crawl Rate Control
-# ==============================
-Crawl-delay: 1
-
-# ================================================
-# 🧹 Clean URLs: Strip Tracking Parameters from URLs
-# ================================================
-Clean-param: utm_source&utm_medium&utm_campaign&utm_term&utm_content&utm_id
-
-# =====================================
-# 🌐 Preferred Host Directive (GitHub Pages)
-# =====================================
+# Host preference
 Host: https://petermuraya.github.io
+
+# Clean URLs for better SEO
+Clean-param: utm_source&utm_medium&utm_campaign&utm_term&utm_content&utm_id&ref&source
+
+# Contact information for search engines
+# Peter Muraya (Muraya) - IoT & AI Developer
+# Email: sammypeter1944@gmail.com
+# Phone: +254700471113
+# Location: Nairobi, Kenya
