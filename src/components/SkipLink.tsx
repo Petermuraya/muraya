@@ -1,5 +1,9 @@
 
+import { useLanguage } from '@/contexts/LanguageContext';
+
 const SkipLink = () => {
+  const { t } = useLanguage();
+  
   return (
     <a
       href="#main-content"
@@ -8,7 +12,7 @@ const SkipLink = () => {
                  transition-all duration-200 hover:bg-blue-700 focus:outline-none 
                  focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
     >
-      Skip to main content
+      {t('skipToMainContent')}
     </a>
   );
 };

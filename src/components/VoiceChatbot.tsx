@@ -1,3 +1,4 @@
+
 import React, { useState, useRef, useEffect } from 'react';
 import { MessageCircle, X, Send, Bot, User, Mic, MicOff, Volume2, VolumeX, Navigation } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -5,6 +6,7 @@ import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { useNavigate } from 'react-router-dom';
 import { useAccessibility } from '@/contexts/AccessibilityContext';
+import { useLanguage } from '@/contexts/LanguageContext';
 import { cn } from '@/lib/utils';
 
 interface Message {
@@ -23,14 +25,7 @@ interface ChatAction {
 
 const VoiceChatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      id: '1',
-      content: "Hi! I'm your AI-powered personal assistant. I can help you navigate Peter's website, answer questions about his work, and provide voice assistance. Try saying 'Navigate to projects' or 'Tell me about Peter's skills'. How can I help you today?",
-      role: 'assistant',
-      timestamp: new Date(),
-    }
-  ]);
+  const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [isListening, setIsListening] = useState(false);
@@ -39,10 +34,22 @@ const VoiceChatbot = () => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
   const { announceToScreenReader, voiceEnabled } = useAccessibility();
+  const { t } = useLanguage();
 
   // Speech recognition setup
   const recognition = useRef<any>(null);
   const synthesis = useRef<SpeechSynthesis | null>(null);
+
+  // Initialize welcome message with translation
+  useEffect(() => {
+    const welcomeMessage: Message = {
+      id: '1',
+      content: `Hi! I'm your AI-powered personal assistant. I can help you navigate Peter's website, answer questions about his work, and provide voice assistance. Try saying 'Navigate to projects' or 'Tell me about Peter's skills'. How can I help you today?`,
+      role: 'assistant',
+      timestamp: new Date(),
+    };
+    setMessages([welcomeMessage]);
+  }, [t]);
 
   useEffect(() => {
     // Initialize speech synthesis
@@ -60,19 +67,19 @@ const VoiceChatbot = () => {
         const transcript = event.results[0][0].transcript;
         setInputValue(transcript);
         setIsListening(false);
-        announceToScreenReader(`Voice input: ${transcript}`);
+        announceToScreenReader(`${t('voiceInputReceived')}: ${transcript}`);
       };
 
       recognition.current.onerror = () => {
         setIsListening(false);
-        announceToScreenReader('Voice recognition error');
+        announceToScreenReader(t('voiceRecognitionError'));
       };
 
       recognition.current.onend = () => {
         setIsListening(false);
       };
     }
-  }, [announceToScreenReader]);
+  }, [announceToScreenReader, t]);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -116,13 +123,13 @@ const VoiceChatbot = () => {
   // Voice input function
   const startListening = () => {
     if (!recognition.current) {
-      announceToScreenReader('Voice recognition not supported in this browser');
+      announceToScreenReader(t('voiceRecognitionNotSupported'));
       return;
     }
 
     setIsListening(true);
     recognition.current.start();
-    announceToScreenReader('Listening for voice input');
+    announceToScreenReader(t('listeningForVoiceInput'));
   };
 
   const stopListening = () => {
@@ -181,28 +188,28 @@ const VoiceChatbot = () => {
     if (lowerContent.includes('navigate to') || lowerContent.includes('go to')) {
       if (lowerContent.includes('project')) {
         navigate('/projects');
-        announceToScreenReader('Navigating to projects page');
-        return "I'm taking you to the projects page where you can see Peter's portfolio of work.";
+        announceToScreenReader(`${t('navigatingTo')} ${t('projects')}`);
+        return `I'm taking you to the projects page where you can see Peter's portfolio of work.`;
       }
       if (lowerContent.includes('about')) {
         navigate('/about');
-        announceToScreenReader('Navigating to about page');
-        return "I'm taking you to the about page with detailed information about Peter's background and skills.";
+        announceToScreenReader(`${t('navigatingTo')} ${t('about')}`);
+        return `I'm taking you to the about page with detailed information about Peter's background and skills.`;
       }
       if (lowerContent.includes('contact')) {
         navigate('/contact');
-        announceToScreenReader('Navigating to contact page');
-        return "I'm taking you to the contact page where you can reach out to Peter.";
+        announceToScreenReader(`${t('navigatingTo')} ${t('contact')}`);
+        return `I'm taking you to the contact page where you can reach out to Peter.`;
       }
       if (lowerContent.includes('blog')) {
         navigate('/blog');
-        announceToScreenReader('Navigating to blog page');
-        return "I'm taking you to Peter's blog with technical articles and insights.";
+        announceToScreenReader(`${t('navigatingTo')} ${t('blog')}`);
+        return `I'm taking you to Peter's blog with technical articles and insights.`;
       }
       if (lowerContent.includes('home')) {
         navigate('/');
-        announceToScreenReader('Navigating to home page');
-        return "I'm taking you back to the homepage.";
+        announceToScreenReader(`${t('navigatingTo')} ${t('home')}`);
+        return `I'm taking you back to the homepage.`;
       }
     }
 
@@ -317,28 +324,28 @@ const VoiceChatbot = () => {
     if (lowerResponse.includes('about') || lowerInput.includes('about')) {
       actions.push({
         type: 'navigate',
-        label: 'Go to About Page',
+        label: `Go to ${t('about')} Page`,
         data: '/about'
       });
     }
     if (lowerResponse.includes('project') || lowerInput.includes('project')) {
       actions.push({
         type: 'navigate',
-        label: 'View Projects',
+        label: `View ${t('projects')}`,
         data: '/projects'
       });
     }
     if (lowerResponse.includes('contact') || lowerInput.includes('contact')) {
       actions.push({
         type: 'navigate',
-        label: 'Contact Peter',
+        label: `${t('contact')} Peter`,
         data: '/contact'
       });
     }
     if (lowerResponse.includes('blog') || lowerInput.includes('blog')) {
       actions.push({
         type: 'navigate',
-        label: 'Read Blog',
+        label: `Read ${t('blog')}`,
         data: '/blog'
       });
     }
@@ -350,7 +357,7 @@ const VoiceChatbot = () => {
     if (action.type === 'navigate') {
       navigate(action.data);
       setIsOpen(false);
-      announceToScreenReader(`Navigating to ${action.data}`);
+      announceToScreenReader(`${t('navigatingTo')} ${action.data}`);
     }
   };
 
@@ -364,7 +371,7 @@ const VoiceChatbot = () => {
     if (synthesis.current) {
       synthesis.current.cancel();
     }
-    announceToScreenReader(speechEnabled ? 'Text to speech disabled' : 'Text to speech enabled');
+    announceToScreenReader(speechEnabled ? t('textToSpeechDisabled') : t('textToSpeechEnabled'));
   };
 
   const voiceCommands = [
@@ -376,6 +383,12 @@ const VoiceChatbot = () => {
     "What technologies does Peter use?"
   ];
 
+  const getStatusText = () => {
+    if (isSpeaking) return t('speaking');
+    if (isListening) return t('listening');
+    return t('readyToHelp');
+  };
+
   return (
     <>
       {/* Chat Toggle Button */}
@@ -384,7 +397,7 @@ const VoiceChatbot = () => {
           onClick={() => setIsOpen(!isOpen)}
           size="lg"
           className="h-16 w-16 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-lg shadow-blue-500/25 transition-all duration-300 hover:scale-105"
-          aria-label={isOpen ? 'Close voice assistant' : 'Open voice assistant'}
+          aria-label={isOpen ? `Close ${t('voiceAssistant')}` : `Open ${t('voiceAssistant')}`}
         >
           {isOpen ? <X className="h-6 w-6" /> : <MessageCircle className="h-6 w-6" />}
         </Button>
@@ -395,7 +408,7 @@ const VoiceChatbot = () => {
         <div 
           className="fixed bottom-24 right-6 w-80 sm:w-96 h-[600px] bg-[#0d1117] border border-[#30363d] rounded-lg shadow-2xl z-50 flex flex-col overflow-hidden"
           role="dialog"
-          aria-label="Voice Assistant Chat"
+          aria-label={`${t('voiceAssistant')} Chat`}
         >
           {/* Header */}
           <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-4 text-white">
@@ -403,9 +416,9 @@ const VoiceChatbot = () => {
               <div className="flex items-center gap-2">
                 <Bot className="h-5 w-5" />
                 <div>
-                  <h3 className="font-semibold">Voice Assistant</h3>
+                  <h3 className="font-semibold">{t('voiceAssistant')}</h3>
                   <p className="text-xs opacity-90">
-                    {isSpeaking ? 'Speaking...' : isListening ? 'Listening...' : 'Ready to help'}
+                    {getStatusText()}
                   </p>
                 </div>
               </div>
@@ -415,7 +428,7 @@ const VoiceChatbot = () => {
                   variant="ghost"
                   size="sm"
                   className="text-white hover:bg-white/20"
-                  aria-label={speechEnabled ? 'Disable text to speech' : 'Enable text to speech'}
+                  aria-label={speechEnabled ? t('textToSpeechDisabled') : t('textToSpeechEnabled')}
                 >
                   {speechEnabled ? <Volume2 className="h-4 w-4" /> : <VolumeX className="h-4 w-4" />}
                 </Button>

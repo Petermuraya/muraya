@@ -31,8 +31,8 @@ const App = () => (
           <LanguageProvider>
             <AdminProvider>
               <TooltipProvider>
-                {/* Remove basename to fix routing issues */}
-                <BrowserRouter>
+                {/* React Router configured with correct base path */}
+                <BrowserRouter basename="/muraya">
                   <AccessibilityToolbar />
                   <Toaster />
                   <Sonner />
