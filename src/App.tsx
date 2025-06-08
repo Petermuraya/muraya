@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -30,8 +31,8 @@ const App = () => (
           <LanguageProvider>
             <AdminProvider>
               <TooltipProvider>
-                {/* React Router configured with correct base path */}
-                <BrowserRouter basename="/muraya">
+                {/* Remove basename to fix routing issues */}
+                <BrowserRouter>
                   <AccessibilityToolbar />
                   <Toaster />
                   <Sonner />
@@ -43,8 +44,8 @@ const App = () => (
                     <Route path="/blog" element={<Blog />} />
                     <Route path="/contact" element={<Contact />} />
                     <Route path="/admin" element={<Admin />} />
-                    {/* Catch-all route */}
-                    <Route path="*" element={<Index />} />
+                    {/* Catch-all route for unknown paths */}
+                    <Route path="*" element={<NotFound />} />
                   </Routes>
                 </BrowserRouter>
               </TooltipProvider>
