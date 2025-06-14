@@ -11,7 +11,8 @@ import {
   Clock, 
   AlertCircle,
   Star,
-  Filter
+  Filter,
+  SquareCheck
 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
@@ -137,7 +138,7 @@ const TaskList = () => {
       <CardHeader>
         <div className="flex items-center justify-between">
           <CardTitle className="flex items-center space-x-2">
-            <CheckSquare className="w-5 h-5" />
+            <SquareCheck className="w-5 h-5" />
             <span>Tasks</span>
           </CardTitle>
           <div className="flex items-center space-x-2">
