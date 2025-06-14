@@ -20,16 +20,18 @@ import NewsletterSignup from '@/components/NewsletterSignup';
 import ContentScheduler from '@/components/ContentScheduler';
 import SocialMediaLinks from '@/components/SocialMediaLinks';
 import useAboutEffects from '@/hooks/useAboutEffects';
+import { useLanguage } from '@/contexts/LanguageContext';
 import { useState } from 'react';
 import Chatbot from '@/components/Chatbot';
 
 const About = () => {
+  const { t } = useLanguage();
   useAboutEffects();
   
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   const breadcrumbs = [
-    { name: 'About', url: '/about' }
+    { name: t('about'), url: '/about' }
   ];
 
   return (

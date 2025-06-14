@@ -61,6 +61,11 @@ const translations = {
     phone: 'Phone',
     location: 'Location',
     
+    // 404 Page
+    pageNotFound: 'Page Not Found',
+    oopsPageNotFound: 'Oops! Page not found',
+    returnToHome: 'Return to Home',
+    
     // Features Section
     whyChooseInnovation: 'Why Choose Innovation',
     drivingTechnological: 'Driving technological advancement through purposeful innovation',
@@ -192,6 +197,11 @@ const translations = {
     message: 'Ujumbe',
     phone: 'Simu',
     location: 'Mahali',
+    
+    // 404 Page
+    pageNotFound: 'Ukurasa Haujapatikana',
+    oopsPageNotFound: 'Pole! Ukurasa haujapatikana',
+    returnToHome: 'Rudi Nyumbani',
     
     // Features Section
     whyChooseInnovation: 'Kwa Nini Chagua Uvumbuzi',
@@ -325,6 +335,11 @@ const translations = {
     phone: 'Téléphone',
     location: 'Lieu',
     
+    // 404 Page
+    pageNotFound: 'Page Non Trouvée',
+    oopsPageNotFound: 'Oops! Page non trouvée',
+    returnToHome: 'Retour à l\'Accueil',
+    
     // Features Section
     whyChooseInnovation: 'Pourquoi Choisir l\'Innovation',
     drivingTechnological: 'Conduire l\'avancement technologique grâce à l\'innovation ciblée',
@@ -457,6 +472,11 @@ const translations = {
     phone: 'फोन',
     location: 'स्थान',
     
+    // 404 Page
+    pageNotFound: 'पृष्ठ नहीं मिला',
+    oopsPageNotFound: 'ओह! पृष्ठ नहीं मिला',
+    returnToHome: 'होम पर वापस जाएं',
+    
     // Features Section
     whyChooseInnovation: 'नवाचार क्यों चुनें',
     drivingTechnological: 'उद्देश्यपूर्ण नवाचार के माध्यम से तकनीकी प्रगति को आगे बढ़ाना',
@@ -588,6 +608,11 @@ const translations = {
     message: '消息',
     phone: '电话',
     location: '位置',
+    
+    // 404 Page
+    pageNotFound: '页面未找到',
+    oopsPageNotFound: '哎呀！页面未找到',
+    returnToHome: '返回首页',
     
     // Features Section
     whyChooseInnovation: '为什么选择创新',
