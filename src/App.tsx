@@ -17,10 +17,6 @@ import Projects from "@/pages/Projects";
 import Contact from "@/pages/Contact";
 import Blog from "@/pages/Blog";
 import Admin from "@/pages/Admin";
-import Profile from "@/pages/Profile";
-import SocialMedia from "@/pages/SocialMedia";
-import Analytics from "@/pages/Analytics";
-import Tasks from "@/pages/Tasks";
 import NotFound from "@/pages/NotFound";
 
 import AccessibilityToolbar from "@/components/AccessibilityToolbar";
@@ -46,10 +42,6 @@ const App = () => (
                     <Route path="/projects" element={<Projects />} />
                     <Route path="/blog" element={<Blog />} />
                     <Route path="/contact" element={<Contact />} />
-                    <Route path="/profile" element={<Profile />} />
-                    <Route path="/social" element={<SocialMedia />} />
-                    <Route path="/analytics" element={<Analytics />} />
-                    <Route path="/tasks" element={<Tasks />} />
                     <Route path="/admin" element={<Admin />} />
                     <Route path="*" element={<NotFound />} />
                   </Routes>
