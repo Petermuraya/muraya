@@ -31,8 +31,8 @@ const App = () => (
           <LanguageProvider>
             <AdminProvider>
               <TooltipProvider>
-                {/* React Router configured with correct base path */}
-                <BrowserRouter basename="/muraya">
+                {/* React Router configured without basename since we removed it from Vite config */}
+                <BrowserRouter>
                   <AccessibilityToolbar />
                   <Toaster />
                   <Sonner />
