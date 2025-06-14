@@ -116,7 +116,7 @@ const PersonalDashboard = () => {
             </CardTitle>
           </CardHeader>
           <CardContent className="p-2">
-            <WidgetComponent widgetId={widget.id} settings={widget.settings} />
+            <WidgetComponent widgetId={widget.id} />
           </CardContent>
         </Card>
       </div>
