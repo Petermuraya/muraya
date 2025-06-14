@@ -4,17 +4,18 @@ import { useAdmin } from '@/contexts/AdminContext';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { LogOut, FileText, FolderOpen, Settings, BarChart3, Mail, Users, Star } from 'lucide-react';
+import { LogOut, FileText, FolderOpen, Settings, BarChart3, Mail, Users, Star, Brain, Calendar } from 'lucide-react';
 import EnhancedBlogManagement from './EnhancedBlogManagement';
 import ProjectManagement from './ProjectManagement';
 import ContactManagement from './ContactManagement';
 import NewsletterManagement from './NewsletterManagement';
 import RatingManagement from './RatingManagement';
+import PersonalDashboard from './PersonalDashboard';
 import { supabase } from '@/integrations/supabase/client';
 
 const AdminDashboard = () => {
   const { admin, logout } = useAdmin();
-  const [activeTab, setActiveTab] = useState('overview');
+  const [activeTab, setActiveTab] = useState('personal');
   const [counts, setCounts] = useState({
     blogs: 0,
     projects: 0,
@@ -71,7 +72,11 @@ const AdminDashboard = () => {
 
       <main className="p-6">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full grid-cols-6 bg-[#161b22] border border-[#30363d]">
+          <TabsList className="grid w-full grid-cols-7 bg-[#161b22] border border-[#30363d]">
+            <TabsTrigger value="personal" className="data-[state=active]:bg-[#21262d]">
+              <Brain className="w-4 h-4 mr-2" />
+              Personal Hub
+            </TabsTrigger>
             <TabsTrigger value="overview" className="data-[state=active]:bg-[#21262d]">
               <BarChart3 className="w-4 h-4 mr-2" />
               Overview
@@ -97,6 +102,10 @@ const AdminDashboard = () => {
               Ratings
             </TabsTrigger>
           </TabsList>
+
+          <TabsContent value="personal" className="mt-6">
+            <PersonalDashboard />
+          </TabsContent>
 
           <TabsContent value="overview" className="mt-6">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
