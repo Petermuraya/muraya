@@ -1,6 +1,6 @@
 
 import React from 'react';
-import TaskList from './TaskList';
+import DragDropTaskList from './DragDropTaskList';
 import ActivityTracker from './ActivityTracker';
 import ProjectManager from './ProjectManager';
 import TaskStats from './TaskStats';
@@ -12,7 +12,7 @@ const TasksDashboard = () => {
       
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2">
-          <TaskList />
+          <DragDropTaskList />
         </div>
         <div>
           <ActivityTracker />
