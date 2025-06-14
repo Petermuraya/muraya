@@ -20,6 +20,7 @@ import Admin from "@/pages/Admin";
 import Profile from "@/pages/Profile";
 import SocialMedia from "@/pages/SocialMedia";
 import Analytics from "@/pages/Analytics";
+import Tasks from "@/pages/Tasks";
 import NotFound from "@/pages/NotFound";
 
 import AccessibilityToolbar from "@/components/AccessibilityToolbar";
@@ -48,6 +49,7 @@ const App = () => (
                     <Route path="/profile" element={<Profile />} />
                     <Route path="/social" element={<SocialMedia />} />
                     <Route path="/analytics" element={<Analytics />} />
+                    <Route path="/tasks" element={<Tasks />} />
                     <Route path="/admin" element={<Admin />} />
                     <Route path="*" element={<NotFound />} />
                   </Routes>

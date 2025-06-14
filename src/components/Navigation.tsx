@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, User, Code, Home, Info, Briefcase, Mail, BookOpen, Settings, Share2, BarChart3 } from 'lucide-react';
+import { Menu, X, User, Code, Home, Info, Briefcase, Mail, BookOpen, Settings, Share2, BarChart3, CheckSquare } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import ThemeToggle from '@/components/ThemeToggle';
 
@@ -28,6 +28,7 @@ const Navigation = () => {
     { name: 'Profile', path: '/profile', icon: User },
     { name: 'Social', path: '/social', icon: Share2 },
     { name: 'Analytics', path: '/analytics', icon: BarChart3 },
+    { name: 'Tasks', path: '/tasks', icon: CheckSquare },
   ];
 
   const isActive = (path: string) => location.pathname === path;
