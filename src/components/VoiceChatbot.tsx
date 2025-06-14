@@ -19,55 +19,107 @@ const VoiceChatbot = () => {
   const [isListening, setIsListening] = useState(false);
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [speechEnabled, setSpeechEnabled] = useState(true);
+  const [voiceSupported, setVoiceSupported] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
-  const { announceToScreenReader, voiceEnabled } = useAccessibility();
+  const { announceToScreenReader, voiceEnabled, screenReaderMode } = useAccessibility();
   const { t } = useLanguage();
 
   // Speech recognition setup
   const recognition = useRef<any>(null);
   const synthesis = useRef<SpeechSynthesis | null>(null);
 
-  // Initialize welcome message with translation
+  // Initialize welcome message
   useEffect(() => {
     const welcomeMessage: Message = {
       id: '1',
-      content: `Hi! I'm your AI-powered personal assistant. I can help you navigate Peter's website, answer questions about his work, and provide voice assistance. Try saying 'Navigate to projects' or 'Tell me about Peter's skills'. How can I help you today?`,
+      content: `Hello! I'm your AI-powered voice assistant. I can help you navigate Peter's website, answer questions about his work, and provide voice assistance. Try saying 'Navigate to projects' or 'Tell me about Peter's skills'. You can also type your questions. How can I help you today?`,
       role: 'assistant',
       timestamp: new Date(),
     };
     setMessages([welcomeMessage]);
-  }, [t]);
+  }, []);
 
+  // Initialize speech services
   useEffect(() => {
-    // Initialize speech synthesis
-    synthesis.current = window.speechSynthesis;
+    // Check for speech synthesis support
+    if ('speechSynthesis' in window) {
+      synthesis.current = window.speechSynthesis;
+      setVoiceSupported(true);
+      announceToScreenReader('Voice assistant loaded with text-to-speech support');
+    } else {
+      announceToScreenReader('Voice assistant loaded without text-to-speech support');
+    }
 
     // Initialize speech recognition
-    if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
-      const SpeechRecognition = (window as any).webkitSpeechRecognition || (window as any).SpeechRecognition;
-      recognition.current = new SpeechRecognition();
-      recognition.current.continuous = false;
-      recognition.current.interimResults = false;
-      recognition.current.lang = 'en-US';
+    const initSpeechRecognition = () => {
+      if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+        const SpeechRecognition = (window as any).webkitSpeechRecognition || (window as any).SpeechRecognition;
+        recognition.current = new SpeechRecognition();
+        recognition.current.continuous = false;
+        recognition.current.interimResults = false;
+        recognition.current.lang = 'en-US';
+        recognition.current.maxAlternatives = 1;
 
-      recognition.current.onresult = (event: any) => {
-        const transcript = event.results[0][0].transcript;
-        setInputValue(transcript);
-        setIsListening(false);
-        announceToScreenReader(`${t('voiceInputReceived')}: ${transcript}`);
-      };
+        recognition.current.onstart = () => {
+          setIsListening(true);
+          announceToScreenReader('Voice recognition started. Speak now.');
+        };
 
-      recognition.current.onerror = () => {
-        setIsListening(false);
-        announceToScreenReader(t('voiceRecognitionError'));
-      };
+        recognition.current.onresult = (event: any) => {
+          if (event.results && event.results[0]) {
+            const transcript = event.results[0][0].transcript;
+            setInputValue(transcript);
+            setIsListening(false);
+            announceToScreenReader(`Voice input received: ${transcript}`);
+            
+            // Auto-send if transcript is clear
+            if (transcript.trim().length > 0) {
+              setTimeout(() => {
+                sendMessage(transcript);
+              }, 500);
+            }
+          }
+        };
 
-      recognition.current.onend = () => {
-        setIsListening(false);
-      };
-    }
-  }, [announceToScreenReader, t]);
+        recognition.current.onerror = (event: any) => {
+          console.error('Speech recognition error:', event.error);
+          setIsListening(false);
+          let errorMessage = 'Voice recognition error occurred';
+          
+          switch (event.error) {
+            case 'no-speech':
+              errorMessage = 'No speech detected. Please try again.';
+              break;
+            case 'audio-capture':
+              errorMessage = 'Microphone not accessible. Please check permissions.';
+              break;
+            case 'not-allowed':
+              errorMessage = 'Microphone permission denied. Please allow microphone access.';
+              break;
+            case 'network':
+              errorMessage = 'Network error occurred during voice recognition.';
+              break;
+            default:
+              errorMessage = `Voice recognition error: ${event.error}`;
+          }
+          
+          announceToScreenReader(errorMessage);
+        };
+
+        recognition.current.onend = () => {
+          setIsListening(false);
+          announceToScreenReader('Voice recognition ended');
+        };
+
+        announceToScreenReader('Voice recognition initialized and ready');
+      } else {
+        announceToScreenReader('Voice recognition not supported in this browser');
+      }
+    };
+
+    initSpeechRecognition();
+  }, [announceToScreenReader]);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -77,54 +129,126 @@ const VoiceChatbot = () => {
     scrollToBottom();
   }, [messages]);
 
-  // Text to speech function
+  // Enhanced text to speech function
   const speakMessage = (text: string) => {
-    if (!speechEnabled || !synthesis.current || !voiceEnabled) return;
-
-    // Cancel any ongoing speech
-    synthesis.current.cancel();
-
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.rate = 0.9;
-    utterance.pitch = 1;
-    utterance.volume = 1;
-
-    // Get available voices and prefer a female voice
-    const voices = synthesis.current.getVoices();
-    const preferredVoice = voices.find(voice => 
-      voice.name.includes('Female') || 
-      voice.name.includes('Samantha') || 
-      voice.name.includes('Karen')
-    ) || voices[0];
-
-    if (preferredVoice) {
-      utterance.voice = preferredVoice;
+    if (!speechEnabled || !synthesis.current || !voiceEnabled || !voiceSupported) {
+      return;
     }
 
-    utterance.onstart = () => setIsSpeaking(true);
-    utterance.onend = () => setIsSpeaking(false);
-    utterance.onerror = () => setIsSpeaking(false);
+    try {
+      // Cancel any ongoing speech
+      synthesis.current.cancel();
+      setIsSpeaking(false);
 
-    synthesis.current.speak(utterance);
+      // Clean text for better speech
+      const cleanText = text
+        .replace(/[^\w\s.,!?;:-]/g, '') // Remove special characters
+        .replace(/\s+/g, ' ') // Normalize whitespace
+        .trim();
+
+      if (!cleanText) return;
+
+      const utterance = new SpeechSynthesisUtterance(cleanText);
+      utterance.rate = 0.85;
+      utterance.pitch = 1;
+      utterance.volume = 0.9;
+      utterance.lang = 'en-US';
+
+      // Enhanced voice selection
+      const selectVoice = () => {
+        const voices = synthesis.current?.getVoices() || [];
+        
+        // Prefer high-quality English voices
+        const preferredVoice = voices.find(voice => {
+          const name = voice.name.toLowerCase();
+          const lang = voice.lang.toLowerCase();
+          return lang.startsWith('en') && (
+            name.includes('google') || 
+            name.includes('microsoft') || 
+            name.includes('samantha') ||
+            name.includes('alex') ||
+            voice.default
+          );
+        }) || voices.find(voice => voice.lang.startsWith('en')) || voices[0];
+
+        if (preferredVoice) {
+          utterance.voice = preferredVoice;
+        }
+      };
+
+      utterance.onstart = () => {
+        setIsSpeaking(true);
+        if (screenReaderMode) {
+          announceToScreenReader('Assistant is speaking');
+        }
+      };
+
+      utterance.onend = () => {
+        setIsSpeaking(false);
+        if (screenReaderMode) {
+          announceToScreenReader('Assistant finished speaking');
+        }
+      };
+
+      utterance.onerror = (event) => {
+        console.error('Speech synthesis error:', event);
+        setIsSpeaking(false);
+        announceToScreenReader('Speech synthesis error occurred');
+      };
+
+      // Select voice and speak
+      if (synthesis.current.getVoices().length > 0) {
+        selectVoice();
+        synthesis.current.speak(utterance);
+      } else {
+        // Wait for voices to load
+        const handleVoicesChanged = () => {
+          selectVoice();
+          synthesis.current?.speak(utterance);
+          synthesis.current?.removeEventListener('voiceschanged', handleVoicesChanged);
+        };
+        synthesis.current.addEventListener('voiceschanged', handleVoicesChanged);
+      }
+    } catch (error) {
+      console.error('Speech synthesis error:', error);
+      setIsSpeaking(false);
+      announceToScreenReader('Unable to speak message');
+    }
   };
 
   // Voice input function
   const startListening = () => {
     if (!recognition.current) {
-      announceToScreenReader(t('voiceRecognitionNotSupported'));
+      announceToScreenReader('Voice recognition not available in this browser');
       return;
     }
 
-    setIsListening(true);
-    recognition.current.start();
-    announceToScreenReader(t('listeningForVoiceInput'));
+    if (isListening) {
+      recognition.current.stop();
+      return;
+    }
+
+    try {
+      // Stop any ongoing speech before listening
+      if (synthesis.current) {
+        synthesis.current.cancel();
+      }
+      setIsSpeaking(false);
+      
+      recognition.current.start();
+      announceToScreenReader('Listening for voice input. Speak now.');
+    } catch (error) {
+      console.error('Speech recognition start error:', error);
+      announceToScreenReader('Unable to start voice recognition');
+    }
   };
 
   const stopListening = () => {
-    if (recognition.current) {
+    if (recognition.current && isListening) {
       recognition.current.stop();
+      setIsListening(false);
+      announceToScreenReader('Voice recognition stopped');
     }
-    setIsListening(false);
   };
 
   const getContextualInfo = () => {
@@ -176,27 +300,27 @@ const VoiceChatbot = () => {
     if (lowerContent.includes('navigate to') || lowerContent.includes('go to')) {
       if (lowerContent.includes('project')) {
         navigate('/projects');
-        announceToScreenReader(`${t('navigatingTo')} ${t('projects')}`);
+        announceToScreenReader(`Navigating to projects page`);
         return `I'm taking you to the projects page where you can see Peter's portfolio of work.`;
       }
       if (lowerContent.includes('about')) {
         navigate('/about');
-        announceToScreenReader(`${t('navigatingTo')} ${t('about')}`);
+        announceToScreenReader(`Navigating to about page`);
         return `I'm taking you to the about page with detailed information about Peter's background and skills.`;
       }
       if (lowerContent.includes('contact')) {
         navigate('/contact');
-        announceToScreenReader(`${t('navigatingTo')} ${t('contact')}`);
+        announceToScreenReader(`Navigating to contact page`);
         return `I'm taking you to the contact page where you can reach out to Peter.`;
       }
       if (lowerContent.includes('blog')) {
         navigate('/blog');
-        announceToScreenReader(`${t('navigatingTo')} ${t('blog')}`);
+        announceToScreenReader(`Navigating to blog page`);
         return `I'm taking you to Peter's blog with technical articles and insights.`;
       }
       if (lowerContent.includes('home')) {
         navigate('/');
-        announceToScreenReader(`${t('navigatingTo')} ${t('home')}`);
+        announceToScreenReader(`Navigating to home page`);
         return `I'm taking you back to the homepage.`;
       }
     }
@@ -312,28 +436,28 @@ const VoiceChatbot = () => {
     if (lowerResponse.includes('about') || lowerInput.includes('about')) {
       actions.push({
         type: 'navigate',
-        label: `Go to ${t('about')} Page`,
+        label: 'Go to About Page',
         data: '/about'
       });
     }
     if (lowerResponse.includes('project') || lowerInput.includes('project')) {
       actions.push({
         type: 'navigate',
-        label: `View ${t('projects')}`,
+        label: 'View Projects',
         data: '/projects'
       });
     }
     if (lowerResponse.includes('contact') || lowerInput.includes('contact')) {
       actions.push({
         type: 'navigate',
-        label: `${t('contact')} Peter`,
+        label: 'Contact Peter',
         data: '/contact'
       });
     }
     if (lowerResponse.includes('blog') || lowerInput.includes('blog')) {
       actions.push({
         type: 'navigate',
-        label: `Read ${t('blog')}`,
+        label: 'Read Blog',
         data: '/blog'
       });
     }
@@ -345,7 +469,7 @@ const VoiceChatbot = () => {
     if (action.type === 'navigate') {
       navigate(action.data);
       setIsOpen(false);
-      announceToScreenReader(`${t('navigatingTo')} ${action.data}`);
+      announceToScreenReader(`Navigating to ${action.data}`);
     }
   };
 
@@ -355,11 +479,13 @@ const VoiceChatbot = () => {
   };
 
   const toggleSpeech = () => {
-    setSpeechEnabled(!speechEnabled);
+    const newState = !speechEnabled;
+    setSpeechEnabled(newState);
     if (synthesis.current) {
       synthesis.current.cancel();
     }
-    announceToScreenReader(speechEnabled ? t('textToSpeechDisabled') : t('textToSpeechEnabled'));
+    setIsSpeaking(false);
+    announceToScreenReader(newState ? 'Text-to-speech enabled' : 'Text-to-speech disabled');
   };
 
   const voiceCommands = [
@@ -372,9 +498,9 @@ const VoiceChatbot = () => {
   ];
 
   const getStatusText = () => {
-    if (isSpeaking) return t('speaking');
-    if (isListening) return t('listening');
-    return t('readyToHelp');
+    if (isSpeaking) return 'Speaking';
+    if (isListening) return 'Listening';
+    return 'Ready to help';
   };
 
   return (
@@ -382,10 +508,14 @@ const VoiceChatbot = () => {
       {/* Chat Toggle Button */}
       <div className="fixed bottom-6 right-6 z-50">
         <Button
-          onClick={() => setIsOpen(!isOpen)}
+          onClick={() => {
+            const newState = !isOpen;
+            setIsOpen(newState);
+            announceToScreenReader(newState ? 'Voice assistant opened' : 'Voice assistant closed');
+          }}
           size="lg"
           className="h-16 w-16 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-lg shadow-blue-500/25 transition-all duration-300 hover:scale-105"
-          aria-label={isOpen ? `Close ${t('voiceAssistant')}` : `Open ${t('voiceAssistant')}`}
+          aria-label={isOpen ? 'Close voice assistant' : 'Open voice assistant'}
         >
           {isOpen ? <X className="h-6 w-6" /> : <MessageCircle className="h-6 w-6" />}
         </Button>
@@ -396,8 +526,13 @@ const VoiceChatbot = () => {
         <div 
           className="fixed bottom-24 right-6 w-80 sm:w-96 h-[600px] bg-[#0d1117] border border-[#30363d] rounded-lg shadow-2xl z-50 flex flex-col overflow-hidden"
           role="dialog"
-          aria-label={`${t('voiceAssistant')} Chat`}
+          aria-label="Voice Assistant Chat"
+          aria-describedby="voice-chat-description"
         >
+          <div id="voice-chat-description" className="sr-only">
+            Interactive voice assistant for navigating Peter's portfolio website. You can type or speak your questions.
+          </div>
+          
           <VoiceChatHeader
             speechEnabled={speechEnabled}
             onToggleSpeech={toggleSpeech}
