@@ -18,6 +18,7 @@ import Contact from "@/pages/Contact";
 import Blog from "@/pages/Blog";
 import Admin from "@/pages/Admin";
 import Profile from "@/pages/Profile";
+import SocialMedia from "@/pages/SocialMedia";
 import NotFound from "@/pages/NotFound";
 
 import AccessibilityToolbar from "@/components/AccessibilityToolbar";
@@ -32,7 +33,6 @@ const App = () => (
           <LanguageProvider>
             <AdminProvider>
               <TooltipProvider>
-                {/* React Router configured without basename since we removed it from Vite config */}
                 <BrowserRouter>
                   <AccessibilityToolbar />
                   <Toaster />
@@ -45,8 +45,8 @@ const App = () => (
                     <Route path="/blog" element={<Blog />} />
                     <Route path="/contact" element={<Contact />} />
                     <Route path="/profile" element={<Profile />} />
+                    <Route path="/social" element={<SocialMedia />} />
                     <Route path="/admin" element={<Admin />} />
-                    {/* Catch-all route for unknown paths */}
                     <Route path="*" element={<NotFound />} />
                   </Routes>
                 </BrowserRouter>
