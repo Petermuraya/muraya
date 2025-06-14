@@ -32,6 +32,13 @@ const TaskFilters = ({ filter, onFilterChange }: TaskFiltersProps) => {
       >
         Active
       </Button>
+      <Button
+        variant={filter === 'completed' ? 'default' : 'outline'}
+        size="sm"
+        onClick={() => onFilterChange('completed')}
+      >
+        Completed
+      </Button>
     </div>
   );
 };
