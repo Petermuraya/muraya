@@ -1,4 +1,3 @@
-
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 @tailwind base;
@@ -77,15 +76,44 @@
 
 /* Accessibility Styles */
 .sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* Screen Reader Mode Enhancements */
+.screen-reader-mode {
+  --focus-ring-width: 4px;
+  --focus-ring-color: #0066cc;
+}
+
+.screen-reader-mode *:focus {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color) !important;
+  outline-offset: 2px !important;
+  box-shadow: 0 0 0 calc(var(--focus-ring-width) + 2px) rgba(0, 102, 204, 0.3) !important;
+}
+
+.screen-reader-mode button,
+.screen-reader-mode a,
+.screen-reader-mode input,
+.screen-reader-mode textarea {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* Aria-live regions for screen readers */
+#screen-reader-announcements {
+  position: absolute !important;
+  left: -10000px !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
 }
 
 /* High Contrast Mode */
