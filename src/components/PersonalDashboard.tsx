@@ -1,26 +1,10 @@
 
 import React, { useState, useEffect } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Calendar, Clock, Plus, Settings, Zap, Globe, MessageSquare, Video, Mail } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
-import EventScheduler from './EventScheduler';
-import BlogAutomation from './BlogAutomation';
-import SocialMediaManager from './SocialMediaManager';
-import PersonalTimeTable from './PersonalTimeTable';
-import QuickAccessWidget from './QuickAccessWidget';
-import AIPersonalAssistant from './AIPersonalAssistant';
+import { DashboardWidget } from './dashboard/types';
+import DashboardHeader from './dashboard/DashboardHeader';
+import DashboardGrid from './dashboard/DashboardGrid';
 import ContentScheduler from './ContentScheduler';
-
-interface DashboardWidget {
-  id: string;
-  title: string;
-  component: string;
-  position: { x: number; y: number };
-  size: { width: number; height: number };
-  visible: boolean;
-  settings?: any;
-}
 
 const PersonalDashboard = () => {
   const { toast } = useToast();
@@ -76,82 +60,19 @@ const PersonalDashboard = () => {
     });
   };
 
-  const renderWidget = (widget: DashboardWidget) => {
-    if (!widget.visible) return null;
-
-    const componentMap: { [key: string]: React.ComponentType<any> } = {
-      EventScheduler,
-      PersonalTimeTable,
-      BlogAutomation,
-      SocialMediaManager,
-      QuickAccessWidget,
-      AIPersonalAssistant
-    };
-
-    const WidgetComponent = componentMap[widget.component] || QuickAccessWidget;
-
-    return (
-      <div
-        key={widget.id}
-        className={`col-span-${widget.size.width} row-span-${widget.size.height}`}
-        style={{
-          gridColumnStart: widget.position.x + 1,
-          gridRowStart: widget.position.y + 1,
-        }}
-      >
-        <Card className="h-full bg-[#161b22] border-[#30363d] hover:border-blue-500/30 transition-all duration-300">
-          <CardHeader className="pb-2">
-            <CardTitle className="text-white text-sm flex items-center justify-between">
-              {widget.title}
-              {isCustomizing && (
-                <Button
-                  size="sm"
-                  variant="ghost"
-                  onClick={() => toggleWidget(widget.id)}
-                  className="text-gray-400 hover:text-white"
-                >
-                  <Settings className="w-3 h-3" />
-                </Button>
-              )}
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="p-2">
-            <WidgetComponent widgetId={widget.id} />
-          </CardContent>
-        </Card>
-      </div>
-    );
-  };
-
   return (
     <div className="p-6 min-h-screen bg-[#0d1117]">
-      <div className="flex justify-between items-center mb-6">
-        <div>
-          <h1 className="text-3xl font-bold text-white flex items-center">
-            <Zap className="w-8 h-8 mr-3 text-blue-500" />
-            Personal Business Hub
-          </h1>
-          <p className="text-[#7d8590] mt-1">Manage your personal business with AI automation</p>
-        </div>
-        <div className="flex gap-2">
-          <Button
-            onClick={() => setIsCustomizing(!isCustomizing)}
-            variant={isCustomizing ? "default" : "outline"}
-            className="bg-purple-600 hover:bg-purple-700"
-          >
-            <Settings className="w-4 h-4 mr-2" />
-            {isCustomizing ? 'Done' : 'Customize'}
-          </Button>
-          <Button onClick={addCustomWidget} variant="outline">
-            <Plus className="w-4 h-4 mr-2" />
-            Add Widget
-          </Button>
-        </div>
-      </div>
+      <DashboardHeader 
+        isCustomizing={isCustomizing}
+        onToggleCustomizing={() => setIsCustomizing(!isCustomizing)}
+        onAddWidget={addCustomWidget}
+      />
 
-      <div className="grid grid-cols-4 grid-rows-4 gap-4 auto-rows-fr min-h-[800px]">
-        {widgets.map(renderWidget)}
-      </div>
+      <DashboardGrid 
+        widgets={widgets}
+        isCustomizing={isCustomizing}
+        onToggleWidget={toggleWidget}
+      />
 
       <ContentScheduler />
     </div>
