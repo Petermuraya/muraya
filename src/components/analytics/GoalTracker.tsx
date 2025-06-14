@@ -94,7 +94,7 @@ const GoalTracker = () => {
         return {
           ...goal,
           progress: newProgress,
-          status: isCompleted ? 'completed' as const : goal.status
+          status: isCompleted ? ('completed' as const) : goal.status
         };
       }
       return goal;
@@ -199,7 +199,7 @@ const GoalTracker = () => {
                         <TrendingUp className="w-3 h-3 mr-1" />
                         +1
                       </Button>
-                      {goal.status !== 'completed' && (
+                      {goal.progress < goal.target && (
                         <Button
                           onClick={() => updateProgress(goal.id, goal.target - goal.progress)}
                           variant="outline"
