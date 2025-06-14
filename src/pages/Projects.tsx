@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -8,12 +9,32 @@ import LikeButton from '@/components/LikeButton';
 import CommentsSection from '@/components/CommentsSection';
 import SEO from '@/components/SEO';
 import { Github, Link as LinkIcon, MessageCircle } from 'lucide-react';
+import { supabase } from '@/integrations/supabase/client';
+import { useToast } from '@/hooks/use-toast';
+
+interface Project {
+  id: string;
+  title: string;
+  description: string;
+  category: string;
+  image: string;
+  tech: string[];
+  github: string;
+  demo: string;
+  featured: boolean;
+  created_at: string;
+}
 
 const Projects = () => {
   const [activeFilter, setActiveFilter] = useState('All');
   const [expandedProject, setExpandedProject] = useState<number | null>(null);
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const { toast } = useToast();
 
   useEffect(() => {
+    fetchProjects();
+    
     document.documentElement.style.scrollBehavior = 'smooth';
     
     const handleScroll = () => {
@@ -51,78 +72,39 @@ const Projects = () => {
       observer.disconnect();
     };
   }, []);
+
+  const fetchProjects = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('admin_projects')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+      if (error) {
+        toast({
+          title: "Error",
+          description: "Failed to fetch projects",
+          variant: "destructive",
+        });
+        console.error('Error fetching projects:', error);
+        return;
+      }
+
+      setProjects(data || []);
+    } catch (error) {
+      console.error('Error fetching projects:', error);
+      toast({
+        title: "Error",
+        description: "Failed to fetch projects",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
   
   const categories = ['All', 'Web Development', 'Mobile', 'AI/ML', 'DevOps'];
   
-  const projects = [
-    {
-      id: 'ecommerce-platform',
-      title: "E-Commerce Platform",
-      description: "A full-featured e-commerce platform with user authentication, payment processing, and admin dashboard. Built with modern React and Node.js backend.",
-      category: "Web Development",
-      image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&h=400&fit=crop",
-      tech: ["React", "Node.js", "MongoDB", "Stripe", "Tailwind"],
-      github: "https://github.com",
-      demo: "https://demo.com",
-      featured: true
-    },
-    {
-      id: 'ai-chat-app',
-      title: "AI Chat Application",
-      description: "Real-time chat application powered by AI with intelligent responses, sentiment analysis, and multi-language support.",
-      category: "AI/ML",
-      image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=600&h=400&fit=crop",
-      tech: ["TypeScript", "WebSocket", "OpenAI", "React", "Python"],
-      github: "https://github.com",
-      demo: "https://demo.com",
-      featured: true
-    },
-    {
-      id: 'analytics-dashboard',
-      title: "Mobile Analytics Dashboard",
-      description: "Comprehensive analytics dashboard with real-time data visualization, custom reports, and mobile-responsive design.",
-      category: "Web Development",
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop",
-      tech: ["React", "D3.js", "Python", "FastAPI", "PostgreSQL"],
-      github: "https://github.com",
-      demo: "https://demo.com",
-      featured: false
-    },
-    {
-      id: 'task-management',
-      title: "Task Management App",
-      description: "Cross-platform mobile application for task management with offline sync, team collaboration, and productivity insights.",
-      category: "Mobile",
-      image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=600&h=400&fit=crop",
-      tech: ["React Native", "Firebase", "Redux", "TypeScript"],
-      github: "https://github.com",
-      demo: "https://demo.com",
-      featured: false
-    },
-    {
-      id: 'cicd-automation',
-      title: "CI/CD Pipeline Automation",
-      description: "Automated deployment pipeline with Docker containerization, testing automation, and monitoring setup.",
-      category: "DevOps",
-      image: "https://images.unsplash.com/photo-1527576539890-dfa815648363?w=600&h=400&fit=crop",
-      tech: ["Docker", "Jenkins", "AWS", "Kubernetes", "Terraform"],
-      github: "https://github.com",
-      demo: "https://demo.com",
-      featured: false
-    },
-    {
-      id: 'ml-model-api',
-      title: "Machine Learning Model API",
-      description: "RESTful API serving machine learning models for image classification with high availability and scalability.",
-      category: "AI/ML",
-      image: "https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=600&h=400&fit=crop",
-      tech: ["Python", "FastAPI", "TensorFlow", "Docker", "AWS"],
-      github: "https://github.com",
-      demo: "https://demo.com",
-      featured: true
-    }
-  ];
-
   const filteredProjects = activeFilter === 'All' 
     ? projects 
     : projects.filter(project => project.category === activeFilter);
@@ -151,6 +133,17 @@ const Projects = () => {
       }
     }))
   };
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-[#0d1117] text-white flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto mb-4"></div>
+          <p className="text-[#c9d1d9]">Loading projects...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <>
@@ -216,11 +209,13 @@ const Projects = () => {
                 {filteredProjects.map((project, index) => (
                   <Card key={project.id} className="group overflow-hidden glass-effect border-[#30363d] hover:border-blue-500/30 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-blue-500/10">
                     <div className="relative overflow-hidden">
-                      <img 
-                        src={project.image} 
-                        alt={project.title}
-                        className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                      />
+                      {project.image && (
+                        <img 
+                          src={project.image} 
+                          alt={project.title}
+                          className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                      )}
                       {project.featured && (
                         <Badge className="absolute top-4 left-4 bg-gradient-to-r from-blue-500 to-blue-600 border-0 shadow-lg">
                           Featured
@@ -233,27 +228,33 @@ const Projects = () => {
                       <h3 className="text-xl font-semibold text-[#c9d1d9] mb-2 group-hover:text-blue-400 transition-colors duration-300">{project.title}</h3>
                       <p className="text-[#8b949e] mb-4 text-sm leading-relaxed">{project.description}</p>
                       
-                      <div className="flex flex-wrap gap-2 mb-6">
-                        {project.tech.map((tech) => (
-                          <span key={tech} className="bg-[#161b22] text-[#c9d1d9] px-2 py-1 rounded-md text-xs font-medium border border-[#30363d]">
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
+                      {project.tech && project.tech.length > 0 && (
+                        <div className="flex flex-wrap gap-2 mb-6">
+                          {project.tech.map((tech) => (
+                            <span key={tech} className="bg-[#161b22] text-[#c9d1d9] px-2 py-1 rounded-md text-xs font-medium border border-[#30363d]">
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
+                      )}
                       
                       <div className="flex gap-3 mb-4">
-                        <Button size="sm" variant="outline" className="flex-1 border-[#30363d] bg-[#161b22]/50 backdrop-blur-md hover:bg-[#30363d]/50 hover:border-blue-500/30 text-[#c9d1d9]" asChild>
-                          <a href={project.github} target="_blank" rel="noopener noreferrer">
-                            <Github className="w-4 h-4 mr-2" />
-                            Code
-                          </a>
-                        </Button>
-                        <Button size="sm" className="flex-1 bg-gradient-to-r from-blue-500 to-blue-600 border-0 shadow-lg hover:shadow-blue-500/20" asChild>
-                          <a href={project.demo} target="_blank" rel="noopener noreferrer">
-                            <LinkIcon className="w-4 h-4 mr-2" />
-                            Demo
-                          </a>
-                        </Button>
+                        {project.github && (
+                          <Button size="sm" variant="outline" className="flex-1 border-[#30363d] bg-[#161b22]/50 backdrop-blur-md hover:bg-[#30363d]/50 hover:border-blue-500/30 text-[#c9d1d9]" asChild>
+                            <a href={project.github} target="_blank" rel="noopener noreferrer">
+                              <Github className="w-4 h-4 mr-2" />
+                              Code
+                            </a>
+                          </Button>
+                        )}
+                        {project.demo && (
+                          <Button size="sm" className="flex-1 bg-gradient-to-r from-blue-500 to-blue-600 border-0 shadow-lg hover:shadow-blue-500/20" asChild>
+                            <a href={project.demo} target="_blank" rel="noopener noreferrer">
+                              <LinkIcon className="w-4 h-4 mr-2" />
+                              Demo
+                            </a>
+                          </Button>
+                        )}
                       </div>
 
                       {/* Like and Comment Actions */}
@@ -281,9 +282,10 @@ const Projects = () => {
                 ))}
               </div>
 
-              {filteredProjects.length === 0 && (
+              {filteredProjects.length === 0 && !isLoading && (
                 <div className="text-center py-12">
                   <p className="text-xl text-[#7d8590]">No projects found in this category.</p>
+                  <p className="text-sm text-[#7d8590] mt-2">Add projects from the admin dashboard to see them here.</p>
                 </div>
               )}
             </div>

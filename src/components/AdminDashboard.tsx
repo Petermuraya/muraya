@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+
+import React, { useState, useEffect } from 'react';
 import { useAdmin } from '@/contexts/AdminContext';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -9,10 +10,45 @@ import ProjectManagement from './ProjectManagement';
 import ContactManagement from './ContactManagement';
 import NewsletterManagement from './NewsletterManagement';
 import RatingManagement from './RatingManagement';
+import { supabase } from '@/integrations/supabase/client';
 
 const AdminDashboard = () => {
   const { admin, logout } = useAdmin();
   const [activeTab, setActiveTab] = useState('overview');
+  const [counts, setCounts] = useState({
+    blogs: 0,
+    projects: 0,
+    messages: 0,
+    newsletter: 0,
+    ratings: 0
+  });
+
+  useEffect(() => {
+    fetchCounts();
+  }, []);
+
+  const fetchCounts = async () => {
+    try {
+      // Fetch all counts in parallel
+      const [blogsResult, projectsResult, messagesResult, newsletterResult, ratingsResult] = await Promise.all([
+        supabase.from('blogs').select('id', { count: 'exact', head: true }),
+        supabase.from('admin_projects').select('id', { count: 'exact', head: true }),
+        supabase.from('contact_messages').select('id', { count: 'exact', head: true }).eq('read', false),
+        supabase.from('newsletter_subscriptions').select('id', { count: 'exact', head: true }).eq('subscribed', true),
+        supabase.from('blog_ratings').select('id', { count: 'exact', head: true })
+      ]);
+
+      setCounts({
+        blogs: blogsResult.count || 0,
+        projects: projectsResult.count || 0,
+        messages: messagesResult.count || 0,
+        newsletter: newsletterResult.count || 0,
+        ratings: ratingsResult.count || 0
+      });
+    } catch (error) {
+      console.error('Error fetching counts:', error);
+    }
+  };
 
   const handleLogout = () => {
     logout();
@@ -72,7 +108,7 @@ const AdminDashboard = () => {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-3xl font-bold text-blue-400">0</p>
+                  <p className="text-3xl font-bold text-blue-400">{counts.blogs}</p>
                   <p className="text-[#7d8590] text-sm">Published articles</p>
                 </CardContent>
               </Card>
@@ -85,12 +121,12 @@ const AdminDashboard = () => {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-3xl font-bold text-green-400">0</p>
+                  <p className="text-3xl font-bold text-green-400">{counts.projects}</p>
                   <p className="text-[#7d8590] text-sm">Active projects</p>
                 </CardContent>
               </Card>
 
-              <Card className="bg-[#161b22] border-[#30363d]">
+              <Card className="bg-[#161b22]lice border-[#30363d]">
                 <CardHeader>
                   <CardTitle className="text-white flex items-center gap-2">
                     <Settings className="w-5 h-5" />
@@ -113,7 +149,7 @@ const AdminDashboard = () => {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-3xl font-bold text-orange-400">0</p>
+                  <p className="text-3xl font-bold text-orange-400">{counts.messages}</p>
                   <p className="text-[#7d8590] text-sm">Unread messages</p>
                 </CardContent>
               </Card>
@@ -126,7 +162,7 @@ const AdminDashboard = () => {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-3xl font-bold text-cyan-400">0</p>
+                  <p className="text-3xl font-bold text-cyan-400">{counts.newsletter}</p>
                   <p className="text-[#7d8590] text-sm">Active subscribers</p>
                 </CardContent>
               </Card>
@@ -139,7 +175,7 @@ const AdminDashboard = () => {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-3xl font-bold text-yellow-400">0</p>
+                  <p className="text-3xl font-bold text-yellow-400">{counts.ratings}</p>
                   <p className="text-[#7d8590] text-sm">Total ratings</p>
                 </CardContent>
               </Card>
