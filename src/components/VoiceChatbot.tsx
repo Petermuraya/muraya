@@ -1,27 +1,15 @@
-
 import React, { useState, useRef, useEffect } from 'react';
-import { MessageCircle, X, Send, Bot, User, Mic, MicOff, Volume2, VolumeX, Navigation } from 'lucide-react';
+import { MessageCircle, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { ScrollArea } from '@/components/ui/scroll-area';
 import { useNavigate } from 'react-router-dom';
 import { useAccessibility } from '@/contexts/AccessibilityContext';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { cn } from '@/lib/utils';
 
-interface Message {
-  id: string;
-  content: string;
-  role: 'user' | 'assistant';
-  timestamp: Date;
-  actions?: ChatAction[];
-}
-
-interface ChatAction {
-  type: 'navigate' | 'scroll' | 'info';
-  label: string;
-  data: any;
-}
+import VoiceChatHeader from './voice-chat/VoiceChatHeader';
+import VoiceChatMessages from './voice-chat/VoiceChatMessages';
+import VoiceChatInput from './voice-chat/VoiceChatInput';
+import VoiceChatSuggestions from './voice-chat/VoiceChatSuggestions';
+import { Message, ChatAction } from './voice-chat/types';
 
 const VoiceChatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -410,156 +398,37 @@ const VoiceChatbot = () => {
           role="dialog"
           aria-label={`${t('voiceAssistant')} Chat`}
         >
-          {/* Header */}
-          <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-4 text-white">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <Bot className="h-5 w-5" />
-                <div>
-                  <h3 className="font-semibold">{t('voiceAssistant')}</h3>
-                  <p className="text-xs opacity-90">
-                    {getStatusText()}
-                  </p>
-                </div>
-              </div>
-              <div className="flex items-center gap-2">
-                <Button
-                  onClick={toggleSpeech}
-                  variant="ghost"
-                  size="sm"
-                  className="text-white hover:bg-white/20"
-                  aria-label={speechEnabled ? t('textToSpeechDisabled') : t('textToSpeechEnabled')}
-                >
-                  {speechEnabled ? <Volume2 className="h-4 w-4" /> : <VolumeX className="h-4 w-4" />}
-                </Button>
-              </div>
-            </div>
-          </div>
+          <VoiceChatHeader
+            speechEnabled={speechEnabled}
+            onToggleSpeech={toggleSpeech}
+            getStatusText={getStatusText}
+          />
 
-          {/* Messages */}
-          <ScrollArea className="flex-1 p-4 space-y-4">
-            {messages.map((message) => (
-              <div
-                key={message.id}
-                className={`flex gap-3 ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
-              >
-                {message.role === 'assistant' && (
-                  <div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center flex-shrink-0">
-                    <Bot className="h-4 w-4 text-white" />
-                  </div>
-                )}
-                <div className={`max-w-[80%] ${message.role === 'user' ? 'order-last' : ''}`}>
-                  <div
-                    className={`p-3 rounded-lg text-sm ${
-                      message.role === 'user'
-                        ? 'bg-blue-600 text-white ml-auto'
-                        : 'bg-[#161b22] text-gray-100 border border-[#30363d]'
-                    }`}
-                    role={message.role === 'assistant' ? 'status' : undefined}
-                    aria-live={message.role === 'assistant' ? 'polite' : undefined}
-                  >
-                    {message.content}
-                  </div>
-                  
-                  {/* Action Buttons */}
-                  {message.actions && message.actions.length > 0 && (
-                    <div className="mt-2 space-y-1">
-                      {message.actions.map((action, index) => (
-                        <Button
-                          key={index}
-                          onClick={() => handleAction(action)}
-                          variant="outline"
-                          size="sm"
-                          className="w-full text-xs bg-[#21262d] border-[#30363d] text-gray-300 hover:bg-[#30363d]"
-                        >
-                          <Navigation className="h-3 w-3 mr-1" />
-                          {action.label}
-                        </Button>
-                      ))}
-                    </div>
-                  )}
-                </div>
-                {message.role === 'user' && (
-                  <div className="w-8 h-8 rounded-full bg-gray-600 flex items-center justify-center flex-shrink-0">
-                    <User className="h-4 w-4 text-white" />
-                  </div>
-                )}
-              </div>
-            ))}
-            
-            {isLoading && (
-              <div className="flex gap-3" role="status" aria-label="Assistant is thinking">
-                <div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center">
-                  <Bot className="h-4 w-4 text-white" />
-                </div>
-                <div className="bg-[#161b22] border border-[#30363d] p-3 rounded-lg">
-                  <div className="flex space-x-1">
-                    <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce"></div>
-                    <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                    <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
-                  </div>
-                </div>
-              </div>
-            )}
-            <div ref={messagesEndRef} />
-          </ScrollArea>
+          <VoiceChatMessages
+            messages={messages}
+            isLoading={isLoading}
+            onAction={handleAction}
+            messagesEndRef={messagesEndRef}
+          />
 
           {/* Voice Commands Suggestions */}
           {messages.length === 1 && (
-            <div className="p-3 border-t border-[#30363d]">
-              <p className="text-xs text-gray-400 mb-2">Try these voice commands:</p>
-              <div className="space-y-1">
-                {voiceCommands.slice(0, 3).map((command, index) => (
-                  <Button
-                    key={index}
-                    onClick={() => sendMessage(command)}
-                    variant="ghost"
-                    size="sm"
-                    className="w-full justify-start text-xs text-gray-300 hover:bg-[#21262d]"
-                  >
-                    "{command}"
-                  </Button>
-                ))}
-              </div>
-            </div>
+            <VoiceChatSuggestions
+              suggestions={voiceCommands}
+              onSuggestionClick={sendMessage}
+            />
           )}
 
-          {/* Input */}
-          <form onSubmit={handleSubmit} className="p-4 border-t border-[#30363d]">
-            <div className="flex gap-2">
-              <Input
-                value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
-                placeholder="Ask me anything or use voice..."
-                className="flex-1 bg-[#161b22] border-[#30363d] text-white placeholder-gray-400"
-                disabled={isLoading}
-                aria-label="Chat input"
-              />
-              <Button
-                type="button"
-                onClick={isListening ? stopListening : startListening}
-                size="sm"
-                variant="outline"
-                className={cn(
-                  "border-[#30363d]",
-                  isListening ? "bg-red-600 text-white" : "bg-[#21262d] text-gray-300"
-                )}
-                disabled={!recognition.current}
-                aria-label={isListening ? 'Stop listening' : 'Start voice input'}
-              >
-                {isListening ? <MicOff className="h-4 w-4" /> : <Mic className="h-4 w-4" />}
-              </Button>
-              <Button 
-                type="submit" 
-                size="sm" 
-                disabled={isLoading || !inputValue.trim()}
-                className="bg-blue-600 hover:bg-blue-700"
-                aria-label="Send message"
-              >
-                <Send className="h-4 w-4" />
-              </Button>
-            </div>
-          </form>
+          <VoiceChatInput
+            inputValue={inputValue}
+            setInputValue={setInputValue}
+            onSubmit={handleSubmit}
+            isLoading={isLoading}
+            isListening={isListening}
+            onStartListening={startListening}
+            onStopListening={stopListening}
+            recognitionAvailable={!!recognition.current}
+          />
         </div>
       )}
     </>
