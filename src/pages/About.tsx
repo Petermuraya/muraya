@@ -105,8 +105,50 @@ const About = () => {
                 </div>
               </section>
 
+              {/* Personal Philosophy Section */}
+              <section id="philosophy" className="py-12 slide-in-left opacity-0 -translate-x-full transition-all duration-700 delay-400">
+                <div className="text-center mb-12">
+                  <h2 className="text-4xl font-bold bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent mb-6">
+                    My Philosophy
+                  </h2>
+                  <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full" />
+                </div>
+                
+                <div className="max-w-4xl mx-auto">
+                  <div className="glass-effect border-[#30363d] rounded-xl p-8 hover:border-cyan-500/30 transition-all duration-300">
+                    <div className="text-center mb-8">
+                      <div className="w-20 h-20 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span className="text-3xl">💡</span>
+                      </div>
+                      <h3 className="text-2xl font-semibold text-white mb-4">"Technology with Purpose"</h3>
+                    </div>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                      <div className="text-center p-4">
+                        <div className="text-blue-400 text-lg font-semibold mb-2">Innovation</div>
+                        <p className="text-[#8b949e] text-sm">Constantly exploring new technologies to solve complex problems</p>
+                      </div>
+                      <div className="text-center p-4">
+                        <div className="text-green-400 text-lg font-semibold mb-2">Impact</div>
+                        <p className="text-[#8b949e] text-sm">Building solutions that create meaningful change in communities</p>
+                      </div>
+                      <div className="text-center p-4">
+                        <div className="text-purple-400 text-lg font-semibold mb-2">Accessibility</div>
+                        <p className="text-[#8b949e] text-sm">Ensuring technology is inclusive and available to everyone</p>
+                      </div>
+                    </div>
+                    
+                    <p className="text-[#8b949e] text-lg leading-relaxed text-center">
+                      I believe that technology should serve humanity, not the other way around. Every line of code I write, 
+                      every system I design, and every solution I build is guided by the principle that innovation should 
+                      improve lives, especially for those who need it most.
+                    </p>
+                  </div>
+                </div>
+              </section>
+
               {/* What I Do Section */}
-              <section id="what-i-do" className="py-12 slide-in-left opacity-0 -translate-x-full transition-all duration-700 delay-400">
+              <section id="what-i-do" className="py-12 slide-in-right opacity-0 translate-x-full transition-all duration-700 delay-500">
                 <div className="text-center mb-12">
                   <h2 className="text-4xl font-bold bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent mb-6">
                     What I Do
@@ -155,18 +197,122 @@ const About = () => {
                   </div>
                 </div>
               </section>
+
+              {/* Journey & Background Section */}
+              <section id="journey" className="py-12 fade-in-up opacity-0 translate-y-8 transition-all duration-700 delay-600">
+                <div className="text-center mb-12">
+                  <h2 className="text-4xl font-bold bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent mb-6">
+                    My Journey
+                  </h2>
+                  <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full" />
+                </div>
+                
+                <div className="max-w-4xl mx-auto">
+                  <div className="space-y-8">
+                    {/* Education */}
+                    <div className="glass-effect border-[#30363d] rounded-lg p-6 hover:border-blue-500/30 transition-all duration-300">
+                      <div className="flex items-start space-x-4">
+                        <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                          <span className="text-xl">🎓</span>
+                        </div>
+                        <div>
+                          <h3 className="text-xl font-semibold text-white mb-2">Academic Foundation</h3>
+                          <p className="text-blue-400 font-medium mb-2">BSc Information Technology - Karatina University (Expected 2025)</p>
+                          <p className="text-[#8b949e] leading-relaxed">
+                            Currently pursuing a comprehensive degree in Information Technology, with focus on software development, 
+                            systems analysis, and emerging technologies. Maintaining excellent academic performance while actively 
+                            participating in innovation clubs and tech communities.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Early Interest */}
+                    <div className="glass-effect border-[#30363d] rounded-lg p-6 hover:border-green-500/30 transition-all duration-300">
+                      <div className="flex items-start space-x-4">
+                        <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                          <span className="text-xl">🌟</span>
+                        </div>
+                        <div>
+                          <h3 className="text-xl font-semibold text-white mb-2">Early Passion for Technology</h3>
+                          <p className="text-green-400 font-medium mb-2">From Curiosity to Innovation</p>
+                          <p className="text-[#8b949e] leading-relaxed">
+                            My journey into technology began with a fascination for how things work. This curiosity evolved into 
+                            a passion for creating solutions that solve real problems. I started with basic programming and 
+                            gradually expanded into AI, IoT, and cloud technologies, always with a focus on social impact.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Current Focus */}
+                    <div className="glass-effect border-[#30363d] rounded-lg p-6 hover:border-purple-500/30 transition-all duration-300">
+                      <div className="flex items-start space-x-4">
+                        <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                          <span className="text-xl">🚀</span>
+                        </div>
+                        <div>
+                          <h3 className="text-xl font-semibold text-white mb-2">Current Endeavors</h3>
+                          <p className="text-purple-400 font-medium mb-2">Building the Future Today</p>
+                          <p className="text-[#8b949e] leading-relaxed">
+                            Today, I'm actively working on multiple projects that combine AI, IoT, and cloud technologies. 
+                            From developing ThoraxIQ for medical diagnostics to creating smart agriculture solutions, 
+                            I'm committed to building technology that creates meaningful impact in African communities and beyond.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              {/* Fun Facts Section */}
+              <section id="fun-facts" className="py-12 scale-in opacity-0 scale-75 transition-all duration-700 delay-700">
+                <div className="text-center mb-12">
+                  <h2 className="text-4xl font-bold bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent mb-6">
+                    Beyond the Code
+                  </h2>
+                  <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full" />
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                  <div className="glass-effect border-[#30363d] rounded-lg p-6 text-center hover:border-red-500/30 transition-all duration-300 hover:-translate-y-2">
+                    <div className="text-4xl mb-4">☕</div>
+                    <h3 className="text-lg font-semibold text-white mb-2">Coffee Enthusiast</h3>
+                    <p className="text-[#8b949e] text-sm">Fueled by coffee and powered by curiosity. My best code comes after the perfect cup.</p>
+                  </div>
+                  
+                  <div className="glass-effect border-[#30363d] rounded-lg p-6 text-center hover:border-orange-500/30 transition-all duration-300 hover:-translate-y-2">
+                    <div className="text-4xl mb-4">📚</div>
+                    <h3 className="text-lg font-semibold text-white mb-2">Continuous Learner</h3>
+                    <p className="text-[#8b949e] text-sm">Always exploring new technologies, frameworks, and methodologies to stay ahead of the curve.</p>
+                  </div>
+                  
+                  <div className="glass-effect border-[#30363d] rounded-lg p-6 text-center hover:border-green-500/30 transition-all duration-300 hover:-translate-y-2">
+                    <div className="text-4xl mb-4">🌍</div>
+                    <h3 className="text-lg font-semibold text-white mb-2">Global Thinker</h3>
+                    <p className="text-[#8b949e] text-sm">Passionate about using technology to solve global challenges, especially in developing regions.</p>
+                  </div>
+                  
+                  <div className="glass-effect border-[#30363d] rounded-lg p-6 text-center hover:border-blue-500/30 transition-all duration-300 hover:-translate-y-2">
+                    <div className="text-4xl mb-4">🎵</div>
+                    <h3 className="text-lg font-semibold text-white mb-2">Music Lover</h3>
+                    <p className="text-[#8b949e] text-sm">Coding sessions are always better with the right soundtrack. Music helps me think creatively.</p>
+                  </div>
+                </div>
+              </section>
               
               <section id="skills">
                 <EnhancedSkillsDisplay />
               </section>
               
               {/* Resume Download Section */}
-              <section id="resume" className="py-8 scale-in opacity-0 scale-75 transition-all duration-700 delay-500">
+              <section id="resume" className="py-8 scale-in opacity-0 scale-75 transition-all duration-700 delay-800">
                 <ResumeDownload />
               </section>
               
               {/* Social Media Links Section */}
-              <section id="social" className="py-8 slide-in-left opacity-0 -translate-x-full transition-all duration-700 delay-600">
+              <section id="social" className="py-8 slide-in-left opacity-0 -translate-x-full transition-all duration-700 delay-900">
                 <h2 className="text-3xl font-bold text-center mb-8 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
                   Connect & Collaborate
                 </h2>
@@ -174,7 +320,7 @@ const About = () => {
               </section>
               
               {/* Newsletter Signup */}
-              <section id="newsletter" className="py-8 fade-in-up opacity-0 translate-y-8 transition-all duration-700 delay-700">
+              <section id="newsletter" className="py-8 fade-in-up opacity-0 translate-y-8 transition-all duration-700 delay-1000">
                 <NewsletterSignup />
               </section>
               
@@ -182,7 +328,7 @@ const About = () => {
                 <CertificationsSection />
               </section>
               
-              <section id="experience" className="slide-in-right opacity-0 translate-x-full transition-all duration-700 delay-800">
+              <section id="experience" className="slide-in-right opacity-0 translate-x-full transition-all duration-700 delay-1100">
                 <ExperienceSection />
               </section>
               
@@ -190,12 +336,12 @@ const About = () => {
                 <TestimonialsSection />
               </section>
               
-              <section id="values" className="fade-in-up opacity-0 translate-y-8 transition-all duration-700 delay-900">
+              <section id="values" className="fade-in-up opacity-0 translate-y-8 transition-all duration-700 delay-1200">
                 <ValuesSection />
               </section>
 
               {/* Enhanced Key Achievements */}
-              <section id="achievements" className="py-12 slide-in-left opacity-0 -translate-x-full transition-all duration-700 delay-1000">
+              <section id="achievements" className="py-12 slide-in-left opacity-0 -translate-x-full transition-all duration-700 delay-1300">
                 <div className="text-center mb-12">
                   <h2 className="text-4xl font-bold bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent mb-6">
                     Impact & Achievements
@@ -252,7 +398,7 @@ const About = () => {
               </section>
 
               {/* Enhanced Contact Call-to-Action */}
-              <section id="contact-cta" className="py-16 text-center scale-in opacity-0 scale-75 transition-all duration-700 delay-1100">
+              <section id="contact-cta" className="py-16 text-center scale-in opacity-0 scale-75 transition-all duration-700 delay-1400">
                 <div className="glass-effect border-[#30363d] rounded-xl p-10 max-w-4xl mx-auto relative overflow-hidden">
                   {/* Background gradient effect */}
                   <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 via-purple-500/5 to-cyan-500/5 rounded-xl" />
