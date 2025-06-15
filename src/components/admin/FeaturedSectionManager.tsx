@@ -35,7 +35,8 @@ const FeaturedSectionManager = () => {
 
   const fetchConfig = async () => {
     try {
-      const { data, error } = await supabase
+      // Use direct table access with type assertion until types are updated
+      const { data, error } = await (supabase as any)
         .from('featured_section_config')
         .select('*')
         .eq('section', 'projects')
@@ -44,7 +45,13 @@ const FeaturedSectionManager = () => {
       if (error) {
         console.log('No existing config found, using defaults');
       } else if (data) {
-        setConfig(data);
+        setConfig({
+          id: data.id,
+          section: data.section,
+          title: data.title,
+          subtitle: data.subtitle,
+          enabled: data.enabled
+        });
       }
     } catch (error) {
       console.error('Error fetching config:', error);
@@ -56,7 +63,8 @@ const FeaturedSectionManager = () => {
   const handleSave = async () => {
     setIsSaving(true);
     try {
-      const { error } = await supabase
+      // Use direct table access with type assertion until types are updated
+      const { error } = await (supabase as any)
         .from('featured_section_config')
         .upsert({
           section: 'projects',

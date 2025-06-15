@@ -236,6 +236,36 @@ export type Database = {
         }
         Relationships: []
       }
+      featured_section_config: {
+        Row: {
+          created_at: string
+          enabled: boolean
+          id: string
+          section: string
+          subtitle: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          enabled?: boolean
+          id?: string
+          section: string
+          subtitle: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          enabled?: boolean
+          id?: string
+          section?: string
+          subtitle?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       newsletter_subscriptions: {
         Row: {
           created_at: string

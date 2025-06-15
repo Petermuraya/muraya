@@ -51,10 +51,9 @@ const FeaturedProjectsSection = () => {
           .eq('featured', true)
           .order('created_at', { ascending: false })
           .limit(3),
+        // Use a direct query to avoid TypeScript issues until types are updated
         supabase
-          .from('featured_section_config')
-          .select('*')
-          .eq('section', 'projects')
+          .rpc('get_featured_section_config', { section_name: 'projects' })
           .single()
       ]);
 
@@ -67,8 +66,27 @@ const FeaturedProjectsSection = () => {
         setFeaturedProjects(getDefaultProjects());
       }
 
-      // Set section configuration
-      if (!configResult.error && configResult.data) {
+      // Handle config result - if the RPC doesn't work, fall back to direct query
+      if (configResult.error) {
+        // Fallback: try direct table access (this might cause TypeScript warnings temporarily)
+        try {
+          const { data: configData, error: configError } = await (supabase as any)
+            .from('featured_section_config')
+            .select('*')
+            .eq('section', 'projects')
+            .single();
+            
+          if (!configError && configData) {
+            setSectionConfig({
+              title: configData.title || 'Featured Projects',
+              subtitle: configData.subtitle || 'Innovative solutions in AI, IoT, and cloud technologies for social impact',
+              enabled: configData.enabled !== false
+            });
+          }
+        } catch (fallbackError) {
+          console.log('Using default section config');
+        }
+      } else if (configResult.data) {
         setSectionConfig({
           title: configResult.data.title || 'Featured Projects',
           subtitle: configResult.data.subtitle || 'Innovative solutions in AI, IoT, and cloud technologies for social impact',
