@@ -20,40 +20,63 @@ interface Project {
   created_at: string;
 }
 
+interface FeaturedSectionConfig {
+  title: string;
+  subtitle: string;
+  enabled: boolean;
+}
+
 const FeaturedProjectsSection = () => {
   const { t } = useLanguage();
   const [featuredProjects, setFeaturedProjects] = useState<Project[]>([]);
+  const [sectionConfig, setSectionConfig] = useState<FeaturedSectionConfig>({
+    title: 'Featured Projects',
+    subtitle: 'Innovative solutions in AI, IoT, and cloud technologies for social impact',
+    enabled: true
+  });
   const [isLoading, setIsLoading] = useState(true);
   const { toast } = useToast();
 
   useEffect(() => {
-    fetchFeaturedProjects();
+    fetchData();
   }, []);
 
-  const fetchFeaturedProjects = async () => {
+  const fetchData = async () => {
     try {
-      const { data, error } = await supabase
-        .from('admin_projects')
-        .select('*')
-        .eq('featured', true)
-        .order('created_at', { ascending: false })
-        .limit(3);
+      // Fetch both featured projects and section configuration
+      const [projectsResult, configResult] = await Promise.all([
+        supabase
+          .from('admin_projects')
+          .select('*')
+          .eq('featured', true)
+          .order('created_at', { ascending: false })
+          .limit(3),
+        supabase
+          .from('featured_section_config')
+          .select('*')
+          .eq('section', 'projects')
+          .single()
+      ]);
 
-      if (error) {
-        console.error('Error fetching featured projects:', error);
-        // Fallback to default projects if database fetch fails
+      if (projectsResult.error) {
+        console.error('Error fetching featured projects:', projectsResult.error);
         setFeaturedProjects(getDefaultProjects());
-        return;
+      } else if (projectsResult.data && projectsResult.data.length > 0) {
+        setFeaturedProjects(projectsResult.data);
+      } else {
+        setFeaturedProjects(getDefaultProjects());
       }
 
-      if (data && data.length > 0) {
-        setFeaturedProjects(data);
-      } else {
-        // Show default projects if no featured projects in database
-        setFeaturedProjects(getDefaultProjects());
+      // Set section configuration
+      if (!configResult.error && configResult.data) {
+        setSectionConfig({
+          title: configResult.data.title || 'Featured Projects',
+          subtitle: configResult.data.subtitle || 'Innovative solutions in AI, IoT, and cloud technologies for social impact',
+          enabled: configResult.data.enabled !== false
+        });
       }
     } catch (error) {
-      console.error('Error fetching featured projects:', error);
+      console.error('Error fetching data:', error);
       setFeaturedProjects(getDefaultProjects());
     } finally {
       setIsLoading(false);
@@ -108,14 +131,19 @@ const FeaturedProjectsSection = () => {
     return gradients[index % gradients.length];
   };
 
+  // Don't render the section if it's disabled
+  if (!sectionConfig.enabled) {
+    return null;
+  }
+
   if (isLoading) {
     return (
       <section className="py-20 px-4 sm:px-6 lg:px-8 relative">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent mb-4">{t('featuredProjects')}</h2>
+            <h2 className="text-4xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent mb-4">{sectionConfig.title}</h2>
             <p className="text-xl text-[#7d8590] max-w-2xl mx-auto">
-              {t('innovativeSolutions')}
+              {sectionConfig.subtitle}
             </p>
           </div>
           <div className="flex justify-center">
@@ -130,9 +158,9 @@ const FeaturedProjectsSection = () => {
     <section className="py-20 px-4 sm:px-6 lg:px-8 relative">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent mb-4">{t('featuredProjects')}</h2>
+          <h2 className="text-4xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent mb-4">{sectionConfig.title}</h2>
           <p className="text-xl text-[#7d8590] max-w-2xl mx-auto">
-            {t('innovativeSolutions')}
+            {sectionConfig.subtitle}
           </p>
         </div>
         
