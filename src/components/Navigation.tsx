@@ -1,7 +1,6 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Code, Home, Info, Briefcase, Mail, BookOpen, Settings } from 'lucide-react';
+import { Menu, X, Code, Home, Info, Briefcase, Mail, BookOpen } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import ThemeToggle from '@/components/ThemeToggle';
 
@@ -25,7 +24,6 @@ const Navigation = () => {
     { name: 'Projects', path: '/projects', icon: Briefcase },
     { name: 'Blog', path: '/blog', icon: BookOpen },
     { name: 'Contact', path: '/contact', icon: Mail },
-    { name: 'Admin', path: '/admin', icon: Settings },
   ];
 
   const isActive = (path: string) => location.pathname === path;
