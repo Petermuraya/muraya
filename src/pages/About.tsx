@@ -19,6 +19,7 @@ import SocialShare from '@/components/SocialShare';
 import NewsletterSignup from '@/components/NewsletterSignup';
 import ContentScheduler from '@/components/ContentScheduler';
 import SocialMediaLinks from '@/components/SocialMediaLinks';
+import ResumeDownload from '@/components/ResumeDownload';
 import useAboutEffects from '@/hooks/useAboutEffects';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useState } from 'react';
@@ -58,6 +59,11 @@ const About = () => {
               <AboutHeader />
               <ProfileSection />
               <EnhancedSkillsDisplay />
+              
+              {/* Resume Download Section */}
+              <section className="py-8">
+                <ResumeDownload />
+              </section>
               
               {/* Social Media Links Section */}
               <section className="py-8">

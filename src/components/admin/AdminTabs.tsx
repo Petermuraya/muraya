@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { FileText, FolderOpen, BarChart3, Mail, Users, Star, Brain, User, Share2, CheckSquare, Settings } from 'lucide-react';
+import { FileText, FolderOpen, BarChart3, Mail, Users, Star, Brain, User, Share2, CheckSquare, Settings, Download } from 'lucide-react';
 import PersonalDashboard from '../PersonalDashboard';
 import EnhancedBlogManagement from '../EnhancedBlogManagement';
 import ProjectManagement from '../ProjectManagement';
@@ -14,6 +14,7 @@ import SocialDashboard from '../social/SocialDashboard';
 import AnalyticsDashboard from '../analytics/AnalyticsDashboard';
 import TasksDashboard from '../tasks/TasksDashboard';
 import FeaturedSectionManager from './FeaturedSectionManager';
+import ResumeManagement from './ResumeManagement';
 
 interface CountsData {
   blogs: number;
@@ -32,7 +33,7 @@ interface AdminTabsProps {
 const AdminTabs = ({ activeTab, setActiveTab, counts }: AdminTabsProps) => {
   return (
     <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-      <TabsList className="grid w-full grid-cols-11 bg-[#161b22] border border-[#30363d]">
+      <TabsList className="grid w-full grid-cols-12 bg-[#161b22] border border-[#30363d]">
         <TabsTrigger value="personal" className="data-[state=active]:bg-[#21262d]">
           <Brain className="w-4 h-4 mr-2" />
           Personal Hub
@@ -44,6 +45,10 @@ const AdminTabs = ({ activeTab, setActiveTab, counts }: AdminTabsProps) => {
         <TabsTrigger value="featured" className="data-[state=active]:bg-[#21262d]">
           <Settings className="w-4 h-4 mr-2" />
           Featured
+        </TabsTrigger>
+        <TabsTrigger value="resume" className="data-[state=active]:bg-[#21262d]">
+          <Download className="w-4 h-4 mr-2" />
+          Resume
         </TabsTrigger>
         <TabsTrigger value="profile" className="data-[state=active]:bg-[#21262d]">
           <User className="w-4 h-4 mr-2" />
@@ -91,6 +96,13 @@ const AdminTabs = ({ activeTab, setActiveTab, counts }: AdminTabsProps) => {
         <div className="space-y-6">
           <h2 className="text-2xl font-bold text-white">Featured Section Management</h2>
           <FeaturedSectionManager />
+        </div>
+      </TabsContent>
+
+      <TabsContent value="resume" className="mt-6">
+        <div className="space-y-6">
+          <h2 className="text-2xl font-bold text-white">Resume Management</h2>
+          <ResumeManagement />
         </div>
       </TabsContent>
 

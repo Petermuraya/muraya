@@ -338,6 +338,50 @@ export type Database = {
         }
         Relationships: []
       }
+      resume_files: {
+        Row: {
+          created_at: string
+          file_size: number | null
+          file_url: string
+          filename: string
+          id: string
+          is_active: boolean
+          mime_type: string | null
+          updated_at: string
+          uploaded_by: string | null
+        }
+        Insert: {
+          created_at?: string
+          file_size?: number | null
+          file_url: string
+          filename: string
+          id?: string
+          is_active?: boolean
+          mime_type?: string | null
+          updated_at?: string
+          uploaded_by?: string | null
+        }
+        Update: {
+          created_at?: string
+          file_size?: number | null
+          file_url?: string
+          filename?: string
+          id?: string
+          is_active?: boolean
+          mime_type?: string | null
+          updated_at?: string
+          uploaded_by?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "resume_files_uploaded_by_fkey"
+            columns: ["uploaded_by"]
+            isOneToOne: false
+            referencedRelation: "admin_users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
