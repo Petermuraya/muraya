@@ -104,6 +104,62 @@ const About = () => {
               <section id="values" className="fade-in-up opacity-0 translate-y-8 transition-all duration-700 delay-800">
                 <ValuesSection />
               </section>
+
+              {/* Additional Content Sections */}
+              <section id="achievements" className="py-12 slide-in-left opacity-0 -translate-x-full transition-all duration-700 delay-900">
+                <div className="text-center mb-12">
+                  <h2 className="text-4xl font-bold bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent mb-6">
+                    Key Achievements
+                  </h2>
+                  <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full" />
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                  <div className="text-center p-6 glass-effect border-[#30363d] rounded-lg hover:border-blue-500/30 transition-all duration-300">
+                    <div className="text-3xl font-bold text-blue-400 mb-2">15+</div>
+                    <p className="text-[#8b949e]">Projects Completed</p>
+                  </div>
+                  <div className="text-center p-6 glass-effect border-[#30363d] rounded-lg hover:border-blue-500/30 transition-all duration-300">
+                    <div className="text-3xl font-bold text-green-400 mb-2">3+</div>
+                    <p className="text-[#8b949e]">Years Experience</p>
+                  </div>
+                  <div className="text-center p-6 glass-effect border-[#30363d] rounded-lg hover:border-blue-500/30 transition-all duration-300">
+                    <div className="text-3xl font-bold text-purple-400 mb-2">10+</div>
+                    <p className="text-[#8b949e]">Technologies Mastered</p>
+                  </div>
+                  <div className="text-center p-6 glass-effect border-[#30363d] rounded-lg hover:border-blue-500/30 transition-all duration-300">
+                    <div className="text-3xl font-bold text-cyan-400 mb-2">5+</div>
+                    <p className="text-[#8b949e]">AI/ML Projects</p>
+                  </div>
+                </div>
+              </section>
+
+              {/* Contact Call-to-Action */}
+              <section id="contact-cta" className="py-12 text-center scale-in opacity-0 scale-75 transition-all duration-700 delay-1000">
+                <div className="glass-effect border-[#30363d] rounded-lg p-8 max-w-2xl mx-auto">
+                  <h2 className="text-3xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent mb-4">
+                    Let's Build Something Amazing Together
+                  </h2>
+                  <p className="text-[#8b949e] mb-6 text-lg">
+                    Ready to discuss your next project or explore collaboration opportunities? 
+                    I'm always excited to work on innovative solutions that make a difference.
+                  </p>
+                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a 
+                      href="/contact" 
+                      className="px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 rounded-lg text-white font-medium transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/25"
+                    >
+                      Get In Touch
+                    </a>
+                    <a 
+                      href="/projects" 
+                      className="px-6 py-3 border border-[#30363d] hover:border-blue-500/50 rounded-lg text-white font-medium transition-all duration-300 hover:bg-blue-500/10"
+                    >
+                      View My Work
+                    </a>
+                  </div>
+                </div>
+              </section>
             </div>
           </main>
           
