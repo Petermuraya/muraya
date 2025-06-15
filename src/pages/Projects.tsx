@@ -1,15 +1,15 @@
-
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import LikeButton from '@/components/LikeButton';
 import CommentsSection from '@/components/CommentsSection';
 import SEO from '@/components/SEO';
-import { Github, Link as LinkIcon, MessageCircle, Search, Filter, Star, Calendar, Tag } from 'lucide-react';
+import { Github, Link as LinkIcon, MessageCircle, Search, Filter, Star, Calendar, Tag, Grid, List, SlidersHorizontal } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 
@@ -26,13 +26,19 @@ interface Project {
   created_at: string;
 }
 
+type ViewMode = 'grid' | 'list';
+type SortOption = 'newest' | 'oldest' | 'featured' | 'alphabetical';
+
 const Projects = () => {
   const [activeFilter, setActiveFilter] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
   const [expandedProject, setExpandedProject] = useState<number | null>(null);
   const [projects, setProjects] = useState<Project[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [sortBy, setSortBy] = useState<'newest' | 'oldest' | 'featured'>('newest');
+  const [sortBy, setSortBy] = useState<SortOption>('newest');
+  const [viewMode, setViewMode] = useState<ViewMode>('grid');
+  const [showFilters, setShowFilters] = useState(false);
+  const [selectedTech, setSelectedTech] = useState<string>('all');
   const { toast } = useToast();
 
   useEffect(() => {
@@ -108,13 +114,19 @@ const Projects = () => {
   
   const categories = ['All', 'Web Development', 'Mobile', 'AI/ML', 'DevOps', 'IoT'];
   
+  // Get all unique technologies from projects
+  const allTechnologies = Array.from(
+    new Set(projects.flatMap(project => project.tech || []))
+  ).sort();
+
   const filteredAndSortedProjects = projects
     .filter(project => {
       const matchesCategory = activeFilter === 'All' || project.category === activeFilter;
       const matchesSearch = project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
                            project.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
                            project.tech?.some(tech => tech.toLowerCase().includes(searchQuery.toLowerCase()));
-      return matchesCategory && matchesSearch;
+      const matchesTech = selectedTech === 'all' || project.tech?.includes(selectedTech);
+      return matchesCategory && matchesSearch && matchesTech;
     })
     .sort((a, b) => {
       switch (sortBy) {
@@ -124,6 +136,8 @@ const Projects = () => {
           return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
         case 'oldest':
           return new Date(a.created_at).getTime() - new Date(b.created_at).getTime();
+        case 'alphabetical':
+          return a.title.localeCompare(b.title);
         case 'newest':
         default:
           return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
@@ -133,6 +147,15 @@ const Projects = () => {
   const toggleComments = (projectIndex: number) => {
     setExpandedProject(expandedProject === projectIndex ? null : projectIndex);
   };
+
+  const clearAllFilters = () => {
+    setActiveFilter('All');
+    setSearchQuery('');
+    setSelectedTech('all');
+    setSortBy('newest');
+  };
+
+  const hasActiveFilters = activeFilter !== 'All' || searchQuery !== '' || selectedTech !== 'all';
 
   const structuredData = {
     "@context": "https://schema.org",
@@ -228,91 +251,168 @@ const Projects = () => {
                 </div>
               </div>
 
-              {/* Enhanced Search and Filter Section */}
+              {/* Enhanced Filter Bar */}
               <div className="mb-12 scroll-animate opacity-0">
-                <div className="flex flex-col lg:flex-row gap-6 items-center justify-between mb-8">
-                  {/* Search Bar */}
-                  <div className="relative flex-1 max-w-md">
-                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#7d8590] w-4 h-4" />
-                    <Input
-                      placeholder="Search projects, technologies..."
-                      value={searchQuery}
-                      onChange={(e) => setSearchQuery(e.target.value)}
-                      className="pl-10 bg-[#161b22]/80 backdrop-blur-md border-[#30363d] text-white placeholder-[#7d8590] focus:border-blue-500/50 focus:ring-blue-500/20"
-                    />
-                  </div>
-
-                  {/* Sort Options */}
-                  <div className="flex items-center gap-3">
-                    <div className="flex items-center gap-2 text-sm text-[#c9d1d9]">
-                      <Filter className="w-4 h-4" />
-                      <span>Sort by:</span>
-                    </div>
-                    <div className="flex gap-2">
-                      {[
-                        { key: 'newest', label: 'Newest', icon: Calendar },
-                        { key: 'featured', label: 'Featured', icon: Star },
-                        { key: 'oldest', label: 'Oldest', icon: Calendar }
-                      ].map(({ key, label, icon: Icon }) => (
-                        <Button
-                          key={key}
-                          variant={sortBy === key ? "default" : "outline"}
-                          size="sm"
-                          onClick={() => setSortBy(key as typeof sortBy)}
-                          className={`transition-all duration-300 ${
-                            sortBy === key 
-                              ? "bg-gradient-to-r from-blue-500 to-blue-600 border-0 shadow-lg" 
-                              : "border-[#30363d] bg-[#161b22]/50 backdrop-blur-md hover:bg-[#30363d]/50 hover:border-blue-500/30 text-[#c9d1d9]"
-                          }`}
+                <div className="bg-[#161b22]/80 backdrop-blur-md border border-[#30363d] rounded-xl p-6 shadow-xl">
+                  {/* Top Row - Search and Controls */}
+                  <div className="flex flex-col lg:flex-row gap-4 items-center justify-between mb-6">
+                    {/* Search Bar */}
+                    <div className="relative flex-1 max-w-md">
+                      <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#7d8590] w-4 h-4" />
+                      <Input
+                        placeholder="Search projects, technologies..."
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        className="pl-10 bg-[#0d1117]/60 backdrop-blur-md border-[#30363d] text-white placeholder-[#7d8590] focus:border-blue-500/50 focus:ring-blue-500/20"
+                      />
+                      {searchQuery && (
+                        <button
+                          onClick={() => setSearchQuery('')}
+                          className="absolute right-3 top-1/2 transform -translate-y-1/2 text-[#7d8590] hover:text-white"
                         >
-                          <Icon className="w-3 h-3 mr-1" />
-                          {label}
-                        </Button>
-                      ))}
+                          ×
+                        </button>
+                      )}
+                    </div>
+
+                    {/* View Controls */}
+                    <div className="flex items-center gap-3">
+                      {/* View Mode Toggle */}
+                      <div className="flex items-center bg-[#21262d] rounded-lg p-1">
+                        <button
+                          onClick={() => setViewMode('grid')}
+                          className={`p-2 rounded-md transition-all ${viewMode === 'grid' ? 'bg-blue-500 text-white' : 'text-[#7d8590] hover:text-white'}`}
+                        >
+                          <Grid className="w-4 h-4" />
+                        </button>
+                        <button
+                          onClick={() => setViewMode('list')}
+                          className={`p-2 rounded-md transition-all ${viewMode === 'list' ? 'bg-blue-500 text-white' : 'text-[#7d8590] hover:text-white'}`}
+                        >
+                          <List className="w-4 h-4" />
+                        </button>
+                      </div>
+
+                      {/* Filter Toggle */}
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => setShowFilters(!showFilters)}
+                        className={`border-[#30363d] bg-[#21262d]/50 text-[#c9d1d9] hover:bg-[#30363d]/50 hover:border-blue-500/30 ${showFilters ? 'border-blue-500/50 bg-blue-500/10' : ''}`}
+                      >
+                        <SlidersHorizontal className="w-4 h-4 mr-2" />
+                        Filters
+                        {hasActiveFilters && <div className="w-2 h-2 bg-blue-500 rounded-full ml-2"></div>}
+                      </Button>
                     </div>
                   </div>
-                </div>
 
-                {/* Enhanced Filter Buttons */}
-                <div className="flex flex-wrap justify-center gap-3">
-                  {categories.map((category) => (
-                    <Button
-                      key={category}
-                      variant={activeFilter === category ? "default" : "outline"}
-                      onClick={() => setActiveFilter(category)}
-                      className={`px-6 py-3 transition-all duration-300 ${
-                        activeFilter === category 
-                          ? "bg-gradient-to-r from-blue-500 to-blue-600 border-0 shadow-lg hover:shadow-blue-500/20 scale-105" 
-                          : "border-[#30363d] bg-[#161b22]/50 backdrop-blur-md hover:bg-[#30363d]/50 hover:border-blue-500/30 text-[#c9d1d9] hover:scale-105"
-                      }`}
-                    >
-                      <Tag className="w-4 h-4 mr-2" />
-                      {category}
-                      {category !== 'All' && (
-                        <Badge variant="secondary" className="ml-2 bg-[#21262d] text-[#c9d1d9] text-xs">
-                          {projects.filter(p => p.category === category).length}
-                        </Badge>
+                  {/* Expandable Filters */}
+                  {showFilters && (
+                    <div className="space-y-4 pt-4 border-t border-[#30363d] animate-fade-in">
+                      {/* Category Filter */}
+                      <div>
+                        <label className="text-sm font-medium text-[#c9d1d9] mb-2 block">Category</label>
+                        <div className="flex flex-wrap gap-2">
+                          {categories.map((category) => (
+                            <Button
+                              key={category}
+                              variant={activeFilter === category ? "default" : "outline"}
+                              size="sm"
+                              onClick={() => setActiveFilter(category)}
+                              className={`transition-all duration-300 ${
+                                activeFilter === category 
+                                  ? "bg-gradient-to-r from-blue-500 to-blue-600 border-0 shadow-lg" 
+                                  : "border-[#30363d] bg-[#21262d]/50 hover:bg-[#30363d]/50 hover:border-blue-500/30 text-[#c9d1d9]"
+                              }`}
+                            >
+                              <Tag className="w-3 h-3 mr-1" />
+                              {category}
+                              {category !== 'All' && (
+                                <Badge variant="secondary" className="ml-2 bg-[#30363d] text-[#c9d1d9] text-xs">
+                                  {projects.filter(p => p.category === category).length}
+                                </Badge>
+                              )}
+                            </Button>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Technology Filter */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                          <label className="text-sm font-medium text-[#c9d1d9] mb-2 block">Technology</label>
+                          <Select value={selectedTech} onValueChange={setSelectedTech}>
+                            <SelectTrigger className="bg-[#0d1117]/60 border-[#30363d] text-white">
+                              <SelectValue placeholder="Filter by technology" />
+                            </SelectTrigger>
+                            <SelectContent className="bg-[#161b22] border-[#30363d] text-white">
+                              <SelectItem value="all">All Technologies</SelectItem>
+                              {allTechnologies.map((tech) => (
+                                <SelectItem key={tech} value={tech}>
+                                  {tech} ({projects.filter(p => p.tech?.includes(tech)).length})
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                        </div>
+
+                        <div>
+                          <label className="text-sm font-medium text-[#c9d1d9] mb-2 block">Sort By</label>
+                          <Select value={sortBy} onValueChange={(value: SortOption) => setSortBy(value)}>
+                            <SelectTrigger className="bg-[#0d1117]/60 border-[#30363d] text-white">
+                              <SelectValue />
+                            </SelectTrigger>
+                            <SelectContent className="bg-[#161b22] border-[#30363d] text-white">
+                              <SelectItem value="newest">Newest First</SelectItem>
+                              <SelectItem value="oldest">Oldest First</SelectItem>
+                              <SelectItem value="featured">Featured First</SelectItem>
+                              <SelectItem value="alphabetical">Alphabetical</SelectItem>
+                            </SelectContent>
+                          </Select>
+                        </div>
+                      </div>
+
+                      {/* Clear Filters */}
+                      {hasActiveFilters && (
+                        <div className="flex justify-end">
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={clearAllFilters}
+                            className="text-[#7d8590] hover:text-white hover:bg-[#30363d]/50"
+                          >
+                            Clear all filters
+                          </Button>
+                        </div>
                       )}
-                    </Button>
-                  ))}
-                </div>
+                    </div>
+                  )}
 
-                {/* Results Counter */}
-                {(searchQuery || activeFilter !== 'All') && (
-                  <div className="text-center mt-4">
-                    <p className="text-sm text-[#7d8590]">
-                      Showing <span className="text-blue-400 font-semibold">{filteredAndSortedProjects.length}</span> 
-                      {searchQuery && ` results for "${searchQuery}"`}
-                      {activeFilter !== 'All' && ` in ${activeFilter}`}
-                    </p>
+                  {/* Results Summary */}
+                  <div className="flex items-center justify-between mt-4 pt-4 border-t border-[#30363d] text-sm text-[#7d8590]">
+                    <span>
+                      Showing <span className="text-blue-400 font-semibold">{filteredAndSortedProjects.length}</span> of {projects.length} projects
+                    </span>
+                    {hasActiveFilters && (
+                      <span className="text-yellow-400">
+                        Filters active
+                      </span>
+                    )}
                   </div>
-                )}
+                </div>
               </div>
 
-              {/* Enhanced Projects Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 scroll-animate opacity-0">
+              {/* Projects Display */}
+              <div className={`scroll-animate opacity-0 ${
+                viewMode === 'grid' 
+                  ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8' 
+                  : 'space-y-6'
+              }`}>
                 {filteredAndSortedProjects.map((project, index) => (
-                  <Card key={project.id} className="group overflow-hidden glass-effect border-[#30363d] hover:border-blue-500/30 transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl hover:shadow-blue-500/20 relative">
+                  <Card key={project.id} className={`group overflow-hidden glass-effect border-[#30363d] hover:border-blue-500/30 transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl hover:shadow-blue-500/20 relative ${
+                    viewMode === 'list' ? 'flex flex-col md:flex-row' : ''
+                  }`}>
                     {/* Featured Badge */}
                     {project.featured && (
                       <div className="absolute top-4 left-4 z-10">
@@ -323,15 +423,19 @@ const Projects = () => {
                       </div>
                     )}
                     
-                    <div className="relative overflow-hidden">
+                    <div className={`relative overflow-hidden ${viewMode === 'list' ? 'md:w-1/3' : ''}`}>
                       {project.image ? (
                         <img 
                           src={project.image} 
                           alt={project.title}
-                          className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500 filter grayscale group-hover:grayscale-0"
+                          className={`object-cover group-hover:scale-110 transition-transform duration-500 filter grayscale group-hover:grayscale-0 ${
+                            viewMode === 'list' ? 'w-full h-48 md:h-full' : 'w-full h-48'
+                          }`}
                         />
                       ) : (
-                        <div className="w-full h-48 bg-gradient-to-br from-[#21262d] to-[#30363d] flex items-center justify-center">
+                        <div className={`bg-gradient-to-br from-[#21262d] to-[#30363d] flex items-center justify-center ${
+                          viewMode === 'list' ? 'w-full h-48 md:h-full' : 'w-full h-48'
+                        }`}>
                           <div className="text-[#7d8590] text-center">
                             <div className="w-16 h-16 mx-auto mb-2 rounded-full bg-[#30363d] flex items-center justify-center">
                               <LinkIcon className="w-8 h-8" />
@@ -340,7 +444,6 @@ const Projects = () => {
                           </div>
                         </div>
                       )}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                       
                       {/* Project Stats Overlay */}
                       <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
@@ -364,32 +467,34 @@ const Projects = () => {
                       </div>
                     </div>
                     
-                    <div className="p-6">
-                      <div className="flex items-start justify-between mb-3">
-                        <h3 className="text-xl font-semibold text-[#c9d1d9] group-hover:text-blue-400 transition-colors duration-300 line-clamp-1">
-                          {project.title}
-                        </h3>
-                        <Badge variant="outline" className="border-[#30363d] text-[#7d8590] text-xs shrink-0 ml-2">
-                          {project.category}
-                        </Badge>
+                    <div className={`p-6 ${viewMode === 'list' ? 'md:w-2/3 flex flex-col justify-between' : ''}`}>
+                      <div>
+                        <div className="flex items-start justify-between mb-3">
+                          <h3 className="text-xl font-semibold text-[#c9d1d9] group-hover:text-blue-400 transition-colors duration-300 line-clamp-1">
+                            {project.title}
+                          </h3>
+                          <Badge variant="outline" className="border-[#30363d] text-[#7d8590] text-xs shrink-0 ml-2">
+                            {project.category}
+                          </Badge>
+                        </div>
+                        
+                        <p className="text-[#8b949e] mb-4 text-sm leading-relaxed group-hover:text-[#c9d1d9] transition-colors duration-300 line-clamp-3">
+                          {project.description}
+                        </p>
                       </div>
-                      
-                      <p className="text-[#8b949e] mb-4 text-sm leading-relaxed group-hover:text-[#c9d1d9] transition-colors duration-300 line-clamp-3">
-                        {project.description}
-                      </p>
                       
                       {/* Tech Stack */}
                       {project.tech && project.tech.length > 0 && (
                         <div className="mb-6">
                           <div className="flex flex-wrap gap-2">
-                            {project.tech.slice(0, 4).map((tech) => (
+                            {project.tech.slice(0, viewMode === 'list' ? 6 : 4).map((tech) => (
                               <span key={tech} className="bg-[#161b22] text-[#c9d1d9] px-3 py-1 rounded-full text-xs font-medium border border-[#30363d] hover:border-blue-500/30 transition-colors duration-300">
                                 {tech}
                               </span>
                             ))}
-                            {project.tech.length > 4 && (
+                            {project.tech.length > (viewMode === 'list' ? 6 : 4) && (
                               <span className="bg-[#161b22] text-[#7d8590] px-3 py-1 rounded-full text-xs font-medium border border-[#30363d]">
-                                +{project.tech.length - 4} more
+                                +{project.tech.length - (viewMode === 'list' ? 6 : 4)} more
                               </span>
                             )}
                           </div>
@@ -451,21 +556,14 @@ const Projects = () => {
                     <h3 className="text-2xl font-semibold text-[#c9d1d9] mb-4">No projects found</h3>
                     <p className="text-[#7d8590] mb-6 leading-relaxed">
                       {searchQuery 
-                        ? `No projects match your search for "${searchQuery}". Try different keywords or browse all categories.`
-                        : `No projects found in the ${activeFilter} category. Try selecting a different category or check back later for new projects.`
+                        ? `No projects match your search criteria. Try adjusting your filters or search terms.`
+                        : `No projects found matching the current filters. Try clearing some filters to see more results.`
                       }
                     </p>
                     <div className="flex gap-3 justify-center">
-                      {searchQuery && (
-                        <Button onClick={() => setSearchQuery('')} variant="outline" className="border-[#30363d] bg-[#161b22]/50 text-[#c9d1d9]">
-                          Clear Search
-                        </Button>
-                      )}
-                      {activeFilter !== 'All' && (
-                        <Button onClick={() => setActiveFilter('All')} className="bg-gradient-to-r from-blue-500 to-blue-600">
-                          Show All Projects
-                        </Button>
-                      )}
+                      <Button onClick={clearAllFilters} className="bg-gradient-to-r from-blue-500 to-blue-600">
+                        Clear All Filters
+                      </Button>
                     </div>
                   </div>
                 </div>
