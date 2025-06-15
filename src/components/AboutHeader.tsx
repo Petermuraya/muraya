@@ -32,15 +32,13 @@ const AboutHeader = () => {
       
       <div className="max-w-4xl mx-auto">
         <p className="text-xl md:text-2xl text-[#7d8590] leading-relaxed slide-in-up opacity-0 translate-y-4 transition-all duration-700 delay-300 mb-6">
-          Passionate about building <span className="text-blue-400 font-semibold">smart, scalable solutions</span> that drive 
-          <span className="text-green-400 font-semibold"> global development</span>, 
-          <span className="text-purple-400 font-semibold"> sustainability</span>, and 
-          <span className="text-cyan-400 font-semibold"> digital innovation</span>.
+          Passionate about leveraging technology for global development, inclusion, and digital innovation. 
+          Specializing in smart agriculture, health tech, and AI-powered solutions.
         </p>
         
         <p className="text-lg text-[#8b949e] leading-relaxed slide-in-up opacity-0 translate-y-4 transition-all duration-700 delay-500">
-          Specializing in AI-powered healthcare solutions, IoT-enabled agriculture, and cloud-native applications 
-          that create meaningful impact across Africa and beyond.
+          Building scalable IoT ecosystems and cloud-native applications that create meaningful impact 
+          across Africa and beyond through innovative technology solutions.
         </p>
       </div>
       
