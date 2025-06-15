@@ -91,13 +91,13 @@ const HeroSection = () => {
 
   return (
     <section ref={sectionRef} className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
-      {/* Enhanced Background Images with Better Visibility */}
+      {/* Background Images with Reduced Visibility */}
       <div className="absolute inset-0 z-0">
         {iotImages.map((image, index) => (
           <div
             key={index}
             className={`absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-[3000ms] ease-in-out ${
-              index === currentImageIndex ? 'opacity-70' : 'opacity-0'
+              index === currentImageIndex ? 'opacity-30' : 'opacity-0'
             }`}
             style={{
               backgroundImage: `url('${image}')`,
@@ -107,9 +107,9 @@ const HeroSection = () => {
           ></div>
         ))}
         
-        {/* Reduced gradient overlay for better image visibility */}
+        {/* Strong gradient overlay for better text readability */}
         <div 
-          className="absolute inset-0 bg-gradient-to-br from-[#0d1117]/70 via-[#161b22]/60 to-[#21262d]/70"
+          className="absolute inset-0 bg-gradient-to-br from-[#0d1117]/90 via-[#161b22]/85 to-[#21262d]/90"
           style={{
             transform: `translate3d(${(mousePosition.x - 0.5) * -10}px, ${(mousePosition.y - 0.5) * -10}px, 0)`,
             transition: 'transform 0.5s ease-out'
@@ -117,9 +117,9 @@ const HeroSection = () => {
         ></div>
       </div>
 
-      {/* Enhanced Circuit pattern overlay with cursor movement */}
+      {/* Reduced Circuit pattern overlay */}
       <div 
-        className="absolute inset-0 z-1 opacity-20"
+        className="absolute inset-0 z-1 opacity-10"
         style={{
           transform: `translate3d(${(mousePosition.x - 0.5) * 15}px, ${(mousePosition.y - 0.5) * 15}px, 0)`,
           transition: 'transform 0.4s ease-out'
@@ -128,12 +128,12 @@ const HeroSection = () => {
         <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=&quot;100&quot; height=&quot;100&quot; viewBox=&quot;0 0 100 100&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;%3E%3Cg fill=&quot;none&quot; fill-rule=&quot;evenodd&quot;%3E%3Cg fill=&quot;%2300D4FF&quot; fill-opacity=&quot;0.5&quot;%3E%3Cpath d=&quot;M20,20 L80,20 M20,20 L20,80 M20,80 L80,80 M80,20 L80,80 M40,40 L60,40 M40,40 L40,60 M40,60 L60,60 M60,40 L60,60&quot; stroke=&quot;%2300D4FF&quot; stroke-width=&quot;0.5&quot;/%3E%3Ccircle cx=&quot;20&quot; cy=&quot;20&quot; r=&quot;2&quot;/%3E%3Ccircle cx=&quot;80&quot; cy=&quot;20&quot; r=&quot;2&quot;/%3E%3Ccircle cx=&quot;20&quot; cy=&quot;80&quot; r=&quot;2&quot;/%3E%3Ccircle cx=&quot;80&quot; cy=&quot;80&quot; r=&quot;2&quot;/%3E%3Ccircle cx=&quot;50&quot; cy=&quot;50&quot; r=&quot;3&quot;/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] bg-repeat"></div>
       </div>
 
-      {/* Floating particles effect */}
+      {/* Reduced Floating particles effect */}
       <div className="absolute inset-0 z-1">
-        {[...Array(20)].map((_, i) => (
+        {[...Array(10)].map((_, i) => (
           <div
             key={i}
-            className="absolute w-1 h-1 bg-blue-400/30 rounded-full animate-float"
+            className="absolute w-1 h-1 bg-blue-400/20 rounded-full animate-float"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
@@ -176,15 +176,19 @@ const HeroSection = () => {
             </p>
           </div>
           
-          {/* Enhanced Typing Text with Code Colors */}
-          <p 
-            ref={typingTextRef}
-            className="text-lg text-[#8b949e] mb-12 max-w-2xl mx-auto leading-relaxed min-h-[3.5rem] transition-all duration-300 font-mono bg-[#0d1117]/80 backdrop-blur-sm border border-[#30363d]/50 rounded-lg p-6 shadow-lg"
-            dangerouslySetInnerHTML={{ __html: displayText }}
-          />
+          {/* Enhanced Typing Text with Larger Font and Better Visibility */}
+          <div className="relative mb-12">
+            {/* Extra background blur for text area */}
+            <div className="absolute inset-0 bg-[#0d1117]/95 backdrop-blur-md rounded-2xl"></div>
+            <p 
+              ref={typingTextRef}
+              className="relative text-xl md:text-2xl lg:text-3xl text-white mb-0 max-w-4xl mx-auto leading-relaxed min-h-[4rem] md:min-h-[5rem] transition-all duration-300 font-mono border border-[#30363d]/30 rounded-2xl p-8 md:p-10 shadow-2xl"
+              dangerouslySetInnerHTML={{ __html: displayText }}
+            />
+          </div>
           {!isComplete && (
             <div className="flex justify-center mb-12">
-              <span className="inline-block w-0.5 h-6 bg-green-400 animate-pulse"></span>
+              <span className="inline-block w-1 h-8 bg-green-400 animate-pulse"></span>
             </div>
           )}
           
