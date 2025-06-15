@@ -13,6 +13,13 @@ const useTypingEffect = ({ text, speed = 50, delay = 0 }: UseTypingEffectProps) 
   const [isComplete, setIsComplete] = useState(false);
 
   useEffect(() => {
+    // Reset state when text changes
+    setDisplayText('');
+    setCurrentIndex(0);
+    setIsComplete(false);
+  }, [text]);
+
+  useEffect(() => {
     if (currentIndex < text.length) {
       const timeout = setTimeout(() => {
         setDisplayText(prev => prev + text[currentIndex]);

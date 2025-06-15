@@ -1,4 +1,3 @@
-
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { ArrowDown, Github, Linkedin, Mail } from 'lucide-react';
@@ -13,7 +12,8 @@ const HeroSection = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   
-  const typingText = "Passionate about leveraging technology for global development, inclusion, and digital innovation. Specializing in smart agriculture, health tech, and AI-powered solutions.";
+  // Enhanced typing text with code-like structure
+  const typingText = "Passionate about leveraging <span class='text-blue-400'>technology</span> for global <span class='text-green-400'>development</span>, <span class='text-purple-400'>inclusion</span>, and digital <span class='text-cyan-400'>innovation</span>. Specializing in smart <span class='text-yellow-400'>agriculture</span>, <span class='text-red-400'>health tech</span>, and <span class='text-pink-400'>AI-powered</span> solutions.";
   
   const { displayText, isComplete } = useTypingEffect({
     text: typingText,
@@ -91,13 +91,13 @@ const HeroSection = () => {
 
   return (
     <section ref={sectionRef} className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
-      {/* Multiple IoT Background Images with Transitions */}
+      {/* Enhanced Background Images with Better Visibility */}
       <div className="absolute inset-0 z-0">
         {iotImages.map((image, index) => (
           <div
             key={index}
             className={`absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-[3000ms] ease-in-out ${
-              index === currentImageIndex ? 'opacity-45' : 'opacity-0'
+              index === currentImageIndex ? 'opacity-70' : 'opacity-0'
             }`}
             style={{
               backgroundImage: `url('${image}')`,
@@ -107,9 +107,9 @@ const HeroSection = () => {
           ></div>
         ))}
         
-        {/* Enhanced gradient overlay for better text readability */}
+        {/* Reduced gradient overlay for better image visibility */}
         <div 
-          className="absolute inset-0 bg-gradient-to-br from-[#0d1117]/85 via-[#161b22]/80 to-[#21262d]/85"
+          className="absolute inset-0 bg-gradient-to-br from-[#0d1117]/70 via-[#161b22]/60 to-[#21262d]/70"
           style={{
             transform: `translate3d(${(mousePosition.x - 0.5) * -10}px, ${(mousePosition.y - 0.5) * -10}px, 0)`,
             transition: 'transform 0.5s ease-out'
@@ -119,7 +119,7 @@ const HeroSection = () => {
 
       {/* Enhanced Circuit pattern overlay with cursor movement */}
       <div 
-        className="absolute inset-0 z-1 opacity-25"
+        className="absolute inset-0 z-1 opacity-20"
         style={{
           transform: `translate3d(${(mousePosition.x - 0.5) * 15}px, ${(mousePosition.y - 0.5) * 15}px, 0)`,
           transition: 'transform 0.4s ease-out'
@@ -176,15 +176,17 @@ const HeroSection = () => {
             </p>
           </div>
           
+          {/* Enhanced Typing Text with Code Colors */}
           <p 
             ref={typingTextRef}
-            className="text-lg text-[#8b949e] mb-12 max-w-2xl mx-auto leading-relaxed min-h-[3.5rem] transition-all duration-300"
-          >
-            {displayText}
-            {!isComplete && (
-              <span className="inline-block w-0.5 h-6 bg-blue-400 ml-1 animate-pulse"></span>
-            )}
-          </p>
+            className="text-lg text-[#8b949e] mb-12 max-w-2xl mx-auto leading-relaxed min-h-[3.5rem] transition-all duration-300 font-mono bg-[#0d1117]/80 backdrop-blur-sm border border-[#30363d]/50 rounded-lg p-6 shadow-lg"
+            dangerouslySetInnerHTML={{ __html: displayText }}
+          />
+          {!isComplete && (
+            <div className="flex justify-center mb-12">
+              <span className="inline-block w-0.5 h-6 bg-green-400 animate-pulse"></span>
+            </div>
+          )}
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12 animate-fade-in-up [animation-delay:600ms] opacity-0 [animation-fill-mode:forwards]">
             <Button asChild size="lg" className="text-lg px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 border border-blue-500/20 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 backdrop-blur-sm">
