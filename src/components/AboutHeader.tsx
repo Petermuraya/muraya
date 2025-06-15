@@ -1,4 +1,5 @@
 
+
 const AboutHeader = () => {
   return (
     <div className="text-center mb-16 scroll-animate fade-in-up opacity-0 translate-y-8 transition-all duration-700">
@@ -32,8 +33,13 @@ const AboutHeader = () => {
       
       <div className="max-w-4xl mx-auto">
         <p className="text-xl md:text-2xl text-[#7d8590] leading-relaxed slide-in-up opacity-0 translate-y-4 transition-all duration-700 delay-300 mb-6">
-          Passionate about leveraging technology for global development, inclusion, and digital innovation. 
-          Specializing in smart agriculture, health tech, and AI-powered solutions.
+          Passionate about leveraging <span className="text-blue-400 font-semibold">technology</span> for 
+          <span className="text-green-400 font-semibold"> global development</span>, 
+          <span className="text-purple-400 font-semibold"> inclusion</span>, and 
+          <span className="text-cyan-400 font-semibold"> digital innovation</span>. 
+          Specializing in <span className="text-yellow-400 font-semibold">smart agriculture</span>, 
+          <span className="text-red-400 font-semibold"> health tech</span>, and 
+          <span className="text-pink-400 font-semibold"> AI-powered solutions</span>.
         </p>
         
         <p className="text-lg text-[#8b949e] leading-relaxed slide-in-up opacity-0 translate-y-4 transition-all duration-700 delay-500">
@@ -62,3 +68,4 @@ const AboutHeader = () => {
 };
 
 export default AboutHeader;
+
