@@ -106,7 +106,7 @@ const Blog = () => {
           <meta name="description" content={selectedBlog.excerpt || selectedBlog.title} />
         </Helmet>
         
-        <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
+        <div data-reveal className="min-h-screen bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
           <Navigation />
           
           <main className="pt-20">

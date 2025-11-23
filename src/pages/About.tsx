@@ -53,7 +53,7 @@ const About = () => {
         breadcrumbs={breadcrumbs}
       />
       
-      <div className="min-h-screen bg-white dark:bg-[#0d1117] text-gray-900 dark:text-white overflow-x-hidden relative">
+      <div data-reveal className="min-h-screen bg-white dark:bg-[#0d1117] text-gray-900 dark:text-white overflow-x-hidden relative">
         <ParticleBackground />
         <AboutBackgroundEffects 
           mousePosition={mousePosition}

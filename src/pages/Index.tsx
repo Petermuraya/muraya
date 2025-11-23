@@ -33,7 +33,7 @@ const Index = () => {
         customStructuredData={enhancedStructuredData}
       />
       
-      <div className="min-h-screen bg-white dark:bg-[#0d1117] text-gray-900 dark:text-white overflow-x-hidden">
+      <div data-reveal className="min-h-screen bg-white dark:bg-[#0d1117] text-gray-900 dark:text-white overflow-x-hidden">
         <BackgroundEffects />
 
         <div className="relative z-10">

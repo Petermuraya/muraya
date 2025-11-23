@@ -35,7 +35,7 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section ref={sectionRef} data-reveal className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
       <HeroBackground mousePosition={mousePosition} />
 
       <div className="max-w-7xl mx-auto relative z-10">

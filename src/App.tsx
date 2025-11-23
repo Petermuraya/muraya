@@ -17,6 +17,7 @@ import VoiceChatbot from "@/components/VoiceChatbot";
 import FastPageLoader from "@/components/loading/FastPageLoader";
 import SkeletonLoader from "@/components/loading/SkeletonLoader";
 import { useServiceWorker, usePerformanceMonitoring } from "@/hooks/usePerformance";
+import useRevealOnScroll from '@/hooks/useRevealOnScroll';
 
 // Lazy load pages for code splitting
 const Index = lazy(() => import("@/pages/Index"));
@@ -113,6 +114,8 @@ const App = () => {
   // Initialize performance monitoring and service worker
   useServiceWorker();
   usePerformanceMonitoring();
+  // Initialize global reveal-on-scroll observer
+  useRevealOnScroll();
 
   return (
     <QueryClientProvider client={queryClient}>

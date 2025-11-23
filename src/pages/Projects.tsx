@@ -214,7 +214,7 @@ const Projects = () => {
         structuredData={structuredData}
       />
       
-      <div className="min-h-screen bg-white dark:bg-[#0d1117] text-gray-900 dark:text-white overflow-x-hidden">
+      <div data-reveal className="min-h-screen bg-white dark:bg-[#0d1117] text-gray-900 dark:text-white overflow-x-hidden">
         {/* Background Effects */}
         <div className="fixed inset-0 overflow-hidden pointer-events-none">
           <div className="parallax-bg absolute inset-0 bg-gradient-to-br from-white via-gray-50 to-gray-100 dark:from-[#0d1117] dark:via-[#161b22] dark:to-[#21262d]"></div>

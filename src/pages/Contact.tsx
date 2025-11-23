@@ -95,7 +95,7 @@ const Contact = () => {
         </script>
       </Helmet>
 
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-white dark:from-gray-900 dark:via-blue-900/20 dark:to-gray-800">
+      <div data-reveal className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-white dark:from-gray-900 dark:via-blue-900/20 dark:to-gray-800">
         <Navigation />
 
         <main className="pt-20">
