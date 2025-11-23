@@ -3,7 +3,6 @@ import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import AdvancedSEO from '@/components/AdvancedSEO';
 import EnhancedSEOBot from '@/components/EnhancedSEOBot';
-import VoiceChatbot from '@/components/VoiceChatbot';
 import SkipLink from '@/components/SkipLink';
 import BackgroundEffects from '@/components/BackgroundEffects';
 import MainContent from '@/components/MainContent';
@@ -46,7 +45,6 @@ const Index = () => {
         
         {/* Enhanced SEO Features */}
         <EnhancedSEOBot />
-        <VoiceChatbot />
       </div>
     </>
   );

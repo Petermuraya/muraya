@@ -23,7 +23,6 @@ import ScrollEffects from '@/components/ScrollEffects';
 import useAboutEffects from '@/hooks/useAboutEffects';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useState } from 'react';
-import Chatbot from '@/components/Chatbot';
 
 // New component imports
 import MissionVisionSection from '@/components/about/MissionVisionSection';
@@ -130,7 +129,6 @@ const About = () => {
         {/* SEO & Content Marketing Tools */}
         <SEOBot />
         <SocialShare />
-        <Chatbot />
         <ScrollToTop />
       </div>
     </>

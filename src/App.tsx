@@ -13,6 +13,7 @@ import { AdminProvider } from "@/contexts/AdminContext";
 import { AccessibilityProvider } from "@/contexts/AccessibilityContext";
 
 import AccessibilityToolbar from "@/components/AccessibilityToolbar";
+import VoiceChatbot from "@/components/VoiceChatbot";
 import FastPageLoader from "@/components/loading/FastPageLoader";
 import SkeletonLoader from "@/components/loading/SkeletonLoader";
 import { useServiceWorker, usePerformanceMonitoring } from "@/hooks/usePerformance";
@@ -123,6 +124,7 @@ const App = () => {
                 <TooltipProvider>
                   <BrowserRouter>
                     <AccessibilityToolbar />
+                    <VoiceChatbot />
                     <Toaster />
                     <Sonner />
                     <AppRoutes />
