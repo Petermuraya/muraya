@@ -69,17 +69,17 @@ const Navigation = () => {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-smooth ${
       scrolled 
-        ? 'bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-lg' 
+        ? 'bg-background/95 backdrop-blur-md border-b border-border shadow-sm' 
         : 'bg-transparent'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2">
-            <Code className="w-8 h-8 text-blue-600 dark:text-blue-400" />
-            <span className="font-bold text-xl text-gray-900 dark:text-white">
+          <Link to="/" className="flex items-center space-x-2 group">
+            <Code className="w-6 h-6 text-accent group-hover:opacity-80 transition-smooth" />
+            <span className="font-semibold text-base text-foreground">
               Peter Muraya
             </span>
           </Link>
@@ -89,10 +89,10 @@ const Navigation = () => {
             {navItems.map((item) => {
               const Icon = item.icon;
               const active = activePath === item.path;
-              const baseClasses = "flex items-center space-x-1 min-h-[44px] px-4 py-2 rounded-md text-sm font-medium transition-colors";
+              const baseClasses = "flex items-center space-x-1 min-h-[44px] px-4 py-2 rounded-md text-sm font-medium transition-smooth";
               const activeClasses = active
-                ? 'bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300'
-                : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white';
+                ? 'bg-accent text-accent-foreground'
+                : 'text-secondary hover:text-foreground hover:bg-secondary';
               return (
                 <Link
                   key={item.name}
@@ -128,7 +128,7 @@ const Navigation = () => {
         {/* Mobile Navigation */}
         {isOpen && (
           <div className="md:hidden">
-            <div id="mobile-nav" className="px-2 pt-2 pb-3 space-y-1 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md rounded-lg mt-2 shadow-lg" role="menu" aria-label="Mobile navigation">
+            <div id="mobile-nav" className="px-2 pt-2 pb-3 space-y-1 bg-card border-b border-border rounded-lg mt-2 shadow-sm" role="menu" aria-label="Mobile navigation">
               {navItems.map((item) => {
                 const Icon = item.icon;
                 const active = activePath === item.path;
@@ -136,10 +136,10 @@ const Navigation = () => {
                   <Link
                     key={item.name}
                     to={item.path}
-                    className={`flex items-center space-x-2 min-h-[44px] px-3 py-2 rounded-md text-base font-medium transition-colors ${
+                    className={`flex items-center space-x-2 min-h-[44px] px-3 py-2 rounded-md text-base font-medium transition-smooth ${
                       active
-                        ? 'bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300'
-                        : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white'
+                        ? 'bg-accent text-accent-foreground'
+                        : 'text-secondary hover:text-foreground hover:bg-secondary'
                     }`}
                     onClick={() => setIsOpen(false)}
                     role="menuitem"
