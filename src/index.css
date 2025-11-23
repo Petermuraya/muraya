@@ -204,6 +204,7 @@
 /* Scroll snap for smooth navigation */
 html {
   scroll-behavior: smooth;
+  font-display: swap; /* Use system font while custom fonts load */
 }
 
 /* Custom scrollbar */
@@ -223,3 +224,64 @@ html {
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(180deg, #2563eb, #7c3aed);
 }
+
+/* Performance optimizations */
+
+/* Reduce paint on animations */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* GPU acceleration for animations */
+.animate-fade-in-up,
+.animate-fade-in-down,
+.animate-slide-in-right,
+.animate-slide-in-left,
+.animate-pulse-glow {
+  will-change: transform, opacity;
+}
+
+/* Lazy loading image placeholder */
+img[loading="lazy"] {
+  background: linear-gradient(90deg, rgba(255,255,255,.1) 0%, rgba(255,255,255,.2) 50%, rgba(255,255,255,.1) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Contain paint and layout */
+.page-enter,
+.page-exit,
+[role="main"] {
+  contain: layout style paint;
+}
+
+/* Smooth content reveal */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Prevent layout shift while fonts load */
+body {
+  font-display: fallback;
+}
+
