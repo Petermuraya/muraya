@@ -241,6 +241,7 @@ const translations = {
     noResults: 'No results found',
     tryAnotherSearch: 'Try another search',
     backToHome: 'Back to Home'
+  },
   sw: {
     // Navigation
     home: 'Nyumbani',
