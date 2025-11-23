@@ -20,9 +20,8 @@ const Navigation = () => {
 
   const navItems = [
     { name: 'Home', path: '/', icon: Home },
+    { name: 'Work', path: '/projects', icon: Briefcase },
     { name: 'About', path: '/about', icon: Info },
-    { name: 'Projects', path: '/projects', icon: Briefcase },
-    { name: 'Blog', path: '/blog', icon: BookOpen },
     { name: 'Contact', path: '/contact', icon: Mail },
   ];
 

@@ -70,6 +70,12 @@ const Footer = () => {
                 <Facebook className="w-6 h-6" />
               </a>
             </div>
+            {/* Download CV Button */}
+            <div className="mt-6">
+              <a href="/cv/my-cv.pdf" download className="inline-flex items-center px-4 py-2 bg-[#3A7BFF] hover:bg-[#2f6fe6] text-white rounded-md shadow-sm transition-all duration-200" aria-label="Download CV">
+                Download CV
+              </a>
+            </div>
           </div>
           
           <div className="animate-fade-in-up [animation-delay:200ms] opacity-0 [animation-fill-mode:forwards]">

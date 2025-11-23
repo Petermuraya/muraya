@@ -10,11 +10,17 @@ const HeroActions = () => {
   return (
     <>
       <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12 animate-fade-in-up [animation-delay:600ms] opacity-0 [animation-fill-mode:forwards]">
-        <Button asChild size="lg" className="text-lg px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 border border-blue-500/20 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 backdrop-blur-sm">
+        <Button asChild size="lg" className="text-lg px-8 py-4 bg-[#3A7BFF] hover:bg-[#2f6fe6] text-white rounded-md shadow-md transition-all duration-300">
           <Link to="/projects">{t('viewMyWork')}</Link>
         </Button>
-        <Button asChild variant="outline" size="lg" className="text-lg px-8 py-4 border-2 border-[#30363d] bg-[#21262d]/50 backdrop-blur-sm hover:bg-[#30363d]/50 hover:border-blue-500/30 transition-all duration-300 hover:-translate-y-0.5 shadow-md hover:shadow-lg text-white">
+
+        <Button asChild variant="outline" size="lg" className="text-lg px-8 py-4 border border-gray-200 dark:border-gray-700 bg-white dark:bg-transparent text-gray-900 dark:text-white rounded-md transition-all duration-300">
           <Link to="/contact">{t('getInTouch')}</Link>
+        </Button>
+
+        {/* Download CV CTA */}
+        <Button asChild size="lg" className="text-lg px-8 py-4 bg-[#3A7BFF] hover:bg-[#2f6fe6] text-white rounded-md shadow-md transition-all duration-300">
+          <a href="/cv/my-cv.pdf" download aria-label="Download CV">Download CV</a>
         </Button>
       </div>
       
