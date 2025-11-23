@@ -16,6 +16,7 @@ export type Database = {
     Tables: {
       admin_projects: {
         Row: {
+          category: string | null
           created_at: string | null
           demo_url: string | null
           description: string
@@ -28,6 +29,7 @@ export type Database = {
           updated_at: string | null
         }
         Insert: {
+          category?: string | null
           created_at?: string | null
           demo_url?: string | null
           description: string
@@ -40,6 +42,7 @@ export type Database = {
           updated_at?: string | null
         }
         Update: {
+          category?: string | null
           created_at?: string | null
           demo_url?: string | null
           description?: string
@@ -61,6 +64,7 @@ export type Database = {
           id: string
           rating: number
           user_email: string
+          visible: boolean | null
         }
         Insert: {
           blog_id: number
@@ -69,6 +73,7 @@ export type Database = {
           id?: string
           rating: number
           user_email: string
+          visible?: boolean | null
         }
         Update: {
           blog_id?: number
@@ -77,6 +82,7 @@ export type Database = {
           id?: string
           rating?: number
           user_email?: string
+          visible?: boolean | null
         }
         Relationships: [
           {
@@ -275,6 +281,33 @@ export type Database = {
           full_name?: string | null
           id?: string
           updated_at?: string | null
+        }
+        Relationships: []
+      }
+      resume_files: {
+        Row: {
+          created_at: string | null
+          file_size: number | null
+          file_url: string
+          filename: string
+          id: string
+          is_active: boolean | null
+        }
+        Insert: {
+          created_at?: string | null
+          file_size?: number | null
+          file_url: string
+          filename: string
+          id?: string
+          is_active?: boolean | null
+        }
+        Update: {
+          created_at?: string | null
+          file_size?: number | null
+          file_url?: string
+          filename?: string
+          id?: string
+          is_active?: boolean | null
         }
         Relationships: []
       }
