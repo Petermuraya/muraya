@@ -9,8 +9,8 @@ const Admin = () => {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-[#0d1117] flex items-center justify-center">
-        <div className="text-white">Loading...</div>
+      <div className="min-h-screen bg-white dark:bg-[#0d1117] flex items-center justify-center">
+        <div className="text-gray-900 dark:text-white">Loading...</div>
       </div>
     );
   }

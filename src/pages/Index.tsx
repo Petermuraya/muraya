@@ -8,10 +8,11 @@ import BackgroundEffects from '@/components/BackgroundEffects';
 import MainContent from '@/components/MainContent';
 import SEODashboardOverlay from '@/components/SEODashboardOverlay';
 import SEOHead from '@/components/SEOHead';
+import { useTheme } from '@/contexts/ThemeContext';
 import { generateEnhancedStructuredData } from '@/lib/structured-data';
 
 const Index = () => {
-  // Generate enhanced structured data
+  const { theme } = useTheme();
   const enhancedStructuredData = generateEnhancedStructuredData();
 
   return (
@@ -32,7 +33,7 @@ const Index = () => {
         customStructuredData={enhancedStructuredData}
       />
       
-      <div className="min-h-screen bg-[#0d1117] text-white overflow-x-hidden">
+      <div className="min-h-screen bg-white dark:bg-[#0d1117] text-gray-900 dark:text-white overflow-x-hidden">
         <BackgroundEffects />
 
         <div className="relative z-10">

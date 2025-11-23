@@ -22,6 +22,7 @@ import ResumeDownload from '@/components/ResumeDownload';
 import ScrollEffects from '@/components/ScrollEffects';
 import useAboutEffects from '@/hooks/useAboutEffects';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useTheme } from '@/contexts/ThemeContext';
 import { useState } from 'react';
 
 // New component imports
@@ -34,6 +35,7 @@ import AchievementsSection from '@/components/about/AchievementsSection';
 import ContactCTASection from '@/components/about/ContactCTASection';
 
 const About = () => {
+  const { theme } = useTheme();
   const { t } = useLanguage();
   const { scrollToSection } = useAboutEffects();
   
@@ -51,7 +53,7 @@ const About = () => {
         breadcrumbs={breadcrumbs}
       />
       
-      <div className="min-h-screen bg-[#0d1117] text-white overflow-x-hidden relative">
+      <div className="min-h-screen bg-white dark:bg-[#0d1117] text-gray-900 dark:text-white overflow-x-hidden relative">
         <ParticleBackground />
         <AboutBackgroundEffects 
           mousePosition={mousePosition}

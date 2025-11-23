@@ -9,6 +9,8 @@ import Footer from '@/components/Footer';
 import LikeButton from '@/components/LikeButton';
 import CommentsSection from '@/components/CommentsSection';
 import SEO from '@/components/SEO';
+import { useTheme } from '@/contexts/ThemeContext';
+import SkeletonLoader from '@/components/loading/SkeletonLoader';
 import { Github, Link as LinkIcon, MessageCircle, Search, Filter, Star, Calendar, Tag, Grid, List, SlidersHorizontal } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
@@ -193,11 +195,8 @@ const Projects = () => {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-[#0d1117] text-white flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto mb-4"></div>
-          <p className="text-[#c9d1d9]">Loading projects...</p>
-        </div>
+      <div className="min-h-screen bg-white dark:bg-[#0d1117] text-gray-900 dark:text-white flex items-center justify-center">
+        <SkeletonLoader type="card" count={6} />
       </div>
     );
   }
@@ -215,11 +214,11 @@ const Projects = () => {
         structuredData={structuredData}
       />
       
-      <div className="min-h-screen bg-[#0d1117] text-white overflow-x-hidden">
+      <div className="min-h-screen bg-white dark:bg-[#0d1117] text-gray-900 dark:text-white overflow-x-hidden">
         {/* Background Effects */}
         <div className="fixed inset-0 overflow-hidden pointer-events-none">
-          <div className="parallax-bg absolute inset-0 bg-gradient-to-br from-[#0d1117] via-[#161b22] to-[#21262d]"></div>
-          <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=&quot;60&quot; height=&quot;60&quot; viewBox=&quot;0 0 60 60&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;%3E%3Cg fill=&quot;none&quot; fill-rule=&quot;evenodd&quot;%3E%3Cg fill=&quot;%23f0f6fc&quot; fill-opacity=&quot;0.02&quot;%3E%3Ccircle cx=&quot;7&quot; cy=&quot;7&quot; r=&quot;1&quot;/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-40"></div>
+          <div className="parallax-bg absolute inset-0 bg-gradient-to-br from-white via-gray-50 to-gray-100 dark:from-[#0d1117] dark:via-[#161b22] dark:to-[#21262d]"></div>
+          <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=&quot;60&quot; height=&quot;60&quot; viewBox=&quot;0 0 60 60&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;%3E%3Cg fill=&quot;none&quot; fill-rule=&quot;evenodd&quot;%3E%3Cg fill=&quot;%23f0f6fc&quot; fill-opacity=&quot;0.02&quot;%3E%3Ccircle cx=&quot;7&quot; cy=&quot;7&quot; r=&quot;1&quot;/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] dark:opacity-40 opacity-20"></div>
         </div>
 
         {/* Enhanced Gradient Orbs */}
