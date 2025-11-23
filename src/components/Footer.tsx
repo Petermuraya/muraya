@@ -3,9 +3,11 @@ import { Github, Linkedin, Mail, Heart, Phone, Instagram, Twitter, Facebook } fr
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTheme } from '@/contexts/ThemeContext';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const Footer = () => {
   const { theme } = useTheme();
+  const { t } = useLanguage();
   const [clickCount, setClickCount] = useState(0);
   const navigate = useNavigate();
 

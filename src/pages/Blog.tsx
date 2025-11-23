@@ -10,6 +10,7 @@ import NewsletterSignup from '@/components/NewsletterSignup';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { useLanguage } from '@/contexts/LanguageContext';
 import { supabase } from '@/integrations/supabase/client';
 
 interface BlogPost {
@@ -32,6 +33,7 @@ const Blog = () => {
   const [selectedTag, setSelectedTag] = useState('');
   const [selectedBlog, setSelectedBlog] = useState<BlogPost | null>(null);
   const [allTags, setAllTags] = useState<string[]>([]);
+  const { t } = useLanguage();
 
   useEffect(() => {
     fetchBlogs();

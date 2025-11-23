@@ -4,9 +4,11 @@ import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import ContactForm from '@/components/ContactForm';
 import NewsletterSignup from '@/components/NewsletterSignup';
+import { useLanguage } from '@/contexts/LanguageContext';
 import { MapPin, Phone, Mail, Clock, Send, Code, Cpu, Globe } from 'lucide-react';
 
 const Contact = () => {
+  const { t } = useLanguage();
   return (
     <>
       <Helmet>

@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card } from '@/components/ui/card';
+import { useLanguage } from '@/contexts/LanguageContext';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/components/ui/use-toast';
 
@@ -28,6 +29,7 @@ const CommentsSection = ({ itemId, itemType, className }: CommentsSectionProps) 
   const [userEmail, setUserEmail] = useState('');
   const [showCommentForm, setShowCommentForm] = useState(false);
   const { toast } = useToast();
+  const { t } = useLanguage();
 
   const tableName = itemType === 'project' ? 'project_comments' : 'blog_comments';
   const idColumn = itemType === 'project' ? 'project_id' : 'blog_id';

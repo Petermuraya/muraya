@@ -10,6 +10,7 @@ import LikeButton from '@/components/LikeButton';
 import CommentsSection from '@/components/CommentsSection';
 import SEO from '@/components/SEO';
 import { useTheme } from '@/contexts/ThemeContext';
+import { useLanguage } from '@/contexts/LanguageContext';
 import SkeletonLoader from '@/components/loading/SkeletonLoader';
 import { Github, Link as LinkIcon, MessageCircle, Search, Filter, Star, Calendar, Tag, Grid, List, SlidersHorizontal } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
@@ -42,6 +43,7 @@ const Projects = () => {
   const [showFilters, setShowFilters] = useState(false);
   const [selectedTech, setSelectedTech] = useState<string>('all');
   const { toast } = useToast();
+  const { t } = useLanguage();
 
   useEffect(() => {
     fetchProjects();
