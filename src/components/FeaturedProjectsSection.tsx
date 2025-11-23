@@ -51,7 +51,20 @@ const FeaturedProjectsSection = () => {
         console.error('Error fetching featured projects:', projectsResult.error);
         setFeaturedProjects(getDefaultProjects());
       } else if (projectsResult.data && projectsResult.data.length > 0) {
-        setFeaturedProjects(projectsResult.data);
+        // Transform database fields to match interface
+        const transformedProjects = projectsResult.data.map((p: any) => ({
+          id: p.id,
+          title: p.title,
+          description: p.description,
+          category: p.category || 'General',
+          image: p.image_url || '',
+          tech: p.technologies || [],
+          github: p.github_url || '',
+          demo: p.demo_url || '',
+          featured: p.featured,
+          created_at: p.created_at
+        }));
+        setFeaturedProjects(transformedProjects);
       } else {
         setFeaturedProjects(getDefaultProjects());
       }
@@ -99,9 +112,9 @@ const FeaturedProjectsSection = () => {
     id: 'health-tech',
     title: t('healthTechTitle'),
     description: t('healthTechDesc'),
-    category: 'Web Development',
-    tech: ["Django", "React", "PostgreSQL", "Firebase"],
-    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=600&h=400&fit=crop",
+    category: 'Health Tech',
+    tech: ["React Native", "Node.js", "PostgreSQL", "AWS"],
+    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&h=400&fit=crop",
     github: '',
     demo: '',
     featured: true,
