@@ -51,6 +51,29 @@ const translations = {
     publishedOn: 'Published on',
     
     // Contact Page
+    letsBuildFuture: 'Let\'s Build the Future',
+    connectWithDeveloper: 'Connect with a visionary developer crafting intelligent systems',
+    callNow: 'Call Now',
+    digitalPathways: 'Digital Pathways to Connect',
+    aiSolutionDescription: 'Whether you\'re envisioning an AI solution, IoT system, or web application',
+    digitalCourier: 'Digital Courier',
+    voiceChannel: 'Voice Channel',
+    geolocation: 'Geolocation',
+    responseProtocol: 'Response Protocol',
+    withinHours: 'Within 24 hours',
+    connectThroughNetworks: 'Connect Through Digital Networks',
+    
+    // Contact Form
+    fullName: 'Full Name',
+    yourEmail: 'Your Email',
+    subject: 'Subject',
+    yourMessage: 'Your Message',
+    submit: 'Submit',
+    submitting: 'Submitting...',
+    messageSent: 'Message sent successfully!',
+    errorSending: 'Error sending message',
+    
+    // Contact Page - Old
     contactPageTitle: 'Contact Peter Muraya',
     contactPageDescription: 'Get in touch for collaborations, opportunities, or just to say hello',
     getInTouchTitle: 'Get In Touch',
@@ -218,7 +241,6 @@ const translations = {
     noResults: 'No results found',
     tryAnotherSearch: 'Try another search',
     backToHome: 'Back to Home'
-  },
   sw: {
     // Navigation
     home: 'Nyumbani',
