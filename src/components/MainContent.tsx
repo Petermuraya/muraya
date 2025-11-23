@@ -7,18 +7,21 @@ import SkillsSection from '@/components/SkillsSection';
 const MainContent = () => {
   return (
     <main id="main-content" role="main">
-      <div className="scroll-animate opacity-0">
+      <section id="home" aria-label="Home" className="scroll-animate opacity-0">
         <HeroSection />
-      </div>
-      <div className="scroll-animate opacity-0">
+      </section>
+
+      <section id="about" aria-label="About" className="scroll-animate opacity-0">
         <FeaturesSection />
-      </div>
-      <div className="scroll-animate opacity-0">
+      </section>
+
+      <section id="projects" aria-label="Projects" className="scroll-animate opacity-0">
         <FeaturedProjectsSection />
-      </div>
-      <div className="scroll-animate opacity-0">
+      </section>
+
+      <section id="skills" aria-label="Skills" className="scroll-animate opacity-0">
         <SkillsSection />
-      </div>
+      </section>
     </main>
   );
 };
