@@ -17,7 +17,6 @@ import AboutBackgroundEffects from '@/components/AboutBackgroundEffects';
 import SEOBot from '@/components/SEOBot';
 import SocialShare from '@/components/SocialShare';
 import NewsletterSignup from '@/components/NewsletterSignup';
-import ContentScheduler from '@/components/ContentScheduler';
 import SocialMediaLinks from '@/components/SocialMediaLinks';
 import ResumeDownload from '@/components/ResumeDownload';
 import ScrollEffects from '@/components/ScrollEffects';
@@ -131,7 +130,6 @@ const About = () => {
         {/* SEO & Content Marketing Tools */}
         <SEOBot />
         <SocialShare />
-        <ContentScheduler />
         <Chatbot />
         <ScrollToTop />
       </div>
