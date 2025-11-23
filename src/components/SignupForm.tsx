@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { useAdmin } from '@/contexts/AdminContext';
+import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -25,7 +25,7 @@ const SignupForm = ({ onSwitchToLogin }: SignupFormProps) => {
     setIsLoading(true);
 
     // Check secret code
-    if (secretCode.toLowerCase() !== 'muraya') {
+    if (secretCode !== '2000') {
       toast({
         title: "Invalid Access Code",
         description: "Please enter the correct access code to register.",
@@ -35,15 +35,75 @@ const SignupForm = ({ onSwitchToLogin }: SignupFormProps) => {
       return;
     }
 
-    // Simulate signup process (you can integrate with your auth system)
-    setTimeout(() => {
+    // Validate inputs
+    if (!email || !password || !name) {
       toast({
-        title: "Registration Successful",
-        description: "Your admin account has been created. Please contact the administrator to activate your account.",
+        title: "Missing Information",
+        description: "Please fill in all fields.",
+        variant: "destructive",
       });
       setIsLoading(false);
+      return;
+    }
+
+    if (password.length < 8) {
+      toast({
+        title: "Password Too Short",
+        description: "Password must be at least 8 characters.",
+        variant: "destructive",
+      });
+      setIsLoading(false);
+      return;
+    }
+
+    try {
+      // Sign up the user with Supabase
+      const { data, error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          data: {
+            full_name: name,
+          },
+        },
+      });
+
+      if (error) {
+        toast({
+          title: "Registration Failed",
+          description: error.message,
+          variant: "destructive",
+        });
+        setIsLoading(false);
+        return;
+      }
+
+      if (!data.user) {
+        toast({
+          title: "Registration Failed",
+          description: "Could not create user account.",
+          variant: "destructive",
+        });
+        setIsLoading(false);
+        return;
+      }
+
+      toast({
+        title: "Registration Successful",
+        description: "Your account has been created. Please log in.",
+      });
+
+      setIsLoading(false);
       onSwitchToLogin();
-    }, 1500);
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : 'An error occurred';
+      toast({
+        title: "Registration Error",
+        description: errorMessage,
+        variant: "destructive",
+      });
+      setIsLoading(false);
+    }
   };
 
   return (

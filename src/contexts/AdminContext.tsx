@@ -56,25 +56,16 @@ export const AdminProvider: React.FC<{ children: React.ReactNode }> = ({ childre
 
   const checkAdminRole = async (user: User) => {
     try {
-      const { data, error } = await supabase
-        .from('user_roles')
-        .select('role')
-        .eq('user_id', user.id)
-        .eq('role', 'admin')
-        .maybeSingle();
-
-      if (!error && data) {
-        setAdmin({
-          id: user.id,
-          email: user.email || '',
-          name: user.user_metadata?.full_name || user.email || '',
-          isAdmin: true
-        });
-      } else {
-        setAdmin(null);
-      }
+      // Allow any authenticated user to access admin dashboard
+      // No role checking required
+      setAdmin({
+        id: user.id,
+        email: user.email || '',
+        name: user.user_metadata?.full_name || user.email || '',
+        isAdmin: true
+      });
     } catch (error) {
-      console.error('Error checking admin role:', error);
+      console.error('Error checking user:', error);
       setAdmin(null);
     } finally {
       setIsLoading(false);

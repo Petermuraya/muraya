@@ -26,6 +26,7 @@ const Projects = lazy(() => import("@/pages/Projects"));
 const Contact = lazy(() => import("@/pages/Contact"));
 const Blog = lazy(() => import("@/pages/Blog"));
 const Admin = lazy(() => import("@/pages/Admin"));
+const PasswordResetConfirm = lazy(() => import("@/components/PasswordResetConfirm"));
 const NotFound = lazy(() => import("@/pages/NotFound"));
 
 const queryClient = new QueryClient({
@@ -94,6 +95,14 @@ const AppRoutes = () => {
           element={
             <Suspense fallback={<SkeletonLoader type="full-page" />}>
               <Admin />
+            </Suspense>
+          } 
+        />
+        <Route 
+          path="/reset-password" 
+          element={
+            <Suspense fallback={<SkeletonLoader type="full-page" />}>
+              <PasswordResetConfirm />
             </Suspense>
           } 
         />

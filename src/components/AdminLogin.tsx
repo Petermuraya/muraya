@@ -6,9 +6,13 @@ import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
-import { Lock, User } from 'lucide-react';
+import { Lock, User, HelpCircle } from 'lucide-react';
 
-const AdminLogin = () => {
+interface AdminLoginProps {
+  onForgotPassword?: () => void;
+}
+
+const AdminLogin = ({ onForgotPassword }: AdminLoginProps) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -63,7 +67,19 @@ const AdminLogin = () => {
             </div>
           </div>
           <div className="space-y-2">
-            <Label htmlFor="password" className="text-[#c9d1d9]">Password</Label>
+            <div className="flex items-center justify-between">
+              <Label htmlFor="password" className="text-[#c9d1d9]">Password</Label>
+              {onForgotPassword && (
+                <button
+                  type="button"
+                  onClick={onForgotPassword}
+                  className="text-blue-400 hover:text-blue-300 text-xs flex items-center gap-1"
+                >
+                  <HelpCircle className="w-3 h-3" />
+                  Forgot?
+                </button>
+              )}
+            </div>
             <div className="relative">
               <Lock className="absolute left-3 top-3 w-4 h-4 text-[#7d8590]" />
               <Input
