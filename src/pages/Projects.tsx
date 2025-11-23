@@ -99,7 +99,20 @@ const Projects = () => {
         return;
       }
 
-      setProjects(data || []);
+      // Transform database fields to match interface
+      const transformedProjects = (data || []).map((p: any) => ({
+        id: p.id,
+        title: p.title,
+        description: p.description,
+        category: p.category || 'General',
+        image: p.image_url || '',
+        tech: p.technologies || [],
+        github: p.github_url || '',
+        demo: p.demo_url || '',
+        featured: p.featured,
+        created_at: p.created_at
+      }));
+      setProjects(transformedProjects);
     } catch (error) {
       console.error('Error fetching projects:', error);
       toast({
