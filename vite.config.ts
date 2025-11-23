@@ -25,7 +25,7 @@ export default defineConfig(({ mode }) => ({
     }),
     // Brotli compression for better compression ratio
     compression({
-      algorithm: "brotli",
+      algorithm: "brotliCompress" as any,
       ext: ".br",
       threshold: 1024,
       deleteOriginFile: false,
